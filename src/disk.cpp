@@ -232,33 +232,14 @@ static int load_equipment(s_player *s, XMLElement *node) {
 static int load_attributes(s_player *s, XMLElement *node) {
   XMLElement *attributes = node->FirstChildElement("attributes");
   if (attributes) {
-    for (auto property : children(attributes, "property")) {
-      if (property->Attribute("name", "str")) {
-        s->stats[A_STR] = property->IntAttribute("value");
-      } else if (property->Attribute("name", "agi")) {
-        s->stats[A_AGI] = property->IntAttribute("value");
-      } else if (property->Attribute("name", "vit")) {
-        s->stats[A_VIT] = property->IntAttribute("value");
-      } else if (property->Attribute("name", "int")) {
-        s->stats[A_INT] = property->IntAttribute("value");
-      } else if (property->Attribute("name", "sag")) {
-        s->stats[A_SAG] = property->IntAttribute("value");
-      } else if (property->Attribute("name", "spd")) {
-        s->stats[A_SPD] = property->IntAttribute("value");
-      } else if (property->Attribute("name", "aur")) {
-        s->stats[A_AUR] = property->IntAttribute("value");
-      } else if (property->Attribute("name", "spi")) {
-        s->stats[A_SPI] = property->IntAttribute("value");
-      } else if (property->Attribute("name", "att")) {
-        s->stats[A_ATT] = property->IntAttribute("value");
-      } else if (property->Attribute("name", "hit")) {
-        s->stats[A_HIT] = property->IntAttribute("value");
-      } else if (property->Attribute("name", "def")) {
-        s->stats[A_DEF] = property->IntAttribute("value");
-      } else if (property->Attribute("name", "evd")) {
-        s->stats[A_EVD] = property->IntAttribute("value");
-      } else if (property->Attribute("name", "mag")) {
-        s->stats[A_MAG] = property->IntAttribute("value");
+    auto values = parse_list(attributes->FirstChild()->Value());
+    if (!values.empty()) {
+      if (values.size() == NUM_ATTRIBUTES) {
+        copy(values.begin(), values.end(), s->stats);
+      } else {
+        TRACE("Wrong number of attributes, expected %d and got %d",
+              NUM_SPELLTYPES, values.size());
+        Game.program_death("Error loading XML");
       }
     }
   }
