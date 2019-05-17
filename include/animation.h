@@ -19,8 +19,12 @@ class KAnimation
 		KTmxAnimation::animation_frame current() const;
 
 		void advance();
+        void addNextTime(int millis);
+        int getNextTime() const;
 
-	public:
+        KTmxAnimation getAnimation() const;
+
+	private:
 		int nexttime_;
 		size_t index_;
 		const KTmxAnimation animation_;

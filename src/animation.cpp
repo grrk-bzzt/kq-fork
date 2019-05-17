@@ -6,16 +6,16 @@ void KAnimation::check_animation(int millis, uint16_t* tilex)
 {
 	for (auto& anim : animations_)
 	{
-		anim.nexttime_ -= millis;
-		
+		anim.addNextTime(-millis);
+
 		// If several frames are skipped, this loop ensures that the correct animation
 		// tile is rendered.
-		while (anim.nexttime_ < 0)
+		while (anim.getNextTime() < 0)
 		{
-			anim.nexttime_ += anim.current().delay;
+			anim.addNextTime(anim.current().delay);
 			anim.advance();
 		}
-		tilex[anim.animation_.tilenumber] = anim.current().tile;
+		tilex[anim.getAnimation().getTileNumber()] = anim.current().tile;
 	}
 }
 
@@ -45,11 +45,29 @@ KTmxAnimation::animation_frame KAnimation::KAnimSequence::current() const
 
 void KAnimation::KAnimSequence::advance()
 {
-	if (index_ < animation_.frames.size() - 1)
-		if (++index_ >= animation_.frames.size())
-		{
-			index_ = 0;
-		}
+    const size_t numFrames = animation_.frames.size();
+    if (index_ < numFrames - 1)
+    {
+        if (++index_ >= numFrames)
+        {
+            index_ = 0;
+        }
+    }
+}
+
+void KAnimation::KAnimSequence::addNextTime(int millis)
+{
+    nexttime_ += millis;
+}
+
+int KAnimation::KAnimSequence::getNextTime() const
+{
+    return nexttime_;
+}
+
+KTmxAnimation KAnimation::KAnimSequence::getAnimation() const
+{
+    return animation_;
 }
 
 KAnimation kqAnimation;

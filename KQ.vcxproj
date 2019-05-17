@@ -136,6 +136,7 @@
     <ClCompile Include="src\text.cpp" />
     <ClCompile Include="src\tiledmap.cpp" />
     <ClCompile Include="src\timing.cpp" />
+    <ClCompile Include="src\tmx_animation.cpp" />
     <ClCompile Include="src\win.cpp" />
   </ItemGroup>
   <ItemGroup>

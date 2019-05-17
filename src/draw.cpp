@@ -30,13 +30,22 @@
 #include <sstream>
 #include <string>
 
+using std::string;
+
 /* Globals */
+namespace {
+
+constexpr uint32_t ScreenHeightInTiles = 16;
+constexpr uint32_t ScreenWidthInTiles = 21;
+
 constexpr size_t MSG_ROWS{ 4 };
 constexpr size_t MSG_COLS{ 36 };
 char msgbuf[MSG_ROWS][MSG_COLS];
-std::string messageBuffer[MSG_ROWS];
+string messageBuffer[MSG_ROWS];
 int gbx, gby, gbbx, gbby, gbbw, gbbh, gbbs;
 eBubbleStemStyle bubble_stem_style;
+
+} // anonymous namespace
 
 namespace KqFork
 {
@@ -54,7 +63,7 @@ enum class eTextFormat
 
 /**
  * Find the offset of the unicode glyph within the font.
- * 
+ *
  * @param glyph Character code to look up, value 128..255
  * @return Offset within font file on success, or 0 if not found
  */
@@ -82,6 +91,7 @@ int glyphLookup(uint32_t glyph) {
 }
 
 } // namespace KqFork
+
 
 void KDraw::blit2screen(int xw, int yw)
 {
@@ -136,34 +146,50 @@ void KDraw::border(Raster* where, int left, int top, int right, int bottom)
     static const uint8_t GREY3 = 13;
     static const uint8_t WHITE = 15;
 
-    vline(where, left + 1, top + 3, bottom - 3, GREY2);
-	vline(where, left + 2, top + 3, bottom - 3, GREY3);
-	vline(where, left + 3, top + 2, bottom - 2, GREY3);
-	vline(where, left + 3, top + 5, bottom - 5, WHITE);
-	vline(where, left + 4, top + 5, bottom - 5, GREY1);
-	vline(where, right - 1, top + 3, bottom - 3, GREY2);
-	vline(where, right - 2, top + 3, bottom - 3, GREY3);
-	vline(where, right - 3, top + 2, bottom - 2, GREY3);
-	vline(where, right - 3, top + 5, bottom - 5, WHITE);
-	vline(where, right - 4, top + 5, bottom - 5, GREY1);
-	hline(where, left + 3, top + 1, right - 3, GREY2);
-	hline(where, left + 3, top + 2, right - 3, GREY3);
-	hline(where, left + 4, top + 3, right - 4, GREY3);
-	hline(where, left + 5, top + 3, right - 5, WHITE);
-	hline(where, left + 5, top + 4, right - 5, GREY1);
-	hline(where, left + 3, bottom - 1, right - 3, GREY2);
-	hline(where, left + 3, bottom - 2, right - 3, GREY3);
-	hline(where, left + 4, bottom - 3, right - 4, GREY3);
-	hline(where, left + 5, bottom - 3, right - 5, WHITE);
-	hline(where, left + 5, bottom - 4, right - 5, GREY1);
-	putpixel(where, left + 2, top + 2, GREY2);
-	putpixel(where, left + 2, bottom - 2, GREY2);
-	putpixel(where, right - 2, top + 2, GREY2);
-	putpixel(where, right - 2, bottom - 2, GREY2);
-	putpixel(where, left + 4, top + 4, WHITE);
-	putpixel(where, left + 4, bottom - 4, WHITE);
-	putpixel(where, right - 4, top + 4, WHITE);
-	putpixel(where, right - 4, bottom - 4, WHITE);
+	hline(where, left  + 0, bottom - 0, right  - 0, GREY1);
+	vline(where, left  + 0, top    + 0, bottom - 0, WHITE);
+
+	vline(where, left  + 1, top + 3, bottom - 3, GREY2);
+	vline(where, right - 2, top + 3, bottom - 3, GREY2);
+
+	vline(where, left  + 2, top + 3, bottom - 3, GREY3);
+	vline(where, right - 3, top + 3, bottom - 3, GREY3);
+
+	vline(where, left  + 3, top + 2, bottom - 2, GREY3);
+	vline(where, right - 4, top + 2, bottom - 2, GREY3);
+
+	vline(where, left  + 3, top + 5, bottom - 5, WHITE);
+	vline(where, right - 4, top + 5, bottom - 5, WHITE);
+
+	vline(where, left  + 4, top + 5, bottom - 5, GREY1);
+	vline(where, right - 5, top + 5, bottom - 5, GREY1);
+
+	hline(where, left + 3, top    + 1, right - 3, GREY2);
+	hline(where, left + 3, bottom - 2, right - 3, GREY2);
+
+	hline(where, left + 3, top    + 2, right - 3, GREY3);
+	hline(where, left + 3, bottom - 3, right - 3, GREY3);
+
+	hline(where, left + 4, top    + 3, right - 4, GREY3);
+	hline(where, left + 4, bottom - 4, right - 4, GREY3);
+
+	hline(where, left + 5, top    + 3, right - 5, WHITE);
+	hline(where, left + 5, bottom - 4, right - 5, WHITE);
+
+	hline(where, left + 5, top    + 4, right - 5, GREY1);
+	hline(where, left + 5, bottom - 5, right - 5, GREY1);
+
+	putpixel(where, left + 2, top    + 2, GREY2);
+	putpixel(where, left + 2, bottom - 3, GREY2);
+
+	putpixel(where, right - 3, top    + 2, GREY2);
+	putpixel(where, right - 3, bottom - 3, GREY2);
+
+	putpixel(where, left + 4, top    + 4, WHITE);
+	putpixel(where, left + 4, bottom - 5, WHITE);
+
+	putpixel(where, right - 5, top    + 4, WHITE);
+	putpixel(where, right - 5, bottom - 5, WHITE);
 }
 
 void KDraw::color_scale(Raster* src, Raster* dest, int output_range_start, int output_range_end)
@@ -355,10 +381,16 @@ void KDraw::draw_backlayer()
 	}
 	else
 	{
+		// For divide-by-zero
+		if (g_map.pdiv == 0)
+		{
+			g_map.pdiv = 1;
+		}
+
 		dx = camera_viewport_x * g_map.pmult / g_map.pdiv;
 		dy = camera_viewport_y * g_map.pmult / g_map.pdiv;
-		xtc = dx >> 4;
-		ytc = dy >> 4;
+		xtc = dx / TILE_W;
+		ytc = dy / TILE_H;
 		box.left = view_x1 * g_map.pmult / g_map.pdiv;
 		box.top = view_y1 * g_map.pmult / g_map.pdiv;
 		box.right = view_x2 * g_map.pmult / g_map.pdiv;
@@ -367,12 +399,12 @@ void KDraw::draw_backlayer()
 	xofs = 16 - (dx & 15);
 	yofs = 16 - (dy & 15);
 
-	for (dy = 0; dy < 16; dy++)
+	for (dy = 0; dy < ScreenHeightInTiles; dy++)
 	{
 		/* TT Parallax problem here #1 */
 		if (ytc + dy >= box.top && ytc + dy <= box.bottom)
 		{
-			for (dx = 0; dx < 21; dx++)
+			for (dx = 0; dx < ScreenWidthInTiles; dx++)
 			{
 				/* TT Parallax problem here #2 */
 				if (xtc + dx >= box.left && xtc + dx <= box.right)
@@ -623,17 +655,17 @@ void KDraw::draw_forelayer()
 		box.right = view_x2 * g_map.pmult / g_map.pdiv;
 		box.bottom = view_y2 * g_map.pmult / g_map.pdiv;
 	}
-	xtc = dx >> 4;
-	ytc = dy >> 4;
+	xtc = dx / TILE_W;
+	ytc = dy / TILE_H;
 
 	xofs = 16 - (dx & 15);
 	yofs = 16 - (dy & 15);
 
-	for (dy = 0; dy < 16; dy++)
+	for (dy = 0; dy < ScreenHeightInTiles; dy++)
 	{
 		if (ytc + dy >= box.top && ytc + dy <= box.bottom)
 		{
-			for (dx = 0; dx < 21; dx++)
+			for (dx = 0; dx < ScreenWidthInTiles; dx++)
 			{
 				if (xtc + dx >= box.left && xtc + dx <= box.right)
 				{
@@ -786,10 +818,16 @@ void KDraw::draw_midlayer()
 	}
 	else
 	{
+		// For divide-by-zero
+		if (g_map.pdiv == 0)
+		{
+			g_map.pdiv = 1;
+		}
+
 		dx = camera_viewport_x * g_map.pmult / g_map.pdiv;
 		dy = camera_viewport_y * g_map.pmult / g_map.pdiv;
-		xtc = dx >> 4;
-		ytc = dy >> 4;
+		xtc = dx / TILE_W;
+		ytc = dy / TILE_H;
 		box.left = view_x1 * g_map.pmult / g_map.pdiv;
 		box.top = view_y1 * g_map.pmult / g_map.pdiv;
 		box.right = view_x2 * g_map.pmult / g_map.pdiv;
@@ -798,11 +836,11 @@ void KDraw::draw_midlayer()
 	xofs = 16 - (dx & 15);
 	yofs = 16 - (dy & 15);
 
-	for (dy = 0; dy < 16; dy++)
+	for (dy = 0; dy < ScreenHeightInTiles; dy++)
 	{
 		if (ytc + dy >= box.top && ytc + dy <= box.bottom)
 		{
-			for (dx = 0; dx < 21; dx++)
+			for (dx = 0; dx < ScreenWidthInTiles; dx++)
 			{
 				if (xtc + dx >= box.left && xtc + dx <= box.right)
 				{
@@ -897,9 +935,9 @@ void KDraw::draw_shadows()
 	xofs = 16 - (camera_viewport_x & 15);
 	yofs = 16 - (camera_viewport_y & 15);
 
-	for (dy = 0; dy < 16; dy++)
+	for (dy = 0; dy < ScreenHeightInTiles; dy++)
 	{
-		for (dx = 0; dx < 21; dx++)
+		for (dx = 0; dx < ScreenWidthInTiles; dx++)
 		{
 			if (ytc + dy >= view_y1 && xtc + dx >= view_x1 &&
 				ytc + dy <= view_y2 && xtc + dx <= view_x2)
@@ -1187,10 +1225,10 @@ void KDraw::message(const char* m, int icn, int delay, int x_m, int y_m)
 	}
 }
 
-std::string KDraw::replaceAll(std::string originalString, const std::string& searchForText, const std::string& replaceWithText)
+string KDraw::replaceAll(string originalString, const string& searchForText, const string& replaceWithText)
 {
     size_t startPosition = originalString.find(searchForText, 0);
-    while (startPosition != std::string::npos)
+    while (startPosition != string::npos)
     {
         originalString.replace(startPosition, searchForText.length(), replaceWithText);
         startPosition += replaceWithText.length(); // Handles case where 'to' is a substring of 'from'
@@ -1201,9 +1239,9 @@ std::string KDraw::replaceAll(std::string originalString, const std::string& sea
 
 // TODO(onlinecop): Potential bug: if player changes order of party members and this
 // was previously filled, it may not be updated to reflect that.
-std::string getPlayerName(const size_t playerId)
+string getPlayerName(const size_t playerId)
 {
-	static std::map<size_t, std::string> playerNames;
+	static std::map<size_t, string> playerNames;
 	if (playerNames.size() == 0)
 	{
 		for (size_t i = 0; i < MAXCHRS; ++i)
@@ -1214,13 +1252,13 @@ std::string getPlayerName(const size_t playerId)
 	return playerNames[playerId];
 }
 
-std::string KDraw::substitutePlayerNameString(const std::string& the_string)
+string KDraw::substitutePlayerNameString(const string& the_string)
 {
-	static const std::string pidxDelimiter("$");
-    std::string replacedString(the_string);
+	static const string pidxDelimiter("$");
+    string replacedString(the_string);
     for (size_t i = 0; i < MAXCHRS; ++i)
     {
-        std::string escapedPidx = pidxDelimiter + std::to_string(i);
+        string escapedPidx = pidxDelimiter + std::to_string(i);
         replacedString = replaceAll(replacedString, escapedPidx, getPlayerName(pidx[i]));
     }
     return replacedString.c_str();
@@ -1342,7 +1380,7 @@ int KDraw::get_glyph_index(uint32_t cp)
 	}
 
 	/* didn't find it */
-	std::string glyphStr = "Invalid glyph index: " + std::to_string(cp);
+	string glyphStr = "Invalid glyph index: " + std::to_string(cp);
 	Game.klog(_(glyphStr.c_str()));
 	return 0;
 }
@@ -1355,7 +1393,7 @@ void KDraw::print_font(Raster* where, int sx, int sy, const char* msg, eFontColo
 
 	if (font_index < 0 || font_index >= eFontColor::NUM_FONT_COLORS)
 	{
-		std::string errorStr = "print_font: Bad font index, " + std::to_string(static_cast<int>(font_index));
+		string errorStr = "print_font: Bad font index, " + std::to_string(static_cast<int>(font_index));
 		Game.klog(_(errorStr.c_str()));
 		return;
 	}
@@ -1376,13 +1414,13 @@ void KDraw::print_font(Raster* where, int sx, int sy, const char* msg, eFontColo
 	}
 }
 
-void KDraw::print_num(Raster* where, int sx, int sy, const std::string& msg, eFont font_index)
+void KDraw::print_num(Raster* where, int sx, int sy, const string& msg, eFont font_index)
 {
 	assert(where && "where == NULL");
 	// Check ought not to be necessary if using the enum correctly.
 	if (font_index >= eFont::NUM_FONTS)
 	{
-		std::string errorStr = "print_num: Bad font index, " + std::to_string(static_cast<int>(font_index));
+		string errorStr = "print_num: Bad font index, " + std::to_string(static_cast<int>(font_index));
 		Game.klog(_(errorStr.c_str()));
 		return;
 	}
@@ -1593,7 +1631,7 @@ uint32_t KDraw::prompt_ex(uint32_t who, const char* ptext, const char* opt[], ui
 	}
 }
 
-std::string word_wrap(std::string text, size_t per_line)
+string word_wrap(string text, size_t per_line)
 {
     size_t line_begin = 0;
 
@@ -1647,15 +1685,15 @@ std::string word_wrap(std::string text, size_t per_line)
  *     "longtext5 longtext6"
  * for it to be processed later.
  */
-std::string KDraw::splitTextOverMultipleLines(const std::string& stringToSplit)
+string KDraw::splitTextOverMultipleLines(const string& stringToSplit)
 {
-    std::string wordWrappedString = word_wrap(stringToSplit, MSG_COLS);
+    string wordWrappedString = word_wrap(stringToSplit, MSG_COLS);
 
     for (size_t currentRow = 0; currentRow < MSG_ROWS; ++currentRow)
     {
         auto singleRowNewlineAt = wordWrappedString.find_first_of('\n');
-        std::string substring = wordWrappedString.substr(0, singleRowNewlineAt);
-        if (singleRowNewlineAt == std::string::npos)
+        string substring = wordWrappedString.substr(0, singleRowNewlineAt);
+        if (singleRowNewlineAt == string::npos)
         {
             // No newlines, meaning nothing wrapped; everything fit on a single line
             messageBuffer[currentRow++] = wordWrappedString;
@@ -1916,7 +1954,7 @@ void KDraw::set_view(int vw, int x1, int y1, int x2, int y2)
 	}
 }
 
-void KDraw::text_ex(eBubbleStyle fmt, int who, const std::string& textToDisplay)
+void KDraw::text_ex(eBubbleStyle fmt, int who, const string& textToDisplay)
 {
 	auto s = substitutePlayerNameString(textToDisplay);
 
@@ -1927,7 +1965,7 @@ void KDraw::text_ex(eBubbleStyle fmt, int who, const std::string& textToDisplay)
 	}
 }
 
-void KDraw::porttext_ex(eBubbleStyle fmt, int who, const std::string& textToDisplay)
+void KDraw::porttext_ex(eBubbleStyle fmt, int who, const string& textToDisplay)
 {
     auto s = substitutePlayerNameString(textToDisplay);
 

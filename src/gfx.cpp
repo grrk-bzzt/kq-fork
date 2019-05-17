@@ -20,6 +20,8 @@ Raster::~Raster()
 
 void Raster::blitTo(Raster* target, int16_t src_x, int16_t src_y, uint16_t src_w, uint16_t src_h, int16_t dest_x, int16_t dest_y, uint16_t dest_w, uint16_t dest_h, bool masked)
 {
+	if (target == nullptr) return;
+
 	auto x0 = std::max(0, int(dest_x));
 	auto x1 = std::min(int(target->width), dest_x + dest_w);
 	auto y0 = std::max(0, int(dest_y));
@@ -66,7 +68,8 @@ void Raster::maskedBlitTo(Raster* target, int16_t dest_x, int16_t dest_y)
 
 void Raster::setpixel(int16_t x, int16_t y, uint8_t color)
 {
-	if (x < width && y < height && x >= 0 && y >= 0)
+	// Casting to uint is a sneaky way to skip '>= 0' checks.
+	if (uint16_t(x) < width && uint16_t(y) < height)
 	{
 		ptr(x, y) = color;
 	}
@@ -74,7 +77,8 @@ void Raster::setpixel(int16_t x, int16_t y, uint8_t color)
 
 uint8_t Raster::getpixel(int16_t x, int16_t y)
 {
-	if (x < width && y < height && x >= 0 && y >= 0)
+	// Casting to uint is a sneaky way to skip '>= 0' checks.
+	if (uint16_t(x) < width && uint16_t(y) < height)
 	{
 		return ptr(x, y);
 	}
