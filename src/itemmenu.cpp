@@ -622,7 +622,7 @@ eItemEffectResult item_effects(size_t attack_fighter_index, size_t fighter_index
             return ITEM_EFFECT_INEFFECTIVE;
         }
         z = items[ti].bst; // eAttribute
-        party[pidx[fighter_index]].stats[z] += kqrandom->random_range_exclusive(1, 4) * 100;
+        party[activeAvatarIds[fighter_index]].stats[z] += kqrandom->random_range_exclusive(1, 4) * 100;
         play_effect(SND_TWINKLE, 128);
         switch (z)
         {
@@ -649,7 +649,7 @@ eItemEffectResult item_effects(size_t attack_fighter_index, size_t fighter_index
         tmp = 0;
         for (spell_index = 0; spell_index < NUM_SPELLS - 1; spell_index++)
         {
-            if (party[pidx[fighter_index]].spells[spell_index] > 0)
+            if (party[activeAvatarIds[fighter_index]].spells[spell_index] > 0)
             {
                 tmp++;
             }
@@ -661,7 +661,7 @@ eItemEffectResult item_effects(size_t attack_fighter_index, size_t fighter_index
         tmp = 0;
         for (spell_index = 0; spell_index < NUM_SPELLS - 1; spell_index++)
         {
-            if (party[pidx[fighter_index]].spells[spell_index] == items[ti].hnds || party[pidx[fighter_index]].lvl < items[ti].ilvl)
+            if (party[activeAvatarIds[fighter_index]].spells[spell_index] == items[ti].hnds || party[activeAvatarIds[fighter_index]].lvl < items[ti].ilvl)
             {
                 tmp = 1;
             }
@@ -673,9 +673,9 @@ eItemEffectResult item_effects(size_t attack_fighter_index, size_t fighter_index
         tmp = items[ti].hnds;
         for (spell_index = 0; spell_index < NUM_SPELLS - 1; spell_index++)
         {
-            if (party[pidx[fighter_index]].spells[spell_index] == 0)
+            if (party[activeAvatarIds[fighter_index]].spells[spell_index] == 0)
             {
-                party[pidx[fighter_index]].spells[spell_index] = tmp;
+                party[activeAvatarIds[fighter_index]].spells[spell_index] = tmp;
                 spell_index = NUM_SPELLS - 1;
             }
         }
@@ -691,7 +691,7 @@ eItemEffectResult item_effects(size_t attack_fighter_index, size_t fighter_index
             return ITEM_EFFECT_INEFFECTIVE;
         }
         i = kqrandom->random_range_exclusive(10, 21);
-        party[pidx[fighter_index]].mhp += i;
+        party[activeAvatarIds[fighter_index]].mhp += i;
         fighter[fighter_index].fighterHealth += i;
     }
     if (ti == I_MPUP)
@@ -701,7 +701,7 @@ eItemEffectResult item_effects(size_t attack_fighter_index, size_t fighter_index
             return ITEM_EFFECT_INEFFECTIVE;
         }
         i = kqrandom->random_range_exclusive(10, 21);
-        party[pidx[fighter_index]].mmp += i;
+        party[activeAvatarIds[fighter_index]].mmp += i;
         fighter[fighter_index].fighterMagic += i;
     }
     if (ti == I_SSTONE)

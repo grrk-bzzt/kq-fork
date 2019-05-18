@@ -30,7 +30,7 @@ void KEntity::ChaseAfterMainPlayer(t_entity target_entity)
         return;
     }
 
-    auto& entity = g_ent[target_entity];
+    auto& entity = allEntitiesOnTheMap[target_entity];
     if (entity.chasing == 0)
     {
         if (entity_near(target_entity, 0, 3) == 1 && kqrandom->random_range_exclusive(0, 100) <= entity.extra)
@@ -53,19 +53,19 @@ void KEntity::ChaseAfterMainPlayer(t_entity target_entity)
         {
             bool emoved = false;
 
-            if (g_ent[0].tilex > entity.tilex)
+            if (allEntitiesOnTheMap[0].tilex > entity.tilex)
             {
                 emoved = move(target_entity, 1, 0);
             }
-            if (!emoved && g_ent[0].tilex < entity.tilex)
+            if (!emoved && allEntitiesOnTheMap[0].tilex < entity.tilex)
             {
                 emoved = move(target_entity, -1, 0);
             }
-            if (!emoved && g_ent[0].tiley > entity.tiley)
+            if (!emoved && allEntitiesOnTheMap[0].tiley > entity.tiley)
             {
                 emoved = move(target_entity, 0, 1);
             }
-            if (!emoved && g_ent[0].tiley < entity.tiley)
+            if (!emoved && allEntitiesOnTheMap[0].tiley < entity.tiley)
             {
                 emoved = move(target_entity, 0, -1);
             }
@@ -92,7 +92,7 @@ void KEntity::recalculateNumberOfActiveMapEntities()
     noe = 0;
     for (size_t entity_index = 0; entity_index < MAX_ENTITIES; entity_index++)
     {
-        if (g_ent[entity_index].active)
+        if (allEntitiesOnTheMap[entity_index].active)
         {
             noe = entity_index + 1;
         }
@@ -114,15 +114,15 @@ int KEntity::entity_near(t_entity eno, t_entity tgt, int rad)
     int ax, ay, ex, ey, b;
 
     b = 0 - rad;
-    ex = g_ent[eno].tilex;
-    ey = g_ent[eno].tiley;
+    ex = allEntitiesOnTheMap[eno].tilex;
+    ey = allEntitiesOnTheMap[eno].tiley;
     for (ay = b; ay <= rad; ay++)
     {
         for (ax = b; ax <= rad; ax++)
         {
             if (ex + ax >= view_x1 && ax + ax <= view_x2 && ey + ay >= view_y1 && ey + ay <= view_y2)
             {
-                if (ex + ax == g_ent[tgt].tilex && ey + ay == g_ent[tgt].tiley)
+                if (ex + ax == allEntitiesOnTheMap[tgt].tilex && ey + ay == allEntitiesOnTheMap[tgt].tiley)
                 {
                     return 1;
                 }
@@ -136,15 +136,15 @@ int KEntity::entityat(int ox, int oy, t_entity who)
 {
     for (t_entity i = 0; i < MAX_ENTITIES; i++)
     {
-        if (g_ent[i].active && ox == g_ent[i].tilex && oy == g_ent[i].tiley)
+        if (allEntitiesOnTheMap[i].active && ox == allEntitiesOnTheMap[i].tilex && oy == allEntitiesOnTheMap[i].tiley)
         {
             if (who >= MAX_PARTY_SIZE)
             {
-                if (g_ent[who].eid == ID_ENEMY && i < MAX_PARTY_SIZE)
+                if (allEntitiesOnTheMap[who].eid == ID_ENEMY && i < MAX_PARTY_SIZE)
                 {
                     if (kqCombat.combat(0) == 1)
                     {
-                        g_ent[who].active = false;
+                        allEntitiesOnTheMap[who].active = false;
                     }
                     return 0;
                 }
@@ -152,11 +152,11 @@ int KEntity::entityat(int ox, int oy, t_entity who)
             }
             else
             {
-                if (g_ent[i].eid == ID_ENEMY)
+                if (allEntitiesOnTheMap[i].eid == ID_ENEMY)
                 {
                     if (kqCombat.combat(0) == 1)
                     {
-                        g_ent[i].active = false;
+                        allEntitiesOnTheMap[i].active = false;
                     }
                     return 0;
                 }
@@ -177,7 +177,7 @@ void KEntity::entscript(t_entity target_entity)
         return;
     }
 
-    auto& entity = g_ent[target_entity];
+    auto& entity = allEntitiesOnTheMap[target_entity];
     if (!entity.active)
     {
         return;
@@ -272,11 +272,11 @@ void KEntity::follow(int tile_x, int tile_y)
     {
         if (i == 1)
         {
-            move(i, tile_x - g_ent[i].tilex, tile_y - g_ent[i].tiley);
+            move(i, tile_x - allEntitiesOnTheMap[i].tilex, tile_y - allEntitiesOnTheMap[i].tiley);
         }
         else
         {
-            move(i, g_ent[i - 1].tilex - g_ent[i].tilex, g_ent[i - 1].tiley - g_ent[i].tiley);
+            move(i, allEntitiesOnTheMap[i - 1].tilex - allEntitiesOnTheMap[i].tilex, allEntitiesOnTheMap[i - 1].tiley - allEntitiesOnTheMap[i].tiley);
         }
     }
 }
@@ -288,7 +288,7 @@ void KEntity::getcommand(t_entity target_entity)
         return;
     }
 
-    auto& entity = g_ent[target_entity];
+    auto& entity = allEntitiesOnTheMap[target_entity];
 
     /* PH FIXME: prevented from running off end of string */
     char currentCommand = '\0';
@@ -376,7 +376,7 @@ bool KEntity::move(t_entity target_entity, int dx, int dy)
         return false;
     }
 
-    auto& entity = g_ent[target_entity];
+    auto& entity = allEntitiesOnTheMap[target_entity];
 
     if (dx == 0 && dy == 0) // Speed optimization.
     {
@@ -580,7 +580,7 @@ int KEntity::obstruction(int origin_x, int origin_y, int move_x, int move_y, int
     {
         for (i = 0; i < MAX_ENTITIES; i++)
         {
-            if (g_ent[i].active && dest_x == g_ent[i].tilex && dest_y == g_ent[i].tiley)
+            if (allEntitiesOnTheMap[i].active && dest_x == allEntitiesOnTheMap[i].tilex && dest_y == allEntitiesOnTheMap[i].tiley)
             {
                 return 1;
             }
@@ -598,7 +598,7 @@ void KEntity::parsems(t_entity target_entity)
         return;
     }
 
-    auto& entity = g_ent[target_entity];
+    auto& entity = allEntitiesOnTheMap[target_entity];
 
     size_t scriptIndex = entity.sidx;
     if (scriptIndex >= MAX_SCRIPT)
@@ -629,16 +629,16 @@ void KEntity::parsems(t_entity target_entity)
 
 void KEntity::place_ent(t_entity entity_index, int ex, int ey)
 {
-    g_ent[entity_index].tilex = ex;
-    g_ent[entity_index].tiley = ey;
-    g_ent[entity_index].x = g_ent[entity_index].tilex * TILE_W;
-    g_ent[entity_index].y = g_ent[entity_index].tiley * TILE_H;
+    allEntitiesOnTheMap[entity_index].tilex = ex;
+    allEntitiesOnTheMap[entity_index].tiley = ey;
+    allEntitiesOnTheMap[entity_index].x = allEntitiesOnTheMap[entity_index].tilex * TILE_W;
+    allEntitiesOnTheMap[entity_index].y = allEntitiesOnTheMap[entity_index].tiley * TILE_H;
 }
 
 void KEntity::player_move()
 {
-    int oldx = g_ent[0].tilex;
-    int oldy = g_ent[0].tiley;
+    int oldx = allEntitiesOnTheMap[0].tilex;
+    int oldy = allEntitiesOnTheMap[0].tiley;
 
     PlayerInput.readcontrols();
 
@@ -660,7 +660,7 @@ void KEntity::player_move()
     move(0,
          PlayerInput.right ? 1 : PlayerInput.left ? -1 : 0,
          PlayerInput.down  ? 1 : PlayerInput.up   ? -1 : 0);
-    if (g_ent[0].moving)
+    if (allEntitiesOnTheMap[0].moving)
     {
         follow(oldx, oldy);
     }
@@ -670,7 +670,7 @@ void KEntity::process_entities()
 {
     for (t_entity i = 0; i < MAX_ENTITIES; i++)
     {
-        if (g_ent[i].active)
+        if (allEntitiesOnTheMap[i].active)
         {
             speed_adjust(i);
         }
@@ -686,7 +686,7 @@ void KEntity::process_entities()
 
 void KEntity::process_entity(t_entity target_entity)
 {
-    auto& entity = g_ent[target_entity];
+    auto& entity = allEntitiesOnTheMap[target_entity];
     KPlayer* player = nullptr;
 
     entity.scount = 0;
@@ -759,7 +759,7 @@ void KEntity::process_entity(t_entity target_entity)
             entity.moving = false;
             if (target_entity < MAX_PARTY_SIZE)
             {
-                player = &party[pidx[target_entity]];
+                player = &party[activeAvatarIds[target_entity]];
                 if (steps < STEPS_NEEDED)
                 {
                     steps++;
@@ -799,7 +799,7 @@ void KEntity::set_script(t_entity target_entity, const std::string& movestring)
     {
         return;
     }
-    auto& entity = g_ent[target_entity];
+    auto& entity = allEntitiesOnTheMap[target_entity];
 
     entity.moving = false; // Stop entity from moving
     entity.movcnt = 0; // Reset the move counter to 0
@@ -812,7 +812,7 @@ void KEntity::set_script(t_entity target_entity, const std::string& movestring)
 
 void KEntity::speed_adjust(t_entity target_entity)
 {
-    auto& entity = g_ent[target_entity];
+    auto& entity = allEntitiesOnTheMap[target_entity];
 
     if (entity.speed < 4)
     {
@@ -873,7 +873,7 @@ void KEntity::speed_adjust(t_entity target_entity)
 void KEntity::target(t_entity target_entity)
 {
     int dx, dy, ax, ay, emoved = 0;
-    auto& entity = g_ent[target_entity];
+    auto& entity = allEntitiesOnTheMap[target_entity];
 
     ax = dx = entity.target_x - entity.tilex;
     ay = dy = entity.target_y - entity.tiley;
@@ -942,7 +942,7 @@ void KEntity::target(t_entity target_entity)
 
 void KEntity::wander(t_entity target_entity)
 {
-    auto& entity = g_ent[target_entity];
+    auto& entity = allEntitiesOnTheMap[target_entity];
 
     if (entity.delayctr < entity.delay)
     {

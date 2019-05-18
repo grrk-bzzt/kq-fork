@@ -464,7 +464,7 @@ void fight_animation(size_t target_fighter_index, size_t fighter_index, int mult
 
     if (fighter_index < MAX_PARTY_SIZE)
     {
-        fighter_weapon_index = party[pidx[fighter_index]].eqp[EQP_WEAPON];
+        fighter_weapon_index = party[activeAvatarIds[fighter_index]].eqp[EQP_WEAPON];
         magic_effect_index = items[fighter_weapon_index].eff;
     }
     else

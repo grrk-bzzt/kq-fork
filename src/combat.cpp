@@ -30,7 +30,6 @@
 
 KCombat kqCombat;
 
-
 KCombat::KCombat()
     : combatend(ECombatEnd::NOT_IN_COMBAT)
     , fighterImageDatafileX()
@@ -162,7 +161,7 @@ KCombat::eAttackResult KCombat::attack_result(size_t fighterIndexAttacker, size_
             }
 
             /* PH I _think_ this makes Sensar 2* as likely to make a critical hit */
-            if (pidx[fighterIndexAttacker] == SENSAR)
+            if (activeAvatarIds[fighterIndexAttacker] == SENSAR)
             {
                 check_for_critical_hit = check_for_critical_hit * 2;
             }
@@ -468,12 +467,12 @@ int KCombat::combat(size_t battleIdentifier)
     }
 
     /* TT: no battles during scripted/target movements */
-    if (g_ent[0].movemode != MM_STAND)
+    if (allEntitiesOnTheMap[0].movemode != MM_STAND)
     {
         return 0;
     }
 
-    int hero_level = party[pidx[0]].lvl;
+    int hero_level = party[activeAvatarIds[0]].lvl;
     size_t encounter = select_encounter(battles[battleIdentifier].etnum, battles[battleIdentifier].eidx);
 
     /*  RB: check if we had had a random encounter  */
@@ -609,14 +608,14 @@ int KCombat::do_combat(const std::string& backgroundImageName, char* mus, int is
     backart = get_cached_image(backgroundImageName);
     if (is_rnd)
     {
-        if ((numchrs == 1) && (pidx[0] == AYLA))
+        if ((numchrs == 1) && (activeAvatarIds[0] == AYLA))
         {
             changeYouSurpriseEnemies = kqrandom->random_range_exclusive(1, 101);
             chanceEnemiesSurpriseYou = kqrandom->random_range_exclusive(1, 4);
         }
         else
         {
-            if (numchrs > 1 && (Game.in_party(AYLA) < MAXCHRS))
+            if (numchrs > 1 && (Game.in_party(AYLA) < ePIDX::MAXCHRS))
             {
                 changeYouSurpriseEnemies = kqrandom->random_range_exclusive(1, 21);
                 chanceEnemiesSurpriseYou = kqrandom->random_range_exclusive(1, 6);
@@ -757,7 +756,7 @@ void KCombat::do_round()
                 /*  RB: the character is stopped?  */
                 if (fighter[fighter_index].fighterSpellEffectStats[S_STOP] > 0)
                 {
-                    if (pidx[fighter_index] == TEMMIN)
+                    if (activeAvatarIds[fighter_index] == TEMMIN)
                     {
                         fighter[fighter_index].aux = 0;
                     }
@@ -773,7 +772,7 @@ void KCombat::do_round()
                 /*  RB: the character is sleeping?  */
                 if (fighter[fighter_index].fighterSpellEffectStats[S_SLEEP] > 0)
                 {
-                    if (pidx[fighter_index] == TEMMIN)
+                    if (activeAvatarIds[fighter_index] == TEMMIN)
                     {
                         fighter[fighter_index].aux = 0;
                     }
@@ -789,7 +788,7 @@ void KCombat::do_round()
                 /*  RB: the character is petrified?  */
                 if (fighter[fighter_index].fighterSpellEffectStats[S_STONE] > 0)
                 {
-                    if (pidx[fighter_index] == TEMMIN)
+                    if (activeAvatarIds[fighter_index] == TEMMIN)
                     {
                         fighter[fighter_index].aux = 0;
                     }
@@ -804,7 +803,7 @@ void KCombat::do_round()
 
                 if (fighter[fighter_index].fighterSpellEffectStats[S_DEAD] = eDeathType::IS_DEAD || fighter[fighter_index].fighterMaxHealth <= 0)
                 {
-                    if (pidx[fighter_index] == TEMMIN)
+                    if (activeAvatarIds[fighter_index] == TEMMIN)
                     {
                         fighter[fighter_index].aux = 0;
                     }
@@ -953,7 +952,7 @@ void KCombat::enemies_win() const
     /*  RB FIXME: rest()?  */
     kqDraw.blit2screen(0, 0);
     kq_wait(1000);
-    std::string defeatStr = party[pidx[0]].playerName + " was defeated!";
+    std::string defeatStr = party[activeAvatarIds[0]].playerName + " was defeated!";
     kqDraw.menubox(double_buffer, 152 - (defeatStr.length() * 4), 48, defeatStr.length(), 1, eMenuBoxColor::SEMI_TRANSPARENT_BLUE);
     kqDraw.print_font(double_buffer, 160 - (defeatStr.length() * 4), 56, _(defeatStr.c_str()), eFontColor::FONTCOLOR_NORMAL);
     kqDraw.blit2screen(0, 0);
@@ -1007,7 +1006,7 @@ int KCombat::fight(size_t attack_fighter_index, size_t defend_fighter_index, int
         }
     }
 
-    if ((pidx[defend_fighter_index] == TEMMIN) && (fighter[defend_fighter_index].aux == 2))
+    if ((activeAvatarIds[defend_fighter_index] == TEMMIN) && (fighter[defend_fighter_index].aux == 2))
     {
         fighter[defend_fighter_index].aux = 1;
         a = 1 - defend_fighter_index;
@@ -1221,14 +1220,14 @@ void KCombat::heroes_win()
     nr = 0;
     for (pidx_index = 0; pidx_index < numchrs; pidx_index++)
     {
-        if (party[pidx[pidx_index]].sts[S_STONE] == 0 && party[pidx[pidx_index]].sts[S_DEAD] == eDeathType::NOT_DEAD)
+        if (party[activeAvatarIds[pidx_index]].sts[S_STONE] == 0 && party[activeAvatarIds[pidx_index]].sts[S_DEAD] == eDeathType::NOT_DEAD)
         {
             b = pidx_index * 160;
-            player2fighter(pidx[pidx_index], t1);
-            if (give_xp(pidx[pidx_index], txp, 0) == 1)
+            player2fighter(activeAvatarIds[pidx_index], t1);
+            if (give_xp(activeAvatarIds[pidx_index], txp, 0) == 1)
             {
                 kqDraw.menubox(double_buffer, b, 40, 18, 9, eMenuBoxColor::SEMI_TRANSPARENT_BLUE);
-                player2fighter(pidx[pidx_index], t2);
+                player2fighter(activeAvatarIds[pidx_index], t2);
                 kqDraw.print_font(double_buffer, b + 8, 48, _("Level up!"), eFontColor::FONTCOLOR_GOLD);
                 kqDraw.print_font(double_buffer, b + 8, 56, _("Max HP"), eFontColor::FONTCOLOR_NORMAL);
                 kqDraw.print_font(double_buffer, b + 8, 64, _("Max MP"), eFontColor::FONTCOLOR_NORMAL);
@@ -1273,7 +1272,7 @@ void KCombat::heroes_win()
 
             std::stringstream nextLevelStr;
             nextLevelStr << "Next level " << std::setw(7) << std::right
-                << (party[pidx[pidx_index]].next - party[pidx[pidx_index]].xp);
+                << (party[activeAvatarIds[pidx_index]].next - party[activeAvatarIds[pidx_index]].xp);
             kqDraw.print_font(double_buffer, b + 8, 112, nextLevelStr.str().c_str(), eFontColor::FONTCOLOR_GOLD);
         }
     }
@@ -1281,9 +1280,9 @@ void KCombat::heroes_win()
     kqDraw.blit2screen(0, 0);
     for (pidx_index = 0; pidx_index < numchrs; pidx_index++)
     {
-        if (party[pidx[pidx_index]].sts[S_STONE] == 0 && party[pidx[pidx_index]].sts[S_DEAD] == eDeathType::NOT_DEAD)
+        if (party[activeAvatarIds[pidx_index]].sts[S_STONE] == 0 && party[activeAvatarIds[pidx_index]].sts[S_DEAD] == eDeathType::NOT_DEAD)
         {
-            ent += learn_new_spells(pidx[pidx_index]);
+            ent += learn_new_spells(activeAvatarIds[pidx_index]);
         }
     }
 

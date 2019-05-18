@@ -34,13 +34,13 @@ void reveal(int);
  * Check if the hero can use his/her special
  * skill at this point in combat.
  *
- * \param   fighter_index Hero to check (index into pidx[])
+ * \param   fighter_index Hero to check (index into activeAvatarIds[])
  * \returns 1 if skill is available, 0 otherwise
  */
 int hero_skillcheck(size_t fighter_index)
 {
     size_t weapon_index = 0;
-    size_t pidx_index = pidx[fighter_index];
+    size_t pidx_index = activeAvatarIds[fighter_index];
     size_t target_fighter_index;
     uint32_t can_be_affected = 0;
 
@@ -490,7 +490,7 @@ int skill_use(size_t attack_fighter_index)
     size_t fighter_index;
     std::unique_ptr<Raster> temp;
     tempa = status_adjust(attack_fighter_index);
-    switch (pidx[attack_fighter_index])
+    switch (activeAvatarIds[attack_fighter_index])
     {
     case SENSAR:
         tgt = select_enemy(attack_fighter_index, TGT_ENEMY_ONE);
@@ -807,7 +807,7 @@ int skill_use(size_t attack_fighter_index)
             }
         }
 #else
-        cts = party[pidx[attack_fighter_index]].lvl * 2 + 35;
+        cts = party[activeAvatarIds[attack_fighter_index]].lvl * 2 + 35;
         if (cts > 95)
         {
             cts = 95;

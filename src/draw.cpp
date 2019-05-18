@@ -140,7 +140,6 @@ int glyphLookup(uint32_t glyph) {
 
 } // namespace KqFork
 
-
 void KDraw::blit2screen(int xw, int yw)
 {
     static int frate = limit_frame_rate(25);
@@ -473,7 +472,7 @@ void KDraw::draw_char()
     {
         size_t fighter_frame = 0;
         size_t fighter_index = follower_fighter_index - 1;
-        auto& follower_ent = g_ent[fighter_index];
+        auto& follower_ent = allEntitiesOnTheMap[fighter_index];
         int32_t dx = follower_ent.x - camera_viewport_x + TILE_W;
         int32_t dy = follower_ent.y - camera_viewport_y + TILE_H;
 
@@ -505,7 +504,7 @@ void KDraw::draw_char()
 
 void KDraw::render_npc(size_t fighter_index, int32_t dx, int32_t dy, size_t fighter_frame)
 {
-    auto& npc_entity = g_ent[fighter_index];
+    auto& npc_entity = allEntitiesOnTheMap[fighter_index];
 
     if (npc_entity.active &&
         npc_entity.tilex >= view_x1 &&
@@ -538,9 +537,9 @@ void KDraw::render_npc(size_t fighter_index, int32_t dx, int32_t dy, size_t figh
 
 void KDraw::render_hero(size_t fighter_index, size_t fighter_frame)
 {
-    size_t fighter_type_id = g_ent[fighter_index].eid;
+    size_t fighter_type_id = allEntitiesOnTheMap[fighter_index].eid;
     Raster** sprite_base = nullptr;
-    auto& hero_entity = g_ent[fighter_index];
+    auto& hero_entity = allEntitiesOnTheMap[fighter_index];
     Raster* spr = nullptr;
 
     /* It's a hero */
@@ -565,10 +564,10 @@ void KDraw::render_hero(size_t fighter_index, size_t fighter_frame)
     {
         spr = sprite_base[fighter_frame];
     }
-    if (is_forestsquare(g_ent[fighter_index].tilex, g_ent[fighter_index].tiley))
+    if (is_forestsquare(allEntitiesOnTheMap[fighter_index].tilex, allEntitiesOnTheMap[fighter_index].tiley))
     {
-        bool f = !g_ent[fighter_index].moving;
-        if (g_ent[fighter_index].moving && is_forestsquare(g_ent[fighter_index].x / TILE_W, g_ent[fighter_index].y / TILE_H))
+        bool f = !allEntitiesOnTheMap[fighter_index].moving;
+        if (allEntitiesOnTheMap[fighter_index].moving && is_forestsquare(allEntitiesOnTheMap[fighter_index].x / TILE_W, allEntitiesOnTheMap[fighter_index].y / TILE_H))
         {
             f = true;
         }
@@ -580,8 +579,8 @@ void KDraw::render_hero(size_t fighter_index, size_t fighter_frame)
         }
     }
 
-    int32_t dx = g_ent[fighter_index].x - camera_viewport_x + TILE_W;
-    int32_t dy = g_ent[fighter_index].y - camera_viewport_y + TILE_H;
+    int32_t dx = allEntitiesOnTheMap[fighter_index].x - camera_viewport_x + TILE_W;
+    int32_t dy = allEntitiesOnTheMap[fighter_index].y - camera_viewport_y + TILE_H;
     if (party[fighter_type_id].sts[S_DEAD] == eDeathType::NOT_DEAD)
     {
         draw_sprite(double_buffer, spr, dx, dy);
@@ -597,26 +596,26 @@ void KDraw::render_hero(size_t fighter_index, size_t fighter_frame)
      * We also need to ensure that the target coords has SOMETHING in the
      * o_seg[] portion, else there will be graphical glitches.
      */
-    if (fighter_index == 0 && g_ent[0].moving)
+    if (fighter_index == 0 && allEntitiesOnTheMap[0].moving)
     {
         int32_t horiz = 0;
         int32_t vert = 0;
         /* Determine the direction moving */
 
-        if (g_ent[fighter_index].tilex * TILE_W > g_ent[fighter_index].x)
+        if (allEntitiesOnTheMap[fighter_index].tilex * TILE_W > allEntitiesOnTheMap[fighter_index].x)
         {
             horiz = 1; // Right
         }
-        else if (g_ent[fighter_index].tilex * TILE_W < g_ent[fighter_index].x)
+        else if (allEntitiesOnTheMap[fighter_index].tilex * TILE_W < allEntitiesOnTheMap[fighter_index].x)
         {
             horiz = -1; // Left
         }
 
-        if (g_ent[fighter_index].tiley * TILE_H > g_ent[fighter_index].y)
+        if (allEntitiesOnTheMap[fighter_index].tiley * TILE_H > allEntitiesOnTheMap[fighter_index].y)
         {
             vert = 1; // Down
         }
-        else if (g_ent[fighter_index].tiley * TILE_H < g_ent[fighter_index].y)
+        else if (allEntitiesOnTheMap[fighter_index].tiley * TILE_H < allEntitiesOnTheMap[fighter_index].y)
         {
             vert = -1; // Up
         }
@@ -638,26 +637,26 @@ void KDraw::render_hero(size_t fighter_index, size_t fighter_frame)
                 /* Moving diag down */
 
                 // Final x-coord is one left/right of starting x-coord
-                x = (g_ent[fighter_index].tilex - horiz) * TILE_W - camera_viewport_x + TILE_W;
+                x = (allEntitiesOnTheMap[fighter_index].tilex - horiz) * TILE_W - camera_viewport_x + TILE_W;
                 // Final y-coord is same as starting y-coord
-                y = g_ent[fighter_index].tiley * TILE_H - camera_viewport_y + TILE_H;
+                y = allEntitiesOnTheMap[fighter_index].tiley * TILE_H - camera_viewport_y + TILE_H;
                 // Where the tile is on the map that we will draw over
-                there = (g_ent[fighter_index].tiley) * g_map.xsize + g_ent[fighter_index].tilex - horiz;
+                there = (allEntitiesOnTheMap[fighter_index].tiley) * g_map.xsize + allEntitiesOnTheMap[fighter_index].tilex - horiz;
                 // Original position, before you started moving
-                here = (g_ent[fighter_index].tiley - vert) * g_map.xsize + g_ent[fighter_index].tilex - horiz;
+                here = (allEntitiesOnTheMap[fighter_index].tiley - vert) * g_map.xsize + allEntitiesOnTheMap[fighter_index].tilex - horiz;
             }
             else
             {
                 /* Moving diag up */
 
                 // Final x-coord is same as starting x-coord
-                x = g_ent[fighter_index].tilex * TILE_W - camera_viewport_x + TILE_W;
+                x = allEntitiesOnTheMap[fighter_index].tilex * TILE_W - camera_viewport_x + TILE_W;
                 // Final y-coord is above starting y-coord
-                y = (g_ent[fighter_index].tiley - vert) * TILE_H - camera_viewport_y + TILE_H;
+                y = (allEntitiesOnTheMap[fighter_index].tiley - vert) * TILE_H - camera_viewport_y + TILE_H;
                 // Where the tile is on the map that we will draw over
-                there = (g_ent[fighter_index].tiley - vert) * g_map.xsize + g_ent[fighter_index].tilex;
+                there = (allEntitiesOnTheMap[fighter_index].tiley - vert) * g_map.xsize + allEntitiesOnTheMap[fighter_index].tilex;
                 // Target position
-                here = (g_ent[fighter_index].tiley) * g_map.xsize + g_ent[fighter_index].tilex;
+                here = (allEntitiesOnTheMap[fighter_index].tiley) * g_map.xsize + allEntitiesOnTheMap[fighter_index].tilex;
             }
 
             /* Because of possible redraw problems, only draw if there is
@@ -905,8 +904,8 @@ void KDraw::draw_playerbound()
 {
     int dx, dy, xtc, ytc;
     std::shared_ptr<KBound> found = nullptr;
-    uint16_t ent_x = g_ent[0].tilex;
-    uint16_t ent_y = g_ent[0].tiley;
+    uint16_t ent_x = allEntitiesOnTheMap[0].tilex;
+    uint16_t ent_y = allEntitiesOnTheMap[0].tiley;
 
     /* Is the player standing inside a bounding area? */
     uint32_t found_index = g_map.bounds.IsBound(ent_x, ent_y, ent_x, ent_y);
@@ -1308,7 +1307,7 @@ string getPlayerName(const size_t playerId)
     static std::map<size_t, string> playerNames;
     if (playerNames.size() == 0)
     {
-        for (size_t i = 0; i < MAXCHRS; ++i)
+        for (size_t i = 0; i < ePIDX::MAXCHRS; ++i)
         {
             playerNames[i] = party[i].playerName;
         }
@@ -1320,10 +1319,10 @@ string KDraw::substitutePlayerNameString(const string& the_string)
 {
     static const string pidxDelimiter("$");
     string replacedString(the_string);
-    for (size_t i = 0; i < MAXCHRS; ++i)
+    for (size_t i = 0; i < ePIDX::MAXCHRS; ++i)
     {
         string escapedPidx = pidxDelimiter + std::to_string(i);
-        replacedString = replaceAll(replacedString, escapedPidx, getPlayerName(pidx[i]));
+        replacedString = replaceAll(replacedString, escapedPidx, getPlayerName(activeAvatarIds[i]));
     }
     return replacedString.c_str();
 }
@@ -1913,8 +1912,8 @@ void KDraw::set_textpos(uint32_t entity_index)
 {
     if (entity_index < MAX_ENTITIES)
     {
-        setGbxy((g_ent[entity_index].tilex * TILE_W) - camera_viewport_x,
-                (g_ent[entity_index].tiley * TILE_H) - camera_viewport_y);
+        setGbxy((allEntitiesOnTheMap[entity_index].tilex * TILE_W) - camera_viewport_x,
+                (allEntitiesOnTheMap[entity_index].tiley * TILE_H) - camera_viewport_y);
         setGbbx(getGbx() - (getGbbw() * 4));
         if (getGbbx() < 8)
         {
@@ -1927,7 +1926,7 @@ void KDraw::set_textpos(uint32_t entity_index)
         if (getGby() > -16 && getGby() < KQ_SCREEN_H)
         {
             const int gbbh = getGbbh() * 12;
-            if (g_ent[entity_index].facing == 1 || g_ent[entity_index].facing == 2)
+            if (allEntitiesOnTheMap[entity_index].facing == 1 || allEntitiesOnTheMap[entity_index].facing == 2)
             {
                 if (gbbh + getGby() + 40 <= KQ_SCREEN_H - 8)
                 {

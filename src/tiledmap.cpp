@@ -668,8 +668,8 @@ void tmx_map::set_current()
     }
 
     // Entities
-    memset(&g_ent[MAX_PARTY_SIZE], 0, (MAX_ENTITIES - MAX_PARTY_SIZE) * sizeof(KQEntity));
-    copy(begin(entities), end(entities), make_checked_array_iterator(g_ent, MAX_ENTITIES, MAX_PARTY_SIZE));
+    memset(&allEntitiesOnTheMap[MAX_PARTY_SIZE], 0, (MAX_ENTITIES - MAX_PARTY_SIZE) * sizeof(KQEntity));
+    copy(begin(entities), end(entities), make_checked_array_iterator(allEntitiesOnTheMap, MAX_ENTITIES, MAX_PARTY_SIZE));
 
     // Tilemaps
     g_map.map_tiles = find_tileset(primary_tileset_name).imagedata;

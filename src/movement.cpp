@@ -129,7 +129,7 @@ void KMovement::mark_obstacles_in_map(int32_t* map)
     }
 
     // RB: faster to do this than to check if there is an entity at every square
-    for (auto& entity : g_ent)
+    for (auto& entity : allEntitiesOnTheMap)
     {
         if (entity.active && entity.tilex < g_map.xsize && entity.tiley < g_map.ysize)
         {

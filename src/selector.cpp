@@ -271,23 +271,23 @@ static void party_add(ePIDX id, int lead)
 {
     KQEntity* t = nullptr;
 
-    if (numchrs < MAXCHRS)
+    if (numchrs < ePIDX::MAXCHRS)
     {
         if (numchrs > 0)
         {
-            memcpy(&g_ent[numchrs], &g_ent[numchrs - 1], sizeof(*g_ent));
+            memcpy(&allEntitiesOnTheMap[numchrs], &allEntitiesOnTheMap[numchrs - 1], sizeof(*allEntitiesOnTheMap));
         }
         if (lead)
         {
-            t = &g_ent[0];
-            memmove(&pidx[1], &pidx[0], sizeof(*pidx) * numchrs);
-            memmove(&g_ent[1], &g_ent[0], sizeof(*g_ent) * numchrs);
-            pidx[0] = id;
+            t = &allEntitiesOnTheMap[0];
+            memmove(&activeAvatarIds[1], &activeAvatarIds[0], sizeof(*activeAvatarIds) * numchrs);
+            memmove(&allEntitiesOnTheMap[1], &allEntitiesOnTheMap[0], sizeof(*allEntitiesOnTheMap) * numchrs);
+            activeAvatarIds[0] = id;
         }
         else
         {
-            t = &g_ent[numchrs];
-            pidx[numchrs] = id;
+            t = &allEntitiesOnTheMap[numchrs];
+            activeAvatarIds[numchrs] = id;
         }
         ++numchrs;
         t->eid = (uint8_t)id;
@@ -302,7 +302,7 @@ void party_newlead()
 {
     for (uint32_t i = 1; i < numchrs; ++i)
     {
-        g_ent[0].swapWithIdentity(g_ent[i]);
+        allEntitiesOnTheMap[0].swapWithIdentity(allEntitiesOnTheMap[i]);
     }
 }
 
@@ -316,13 +316,13 @@ static void party_remove(ePIDX id)
 
     for (pidx_index = 0; pidx_index < numchrs; ++pidx_index)
     {
-        if (pidx[pidx_index] == id)
+        if (activeAvatarIds[pidx_index] == id)
         {
             --numchrs;
-            memmove(&pidx[pidx_index], &pidx[pidx_index + 1], sizeof(*pidx) * (numchrs - pidx_index));
-            memmove(&g_ent[pidx_index], &g_ent[pidx_index + 1], sizeof(*g_ent) * (numchrs - pidx_index));
-            pidx[numchrs] = PIDX_UNDEFINED;
-            g_ent[numchrs].active = false;
+            memmove(&activeAvatarIds[pidx_index], &activeAvatarIds[pidx_index + 1], sizeof(*activeAvatarIds) * (numchrs - pidx_index));
+            memmove(&allEntitiesOnTheMap[pidx_index], &allEntitiesOnTheMap[pidx_index + 1], sizeof(*allEntitiesOnTheMap) * (numchrs - pidx_index));
+            activeAvatarIds[numchrs] = PIDX_UNDEFINED;
+            allEntitiesOnTheMap[numchrs].active = false;
             return;
         }
     }
@@ -365,7 +365,7 @@ ePIDX select_any_player(eTarget csa, unsigned int icn, const char* msg)
         for (unsigned int k = 0; k < numchrs; k++)
         {
             kqDraw.menubox(double_buffer, 80 + xofs, k * 56 + shy + yofs, 18, 5, eMenuBoxColor::SEMI_TRANSPARENT_BLUE);
-            draw_playerstat(double_buffer, pidx[k], 88 + xofs, k * 56 + shy + 8 + yofs);
+            draw_playerstat(double_buffer, activeAvatarIds[k], 88 + xofs, k * 56 + shy + 8 + yofs);
             // Draw the pointer
             if (select_all || k == ptr)
             {
@@ -669,7 +669,7 @@ ePIDX select_hero(size_t target_fighter_index, eTarget multi_target, bool can_se
  */
 int select_party(ePIDX* avail, size_t n_avail, size_t numchrs_max)
 {
-    static const uint32_t BTN_EXIT = (MAXCHRS + MAX_PARTY_SIZE);
+    static const uint32_t BTN_EXIT = (ePIDX::MAXCHRS + MAX_PARTY_SIZE);
 
     ePIDX hero = PIDX_UNDEFINED;
     eMiniMenu mini_menu_mask;
@@ -691,7 +691,7 @@ int select_party(ePIDX* avail, size_t n_avail, size_t numchrs_max)
     {
         for (pidx_index = 0; pidx_index < numchrs; ++pidx_index)
         {
-            if (avail[fighter_index] == (ePIDX)pidx[pidx_index])
+            if (avail[fighter_index] == (ePIDX)activeAvatarIds[pidx_index])
             {
                 avail[fighter_index] = PIDX_UNDEFINED;
             }
@@ -721,24 +721,24 @@ int select_party(ePIDX* avail, size_t n_avail, size_t numchrs_max)
         y = yofs + 88;
         for (fighter_index = 0; fighter_index < MAX_PARTY_SIZE; ++fighter_index)
         {
-            kqDraw.menubox(double_buffer, x, y, 2, 2, (cur == MAXCHRS + fighter_index ? eMenuBoxColor::DARKRED : eMenuBoxColor::DARKBLUE));
-            if (fighter_index < numchrs && pidx[fighter_index] != PIDX_UNDEFINED)
+            kqDraw.menubox(double_buffer, x, y, 2, 2, (cur == ePIDX::MAXCHRS + fighter_index ? eMenuBoxColor::DARKRED : eMenuBoxColor::DARKBLUE));
+            if (fighter_index < numchrs && activeAvatarIds[fighter_index] != PIDX_UNDEFINED)
             {
-                draw_sprite(double_buffer, frames[pidx[fighter_index]][0], x + 8, y + 8);
+                draw_sprite(double_buffer, frames[activeAvatarIds[fighter_index]][0], x + 8, y + 8);
             }
             x += 40;
         }
         /* Draw the 'Exit' button */
-        kqDraw.menubox(double_buffer, x, y, 4, 1, (cur == MAX_PARTY_SIZE + MAXCHRS ? eMenuBoxColor::DARKRED : eMenuBoxColor::DARKBLUE));
+        kqDraw.menubox(double_buffer, x, y, 4, 1, (cur == MAX_PARTY_SIZE + ePIDX::MAXCHRS ? eMenuBoxColor::DARKRED : eMenuBoxColor::DARKBLUE));
         kqDraw.print_font(double_buffer, x + 8, y + 8, _("Exit"), eFontColor::FONTCOLOR_NORMAL);
         /* See which hero is selected and draw his/her stats */
         if (cur < n_avail)
         {
             hero = avail[cur];
         }
-        else if (cur < numchrs + MAXCHRS)
+        else if (cur < numchrs + ePIDX::MAXCHRS)
         {
-            hero = pidx[cur - MAXCHRS];
+            hero = activeAvatarIds[cur - ePIDX::MAXCHRS];
         }
         else
         {
@@ -758,7 +758,7 @@ int select_party(ePIDX* avail, size_t n_avail, size_t numchrs_max)
         {
             /* move between the available row and the party row */
             Game.unpress();
-            if (cur >= MAXCHRS)
+            if (cur >= ePIDX::MAXCHRS)
             {
                 cur = 0;
             }
@@ -767,16 +767,16 @@ int select_party(ePIDX* avail, size_t n_avail, size_t numchrs_max)
         {
             /* move between the available row and the party row */
             Game.unpress();
-            if (cur < MAXCHRS)
+            if (cur < ePIDX::MAXCHRS)
             {
-                cur = MAXCHRS;
+                cur = ePIDX::MAXCHRS;
             }
         }
         if (PlayerInput.left)
         {
             /* move between heroes on a row */
             Game.unpress();
-            if (cur > MAXCHRS)
+            if (cur > ePIDX::MAXCHRS)
             {
                 --cur;
             }
@@ -793,7 +793,7 @@ int select_party(ePIDX* avail, size_t n_avail, size_t numchrs_max)
             {
                 cur++;
             }
-            else if (cur >= MAXCHRS && cur <= (numchrs + MAXCHRS))
+            else if (cur >= ePIDX::MAXCHRS && cur <= (numchrs + ePIDX::MAXCHRS))
             {
                 ++cur;
             }
@@ -849,7 +849,7 @@ int select_party(ePIDX* avail, size_t n_avail, size_t numchrs_max)
                     if (numchrs > 1)
                     {
                         mask |= MM_LEAVE;
-                        if (cur > MAXCHRS)
+                        if (cur > ePIDX::MAXCHRS)
                         {
                             mask |= MM_LEAD;
                         }

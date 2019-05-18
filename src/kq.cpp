@@ -76,7 +76,7 @@ uint16_t tilex[MAX_TILES];
 Raster* double_buffer, *fx_buffer, *back, *tc, *tc2,
         *bub[8], *b_shield, *b_shell, *b_repulse, *b_mp,
         *cframes[NUM_FIGHTERS][MAXCFRAMES], *tcframes[NUM_FIGHTERS][MAXCFRAMES],
-        *frames[MAXCHRS][MAX_PARTY_MOVEMENT_FRAMES], *eframes[TOTAL_MAP_NPC_ENTITIES][MAX_NPC_MOVEMENT_FRAMES], *pgb[9],
+        *frames[ePIDX::MAXCHRS][MAX_PARTY_MOVEMENT_FRAMES], *eframes[TOTAL_MAP_NPC_ENTITIES][MAX_NPC_MOVEMENT_FRAMES], *pgb[9],
         *sfonts[5], *menuptr, *mptr, *sptr, *stspics, *sicons, *bptr,
         *missbmp, *noway, *upptr, *dnptr, *shadow[MAX_SHADOWS], *kfonts;
 
@@ -103,10 +103,10 @@ uint8_t save_spells[SIZE_SAVE_SPELL];
 s_map g_map;
 
 /*! Current entities (players+NPCs) */
-KQEntity g_ent[MAX_ENTITIES];
+KQEntity allEntitiesOnTheMap[MAX_ENTITIES];
 
 /*! Identifies characters in the party */
-ePIDX pidx[MAXCHRS];
+ePIDX activeAvatarIds[ePIDX::MAXCHRS];
 
 /*! Number of characters in the party */
 uint32_t numchrs = 0;
@@ -162,12 +162,12 @@ uint16_t adelay[MAX_ANIM];
 /*! Temporary buffer for string operations (used everywhere!) */
 char* strbuf = nullptr;
 
-/*! Characters in play. The pidx[] array references this for the heroes actually
- * on screen, e.g. party[pidx[0]] is the 'lead' character,
- * party[pidx[1]] is the follower, if there are 2 in the party.
+/*! Characters in play. The activeAvatarIds[] array references this for the heroes actually
+ * on screen, e.g. party[activeAvatarIds[0]] is the 'lead' character,
+ * party[activeAvatarIds[1]] is the follower, if there are 2 in the party.
  * We need to store all of them, because heroes join and leave during the game.
  */
-KPlayer party[MAXCHRS];
+KPlayer party[ePIDX::MAXCHRS];
 
 /*! Initial character data
  *
@@ -175,7 +175,7 @@ KPlayer party[MAXCHRS];
  * structure. I had to invent my own little (somewhat ugly) layout since it
  * all shot past the 80-character mark by quite a ways :)
  */
-s_heroinfo players[MAXCHRS];
+s_heroinfo players[ePIDX::MAXCHRS];
 
 /*! Name of current shop */
 std::string shop_name;
@@ -357,7 +357,7 @@ void KGame::activate()
      * negative means to face left and positive means to face right.
      */
 
-    switch (g_ent[0].facing)
+    switch (allEntitiesOnTheMap[0].facing)
     {
     case FACE_DOWN:
         looking_at_y = 1;
@@ -380,8 +380,8 @@ void KGame::activate()
         break;
     }
 
-    zx = g_ent[0].x / TILE_W;
-    zy = g_ent[0].y / TILE_H;
+    zx = allEntitiesOnTheMap[0].x / TILE_W;
+    zy = allEntitiesOnTheMap[0].y / TILE_H;
 
     looking_at_x += zx;
     looking_at_y += zy;
@@ -397,26 +397,26 @@ void KGame::activate()
 
     if (p >= MAX_PARTY_SIZE)
     {
-        tf = g_ent[p - 1].facing;
+        tf = allEntitiesOnTheMap[p - 1].facing;
 
-        if (g_ent[p - 1].facehero == 0)
+        if (allEntitiesOnTheMap[p - 1].facehero == 0)
         {
-            g_ent[p - 1].facing = target_char_facing;
+            allEntitiesOnTheMap[p - 1].facing = target_char_facing;
         }
 
         kqDraw.drawmap();
         kqDraw.blit2screen(xofs, yofs);
 
-        zx = abs(g_ent[p - 1].x - g_ent[0].x);
-        zy = abs(g_ent[p - 1].y - g_ent[0].y);
+        zx = abs(allEntitiesOnTheMap[p - 1].x - allEntitiesOnTheMap[0].x);
+        zy = abs(allEntitiesOnTheMap[p - 1].y - allEntitiesOnTheMap[0].y);
 
         if ((zx <= 16 && zy <= 3) || (zx <= 3 && zy <= 16))
         {
             do_entity(p - 1);
         }
-        if (g_ent[p - 1].movemode == MM_STAND)
+        if (allEntitiesOnTheMap[p - 1].movemode == MM_STAND)
         {
-            g_ent[p - 1].facing = tf;
+            allEntitiesOnTheMap[p - 1].facing = tf;
         }
     }
 }
@@ -502,7 +502,7 @@ void KGame::allocate_stuff()
         }
     }
 
-    for (size_t i = 0; i < MAXCHRS; i++)
+    for (size_t i = 0; i < ePIDX::MAXCHRS; i++)
     {
         for (size_t p = 0; p < MAX_PARTY_MOVEMENT_FRAMES; p++)
         {
@@ -565,8 +565,8 @@ void KGame::calc_viewport()
 
     if (vfollow && numchrs > 0)
     {
-        zx = g_ent[0].x;
-        zy = g_ent[0].y;
+        zx = allEntitiesOnTheMap[0].x;
+        zy = allEntitiesOnTheMap[0].y;
     }
     else
     {
@@ -749,7 +749,7 @@ void KGame::deallocate_stuff()
 
     for (i = 0; i < MAX_PARTY_MOVEMENT_FRAMES; i++)
     {
-        for (p = 0; p < MAXCHRS; p++)
+        for (p = 0; p < ePIDX::MAXCHRS; p++)
         {
             delete (frames[p][i]);
         }
@@ -783,7 +783,7 @@ void KGame::deallocate_stuff()
         delete (bord[p]);
     }
 
-    for (p = 0; p < MAXCHRS; p++)
+    for (p = 0; p < ePIDX::MAXCHRS; p++)
     {
         delete (players[p].portrait);
     }
@@ -876,15 +876,15 @@ size_t KGame::in_party(ePIDX pn)
 {
     size_t pidx_index;
 
-    for (pidx_index = 0; pidx_index < MAXCHRS; pidx_index++)
+    for (pidx_index = 0; pidx_index < ePIDX::MAXCHRS; pidx_index++)
     {
-        if (pidx[pidx_index] == pn)
+        if (activeAvatarIds[pidx_index] == pn)
         {
             return pidx_index;
         }
     }
 
-    return MAXCHRS;
+    return ePIDX::MAXCHRS;
 }
 
 void KGame::klog(const char* msg) { TRACE("%s\n", msg); }
@@ -953,7 +953,7 @@ void KGame::load_heroes()
 
     set_palette(pal);
 
-    for (int party_index = 0; party_index < MAXCHRS; party_index++)
+    for (int party_index = 0; party_index < ePIDX::MAXCHRS; party_index++)
     {
         for (int frame_index = 0; frame_index < MAX_PARTY_MOVEMENT_FRAMES; frame_index++)
         {
@@ -1154,23 +1154,23 @@ void KGame::prepare_map(int msx, int msy, int mvx, int mvy)
             kEntity.place_ent(entity_index, msx, msy);
         }
 
-        g_ent[entity_index].speed = 4;
-        g_ent[entity_index].obsmode = 1;
-        g_ent[entity_index].moving = false;
+        allEntitiesOnTheMap[entity_index].speed = 4;
+        allEntitiesOnTheMap[entity_index].obsmode = 1;
+        allEntitiesOnTheMap[entity_index].moving = false;
     }
 
     for (i = 0; i < MAX_ENTITIES; i++)
     {
-        if (g_ent[i].isIdentityAnEnemy() && g_ent[i].active)
+        if (allEntitiesOnTheMap[i].isIdentityAnEnemy() && allEntitiesOnTheMap[i].active)
         {
-            g_ent[i].eid = ID_ENEMY;
-            g_ent[i].speed = kqrandom->random_range_exclusive(1, 5);
-            g_ent[i].obsmode = 1;
-            g_ent[i].moving = false;
-            g_ent[i].movemode = MM_CHASE;
-            g_ent[i].chasing = 0;
-            g_ent[i].extra = kqrandom->random_range_exclusive(50, 100);
-            g_ent[i].delay = kqrandom->random_range_exclusive(25, 50);
+            allEntitiesOnTheMap[i].eid = ID_ENEMY;
+            allEntitiesOnTheMap[i].speed = kqrandom->random_range_exclusive(1, 5);
+            allEntitiesOnTheMap[i].obsmode = 1;
+            allEntitiesOnTheMap[i].moving = false;
+            allEntitiesOnTheMap[i].movemode = MM_CHASE;
+            allEntitiesOnTheMap[i].chasing = 0;
+            allEntitiesOnTheMap[i].extra = kqrandom->random_range_exclusive(50, 100);
+            allEntitiesOnTheMap[i].delay = kqrandom->random_range_exclusive(25, 50);
         }
     }
 
@@ -1213,14 +1213,14 @@ void KGame::prepare_map(int msx, int msy, int mvx, int mvy)
 
     for (i = 0; i < (size_t)numchrs; i++)
     {
-        g_ent[i].active = true;
+        allEntitiesOnTheMap[i].active = true;
     }
 
     kEntity.recalculateNumberOfActiveMapEntities();
 
     for (i = 0; i < MAX_ENTITIES; i++)
     {
-        g_ent[i].delayctr = 0;
+        allEntitiesOnTheMap[i].delayctr = 0;
     }
 
     kqDraw.set_view(0, 0, 0, 0, 0);
@@ -1583,8 +1583,8 @@ void KGame::wait_for_entity(size_t first_entity_index, size_t last_entity_index)
         any_following_entities = 0;
         for (entity_index = first_entity_index; entity_index <= last_entity_index; ++entity_index)
         {
-            move_mode = g_ent[entity_index].movemode;
-            if (g_ent[entity_index].active && (move_mode == MM_SCRIPT || move_mode == MM_TARGET))
+            move_mode = allEntitiesOnTheMap[entity_index].movemode;
+            if (allEntitiesOnTheMap[entity_index].active && (move_mode == MM_SCRIPT || move_mode == MM_TARGET))
             {
                 any_following_entities = 1;
                 break; // for()
@@ -1616,9 +1616,9 @@ void KGame::warp(int wtx, int wty, int fspeed)
     for (entity_index = 0; entity_index < last_entity; entity_index++)
     {
         kEntity.place_ent(entity_index, wtx, wty);
-        g_ent[entity_index].moving = false;
-        g_ent[entity_index].movcnt = 0;
-        g_ent[entity_index].framectr = 0;
+        allEntitiesOnTheMap[entity_index].moving = false;
+        allEntitiesOnTheMap[entity_index].movcnt = 0;
+        allEntitiesOnTheMap[entity_index].framectr = 0;
     }
 
     camera_viewport_x = wtx * TILE_W;
@@ -1640,8 +1640,8 @@ void KGame::zone_check() const
 {
     uint16_t stc, zx, zy;
 
-    zx = g_ent[0].x / TILE_W;
-    zy = g_ent[0].y / TILE_H;
+    zx = allEntitiesOnTheMap[0].x / TILE_W;
+    zy = allEntitiesOnTheMap[0].y / TILE_H;
 
     if (save_spells[P_REPULSE] > 0)
     {

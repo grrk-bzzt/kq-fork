@@ -980,7 +980,7 @@ void KqFork::init_obj(lua_State* L)
     lua_pushcfunction(L, KQ_char_setter);
     lua_settable(L, -3);
 
-    for (i = 0; i < MAXCHRS; ++i)
+    for (i = 0; i < ePIDX::MAXCHRS; ++i)
     {
         lua_newtable(L);
         lua_pushvalue(L, -2);
@@ -993,10 +993,10 @@ void KqFork::init_obj(lua_State* L)
     /* party */
     for (i = 0; i < numchrs; ++i)
     {
-        lua_getglobal(L, party[pidx[i]].playerName.c_str());
+        lua_getglobal(L, party[activeAvatarIds[i]].playerName.c_str());
         /* also fill in the entity reference */
         lua_pushstring(L, LUA_ENT_KEY);
-        lua_pushlightuserdata(L, &g_ent[i]);
+        lua_pushlightuserdata(L, &allEntitiesOnTheMap[i]);
         lua_rawset(L, -3);
     }
     /* party pseudo-array */
@@ -1012,7 +1012,7 @@ void KqFork::init_obj(lua_State* L)
     lua_setglobal(L, "party");
     /* player[] array */
     lua_newtable(L);
-    for (i = 0; i < MAXCHRS; ++i)
+    for (i = 0; i < ePIDX::MAXCHRS; ++i)
     {
         lua_getglobal(L, party[i].playerName.c_str());
         lua_rawseti(L, -2, i);
@@ -1027,14 +1027,14 @@ void KqFork::init_obj(lua_State* L)
         lua_pushvalue(L, -2);
         lua_setmetatable(L, -2);
         lua_pushstring(L, LUA_ENT_KEY);
-        lua_pushlightuserdata(L, &g_ent[i + MAX_PARTY_SIZE]);
+        lua_pushlightuserdata(L, &allEntitiesOnTheMap[i + MAX_PARTY_SIZE]);
         lua_rawset(L, -3);
         lua_rawseti(L, -2, i);
     }
     /* heroes */
     for (i = 0; i < numchrs; ++i)
     {
-        lua_getglobal(L, party[pidx[i]].playerName.c_str());
+        lua_getglobal(L, party[activeAvatarIds[i]].playerName.c_str());
         lua_rawseti(L, -2, i + kEntity.getNumberOfMapEntities());
     }
     lua_setglobal(L, "entity");
@@ -1046,10 +1046,10 @@ int KQ_add_chr(lua_State* L)
 
     if (numchrs < MAX_PARTY_SIZE)
     {
-        pidx[numchrs] = a;
-        g_ent[numchrs].active = true;
-        g_ent[numchrs].eid = (int)a;
-        g_ent[numchrs].setIdentity(0);
+        activeAvatarIds[numchrs] = a;
+        allEntitiesOnTheMap[numchrs].active = true;
+        allEntitiesOnTheMap[numchrs].eid = (int)a;
+        allEntitiesOnTheMap[numchrs].setIdentity(0);
         numchrs++;
     }
     return 0;
@@ -1570,7 +1570,7 @@ int KQ_copy_ent(lua_State* L)
     size_t a = static_cast<size_t>(KqFork::real_entity_num(L, 1));
     size_t b = static_cast<size_t>(KqFork::real_entity_num(L, 2));
 
-    g_ent[b] = g_ent[a];
+    allEntitiesOnTheMap[b] = allEntitiesOnTheMap[a];
     return 0;
 }
 
@@ -1649,8 +1649,8 @@ int KQ_door_in(lua_State* L)
 
     use_sstone = 0;
 
-    hx = g_ent[0].tilex;
-    hy = g_ent[0].tiley;
+    hx = allEntitiesOnTheMap[0].tilex;
+    hy = allEntitiesOnTheMap[0].tiley;
     hy2 = hy - 1;
     db = map_seg[hy * g_map.xsize + hx];
     dt = map_seg[hy2 * g_map.xsize + hx];
@@ -1744,7 +1744,7 @@ int KQ_draw_pstat(lua_State* L)
 {
     auto a = lua_tointeger(L, 1);
 
-    if (a >= 0 && a < MAXCHRS)
+    if (a >= 0 && a < ePIDX::MAXCHRS)
     {
         draw_playerstat(double_buffer, a, (int)lua_tonumber(L, 2) + xofs, (int)lua_tonumber(L, 3) + yofs);
     }
@@ -1774,30 +1774,30 @@ int KQ_face_each_other(lua_State* L)
 
     if (numchrs == 2)
     {
-        if (g_ent[a].tilex == g_ent[b].tilex)
+        if (allEntitiesOnTheMap[a].tilex == allEntitiesOnTheMap[b].tilex)
         {
-            if (g_ent[a].tiley > g_ent[b].tiley)
+            if (allEntitiesOnTheMap[a].tiley > allEntitiesOnTheMap[b].tiley)
             {
-                g_ent[a].facing = FACE_UP;
-                g_ent[b].facing = FACE_DOWN;
+                allEntitiesOnTheMap[a].facing = FACE_UP;
+                allEntitiesOnTheMap[b].facing = FACE_DOWN;
             }
             else
             {
-                g_ent[a].facing = FACE_DOWN;
-                g_ent[b].facing = FACE_UP;
+                allEntitiesOnTheMap[a].facing = FACE_DOWN;
+                allEntitiesOnTheMap[b].facing = FACE_UP;
             }
         }
         else
         {
-            if (g_ent[a].tilex > g_ent[b].tilex)
+            if (allEntitiesOnTheMap[a].tilex > allEntitiesOnTheMap[b].tilex)
             {
-                g_ent[a].facing = FACE_LEFT;
-                g_ent[b].facing = FACE_RIGHT;
+                allEntitiesOnTheMap[a].facing = FACE_LEFT;
+                allEntitiesOnTheMap[b].facing = FACE_RIGHT;
             }
             else
             {
-                g_ent[a].facing = FACE_RIGHT;
-                g_ent[b].facing = FACE_LEFT;
+                allEntitiesOnTheMap[a].facing = FACE_RIGHT;
+                allEntitiesOnTheMap[b].facing = FACE_LEFT;
             }
         }
     }
@@ -1840,8 +1840,8 @@ int KQ_get_bounds(lua_State* L)
     {
         a = KqFork::real_entity_num(L, 1);
 
-        ent_x = g_ent[a].tilex;
-        ent_y = g_ent[a].tiley;
+        ent_x = allEntitiesOnTheMap[a].tilex;
+        ent_y = allEntitiesOnTheMap[a].tiley;
         found_index = g_map.bounds.IsBound(ent_x, ent_y, ent_x, ent_y);
         if (found_index > 0)
         {
@@ -1864,7 +1864,7 @@ int KQ_get_ent_active(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, g_ent[a].active ? 1 : 0);
+    lua_pushnumber(L, allEntitiesOnTheMap[a].active ? 1 : 0);
     return 1;
 }
 
@@ -1872,7 +1872,7 @@ int KQ_get_ent_atype(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, g_ent[a].atype);
+    lua_pushnumber(L, allEntitiesOnTheMap[a].atype);
     return 1;
 }
 
@@ -1880,7 +1880,7 @@ int KQ_get_ent_chrx(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, g_ent[a].identity());
+    lua_pushnumber(L, allEntitiesOnTheMap[a].identity());
     return 1;
 }
 
@@ -1888,7 +1888,7 @@ int KQ_get_ent_facehero(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, g_ent[a].facehero);
+    lua_pushnumber(L, allEntitiesOnTheMap[a].facehero);
     return 1;
 }
 
@@ -1896,7 +1896,7 @@ int KQ_get_ent_facing(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, g_ent[a].facing);
+    lua_pushnumber(L, allEntitiesOnTheMap[a].facing);
     return 1;
 }
 
@@ -1904,7 +1904,7 @@ int KQ_get_ent_id(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, g_ent[a].eid);
+    lua_pushnumber(L, allEntitiesOnTheMap[a].eid);
     return 1;
 }
 
@@ -1912,7 +1912,7 @@ int KQ_get_ent_movemode(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, g_ent[a].movemode);
+    lua_pushnumber(L, allEntitiesOnTheMap[a].movemode);
     return 1;
 }
 
@@ -1920,7 +1920,7 @@ int KQ_get_ent_obsmode(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, g_ent[a].obsmode);
+    lua_pushnumber(L, allEntitiesOnTheMap[a].obsmode);
     return 1;
 }
 
@@ -1928,7 +1928,7 @@ int KQ_get_ent_snapback(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, g_ent[a].snapback);
+    lua_pushnumber(L, allEntitiesOnTheMap[a].snapback);
     return 1;
 }
 
@@ -1936,7 +1936,7 @@ int KQ_get_ent_speed(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, g_ent[a].speed);
+    lua_pushnumber(L, allEntitiesOnTheMap[a].speed);
     return 1;
 }
 
@@ -1951,8 +1951,8 @@ int KQ_get_ent_tile(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, g_ent[a].tilex);
-    lua_pushnumber(L, g_ent[a].tiley);
+    lua_pushnumber(L, allEntitiesOnTheMap[a].tilex);
+    lua_pushnumber(L, allEntitiesOnTheMap[a].tiley);
     return 2;
 }
 
@@ -1960,7 +1960,7 @@ int KQ_get_ent_tilex(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, g_ent[a].tilex);
+    lua_pushnumber(L, allEntitiesOnTheMap[a].tilex);
     return 1;
 }
 
@@ -1968,7 +1968,7 @@ int KQ_get_ent_tiley(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, g_ent[a].tiley);
+    lua_pushnumber(L, allEntitiesOnTheMap[a].tiley);
     return 1;
 }
 
@@ -1976,7 +1976,7 @@ int KQ_get_ent_transl(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, g_ent[a].isSemiTransparent ? 1 : 0);
+    lua_pushnumber(L, allEntitiesOnTheMap[a].isSemiTransparent ? 1 : 0);
     return 1;
 }
 
@@ -2051,7 +2051,7 @@ int KQ_get_party_eqp(lua_State* L)
     uint32_t a = (uint32_t)lua_tonumber(L, 1);
     uint32_t b = (uint32_t)lua_tonumber(L, 2);
 
-    if (a < MAXCHRS && b < NUM_EQUIPMENT)
+    if (a < ePIDX::MAXCHRS && b < NUM_EQUIPMENT)
     {
         lua_pushnumber(L, party[a].eqp[b]);
     }
@@ -2271,7 +2271,7 @@ int KQ_get_pidx(lua_State* L)
 {
     auto a = lua_tointeger(L, 1);
 
-    lua_pushnumber(L, pidx[a]);
+    lua_pushnumber(L, activeAvatarIds[a]);
     return 1;
 }
 
@@ -2365,7 +2365,7 @@ int KQ_in_forest(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    lua_pushnumber(L, kqDraw.is_forestsquare(g_ent[a].tilex, g_ent[a].tiley));
+    lua_pushnumber(L, kqDraw.is_forestsquare(allEntitiesOnTheMap[a].tilex, allEntitiesOnTheMap[a].tiley));
     return 1;
 }
 
@@ -2553,7 +2553,7 @@ int KQ_move_entity(lua_State* L)
         kill = (int)lua_tonumber(L, 4);
     }
 
-    KMovement::eStatus status = kMovement.find_path(buffer, entity_id, g_ent[entity_id].tilex, g_ent[entity_id].tiley, target_x, target_y);
+    KMovement::eStatus status = kMovement.find_path(buffer, entity_id, allEntitiesOnTheMap[entity_id].tilex, allEntitiesOnTheMap[entity_id].tiley, target_x, target_y);
 
     /*  FIXME: The fourth parameter is a ugly hack for now.  */
     if (kill)
@@ -2594,14 +2594,15 @@ int KQ_orient_heroes(lua_State* L)
     if (numchrs == 2)
     {
         lastm[1] = MOVE_NOT;
-        if (g_ent[0].tilex == g_ent[1].tilex && g_ent[0].tiley == g_ent[1].tiley)
+        if (allEntitiesOnTheMap[0].tilex == allEntitiesOnTheMap[1].tilex &&
+            allEntitiesOnTheMap[0].tiley == allEntitiesOnTheMap[1].tiley)
         {
             lastm[0] = MOVE_NOT;
             return 0;
         }
-        if (g_ent[0].tilex == g_ent[1].tilex)
+        if (allEntitiesOnTheMap[0].tilex == allEntitiesOnTheMap[1].tilex)
         {
-            if (g_ent[0].tiley < g_ent[1].tiley)
+            if (allEntitiesOnTheMap[0].tiley < allEntitiesOnTheMap[1].tiley)
             {
                 lastm[0] = MOVE_UP;
             }
@@ -2611,9 +2612,9 @@ int KQ_orient_heroes(lua_State* L)
             }
             return 0;
         }
-        if (g_ent[0].tiley == g_ent[1].tiley)
+        if (allEntitiesOnTheMap[0].tiley == allEntitiesOnTheMap[1].tiley)
         {
-            if (g_ent[0].tilex < g_ent[1].tilex)
+            if (allEntitiesOnTheMap[0].tilex < allEntitiesOnTheMap[1].tilex)
             {
                 lastm[0] = MOVE_LEFT;
             }
@@ -2829,18 +2830,18 @@ int KQ_remove_chr(lua_State* L)
     if (numchrs > 0)
     {
         party_index = Game.in_party((ePIDX) static_cast<int>(lua_tonumber(L, 1)));
-        if (party_index < MAXCHRS)
+        if (party_index < ePIDX::MAXCHRS)
         {
-            pidx[party_index] = PIDX_UNDEFINED;
+            activeAvatarIds[party_index] = PIDX_UNDEFINED;
             numchrs--;
             if (party_index != MAX_PARTY_SIZE - 1)
             {
                 for (party_member_index = 0; party_member_index < MAX_PARTY_SIZE - 1; party_member_index++)
                 {
-                    if (pidx[party_member_index] == PIDX_UNDEFINED)
+                    if (activeAvatarIds[party_member_index] == PIDX_UNDEFINED)
                     {
-                        pidx[party_member_index] = pidx[party_member_index + 1];
-                        pidx[party_member_index + 1] = PIDX_UNDEFINED;
+                        activeAvatarIds[party_member_index] = activeAvatarIds[party_member_index + 1];
+                        activeAvatarIds[party_member_index + 1] = PIDX_UNDEFINED;
                     }
                 }
             }
@@ -2874,10 +2875,10 @@ int KQ_screen_dump(lua_State* L)
  */
 int KQ_select_team(lua_State* L)
 {
-    static ePIDX team[MAXCHRS];
+    static ePIDX team[ePIDX::MAXCHRS];
     size_t i, t;
 
-    for (i = 0; i < MAXCHRS; ++i)
+    for (i = 0; i < ePIDX::MAXCHRS; ++i)
     {
         lua_rawgeti(L, 1, i + 1);
         if (lua_type(L, -1) == LUA_TNIL)
@@ -2892,9 +2893,9 @@ int KQ_select_team(lua_State* L)
         }
         lua_pop(L, 1);
     }
-    select_party(team, MAXCHRS, 2);
+    select_party(team, ePIDX::MAXCHRS, 2);
     t = 1;
-    for (i = 0; i < MAXCHRS; ++i)
+    for (i = 0; i < ePIDX::MAXCHRS; ++i)
     {
         if (team[i] != PIDX_UNDEFINED)
         {
@@ -2911,7 +2912,7 @@ int KQ_set_all_equip(lua_State* L)
     uint32_t b;
     int c;
 
-    if (a > MAXCHRS)
+    if (a > ePIDX::MAXCHRS)
     {
         return 0;
     }
@@ -3005,7 +3006,7 @@ int KQ_set_ent_active(lua_State* L)
     int a = KqFork::real_entity_num(L, 1);
     bool isActive = (lua_tointeger(L, 2) != 0);
 
-    g_ent[a].active = isActive;
+    allEntitiesOnTheMap[a].active = isActive;
     return 0;
 }
 
@@ -3013,7 +3014,7 @@ int KQ_set_ent_atype(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    g_ent[a].atype = (int)lua_tonumber(L, 2);
+    allEntitiesOnTheMap[a].atype = (int)lua_tonumber(L, 2);
     return 0;
 }
 
@@ -3021,7 +3022,7 @@ int KQ_set_ent_chrx(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    g_ent[a].setIdentity(lua_tonumber(L, 2));
+    allEntitiesOnTheMap[a].setIdentity(lua_tonumber(L, 2));
     return 0;
 }
 
@@ -3032,7 +3033,7 @@ int KQ_set_ent_facehero(lua_State* L)
 
     if (b == 0 || b == 1)
     {
-        g_ent[a].facehero = b;
+        allEntitiesOnTheMap[a].facehero = b;
     }
     return 0;
 }
@@ -3044,7 +3045,7 @@ int KQ_set_ent_facing(lua_State* L)
 
     if (b >= FACE_DOWN && b <= FACE_RIGHT)
     {
-        g_ent[a].facing = b;
+        allEntitiesOnTheMap[a].facing = b;
     }
     return 0;
 }
@@ -3053,7 +3054,7 @@ int KQ_set_ent_id(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    g_ent[a].eid = (int)lua_tonumber(L, 2);
+    allEntitiesOnTheMap[a].eid = (int)lua_tonumber(L, 2);
     return 0;
 }
 
@@ -3064,7 +3065,7 @@ int KQ_set_ent_movemode(lua_State* L)
 
     if (b >= 0 && b <= 3)
     {
-        g_ent[a].movemode = b;
+        allEntitiesOnTheMap[a].movemode = b;
     }
     return 0;
 }
@@ -3076,7 +3077,7 @@ int KQ_set_ent_obsmode(lua_State* L)
 
     if (b == 0 || b == 1)
     {
-        g_ent[a].obsmode = b;
+        allEntitiesOnTheMap[a].obsmode = b;
     }
     return 0;
 }
@@ -3097,7 +3098,7 @@ int KQ_set_ent_snapback(lua_State* L)
 
     if (b == 0 || b == 1)
     {
-        g_ent[a].snapback = b;
+        allEntitiesOnTheMap[a].snapback = b;
     }
     return 0;
 }
@@ -3109,7 +3110,7 @@ int KQ_set_ent_speed(lua_State* L)
 
     if (b >= 1 && b <= 7)
     {
-        g_ent[a].speed = b;
+        allEntitiesOnTheMap[a].speed = b;
     }
     return 0;
 }
@@ -3128,9 +3129,9 @@ int KQ_set_ent_target(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    g_ent[a].target_x = (int)lua_tonumber(L, 2);
-    g_ent[a].target_y = (int)lua_tonumber(L, 3);
-    g_ent[a].movemode = MM_TARGET;
+    allEntitiesOnTheMap[a].target_x = (int)lua_tonumber(L, 2);
+    allEntitiesOnTheMap[a].target_y = (int)lua_tonumber(L, 3);
+    allEntitiesOnTheMap[a].movemode = MM_TARGET;
     return 0;
 }
 
@@ -3138,8 +3139,8 @@ int KQ_set_ent_tilex(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    g_ent[a].tilex = (int)lua_tonumber(L, 2);
-    g_ent[a].x = g_ent[a].tilex * TILE_W;
+    allEntitiesOnTheMap[a].tilex = (int)lua_tonumber(L, 2);
+    allEntitiesOnTheMap[a].x = allEntitiesOnTheMap[a].tilex * TILE_W;
     return 0;
 }
 
@@ -3147,8 +3148,8 @@ int KQ_set_ent_tiley(lua_State* L)
 {
     int a = KqFork::real_entity_num(L, 1);
 
-    g_ent[a].tiley = (int)lua_tonumber(L, 2);
-    g_ent[a].y = g_ent[a].tiley * TILE_H;
+    allEntitiesOnTheMap[a].tiley = (int)lua_tonumber(L, 2);
+    allEntitiesOnTheMap[a].y = allEntitiesOnTheMap[a].tiley * TILE_H;
     return 0;
 }
 
@@ -3157,7 +3158,7 @@ int KQ_set_ent_transl(lua_State* L)
     int a = KqFork::real_entity_num(L, 1);
     auto b = (lua_tointeger(L, 2) != 0);
 
-    g_ent[a].isSemiTransparent = b;
+    allEntitiesOnTheMap[a].isSemiTransparent = b;
     return 0;
 }
 
@@ -3353,7 +3354,7 @@ int KQ_set_party_eqp(lua_State* L)
     uint32_t a = (uint32_t)lua_tonumber(L, 1);
     uint32_t b = (uint32_t)lua_tonumber(L, 2);
 
-    if (a < MAXCHRS && b < NUM_EQUIPMENT)
+    if (a < ePIDX::MAXCHRS && b < NUM_EQUIPMENT)
     {
         party[a].eqp[b] = (int)lua_tonumber(L, 3);
     }
@@ -4157,7 +4158,7 @@ int KQ_party_getter(lua_State* L)
     if (which < numchrs)
     {
         lua_getglobal(L, "player");
-        lua_rawgeti(L, -1, pidx[which]);
+        lua_rawgeti(L, -1, activeAvatarIds[which]);
     }
     else
     {
@@ -4192,12 +4193,12 @@ int KQ_party_setter(lua_State* L)
             /* it was nil, erase a character */
             for (size_t i = which; i < (MAX_PARTY_SIZE - 1); ++i)
             {
-                pidx[i] = pidx[i + 1];
-                memcpy(&g_ent[i], &g_ent[i + 1], sizeof(KQEntity));
+                activeAvatarIds[i] = activeAvatarIds[i + 1];
+                memcpy(&allEntitiesOnTheMap[i], &allEntitiesOnTheMap[i + 1], sizeof(KQEntity));
             }
             --numchrs;
-            g_ent[numchrs].active = false;
-            pidx[numchrs] = PIDX_UNDEFINED;
+            allEntitiesOnTheMap[numchrs].active = false;
+            activeAvatarIds[numchrs] = PIDX_UNDEFINED;
         }
         else if (lua_istable(L, 3))
         {
@@ -4213,17 +4214,17 @@ int KQ_party_setter(lua_State* L)
                 {
                     which = numchrs;
                 }
-                pidx[which] = (ePIDX)(tt - party);
+                activeAvatarIds[which] = (ePIDX)(tt - party);
                 if (which >= numchrs)
                 {
                     /* Added a character in */
                     numchrs = which + 1;
-                    memcpy(&g_ent[which], &g_ent[0], sizeof(KQEntity));
-                    g_ent[which].x = g_ent[0].x;
-                    g_ent[which].y = g_ent[0].y;
+                    memcpy(&allEntitiesOnTheMap[which], &allEntitiesOnTheMap[0], sizeof(KQEntity));
+                    allEntitiesOnTheMap[which].x = allEntitiesOnTheMap[0].x;
+                    allEntitiesOnTheMap[which].y = allEntitiesOnTheMap[0].y;
                 }
-                g_ent[which].setIdentity(0);
-                g_ent[which].eid = pidx[which];
+                allEntitiesOnTheMap[which].setIdentity(0);
+                allEntitiesOnTheMap[which].eid = activeAvatarIds[which];
             }
             /* else, it was a table but not a hero */
         }
@@ -4359,7 +4360,7 @@ int KqFork::real_entity_num(lua_State* L, int pos)
         lua_pop(L, 1);
         if (ent)
         {
-            return ent - g_ent;
+            return ent - allEntitiesOnTheMap;
         }
     }
     return 255; /* means "nobody" */

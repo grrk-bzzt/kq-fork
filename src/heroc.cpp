@@ -6,7 +6,7 @@
  * Stuff relating to hero's special combat skills
  *
  * \todo PH Make sure we understand the two methods of referring to a
- *          hero - either as an index in the pidx array or an index in
+ *          hero - either as an index in the activeAvatarIds array or an index in
  *          the party array
  */
 
@@ -82,7 +82,7 @@ int KHero::available_spells(int who)
 {
     int a, b, e, l, numsp = 0;
 
-    l = pidx[who];
+    l = activeAvatarIds[who];
     for (a = 0; a < 60; a++)
     {
         b = party[l].spells[a];
@@ -129,7 +129,7 @@ int KHero::combat_castable(int spell_caster, int spell_number)
 {
     int b, c = 0;
 
-    b = party[pidx[spell_caster]].spells[spell_number];
+    b = party[activeAvatarIds[spell_caster]].spells[spell_number];
     if (b == M_WARP)
     {
 #ifdef DEBUGMODE
@@ -148,7 +148,7 @@ int KHero::combat_castable(int spell_caster, int spell_number)
 
     if (magic[b].use == USE_ANY_INF || magic[b].use == USE_COMBAT_INF)
     {
-        if (pidx[spell_caster] == CORIN && fighter[c].aux == 2)
+        if (activeAvatarIds[spell_caster] == CORIN && fighter[c].aux == 2)
         {
             c = mp_needed(spell_caster, b);
             if (fighter[spell_caster].fighterMagic >= c && magic[b].elem < R_BLIND)
@@ -216,7 +216,7 @@ void KHero::combat_draw_spell_menu(int c, int ptr, int pg)
     kqDraw.menubox(double_buffer, 80, 24, 18, 12, eMenuBoxColor::SEMI_TRANSPARENT_BLUE);
     for (j = 0; j < NUM_SPELLS_PER_PAGE; j++)
     {
-        z = party[pidx[c]].spells[pg * NUM_SPELLS_PER_PAGE + j];
+        z = party[activeAvatarIds[c]].spells[pg * NUM_SPELLS_PER_PAGE + j];
         if (z > 0)
         {
             kqDraw.draw_icon(double_buffer, magic[z].icon, 96, j * 8 + 32);
@@ -466,7 +466,7 @@ int KHero::combat_spell_menu(int c)
             Game.unpress();
             if (combat_castable(c, pgno * NUM_SPELLS_PER_PAGE + ptr) == 1)
             {
-                fighter[c].csmem = party[pidx[c]].spells[pgno * NUM_SPELLS_PER_PAGE + ptr];
+                fighter[c].csmem = party[activeAvatarIds[c]].spells[pgno * NUM_SPELLS_PER_PAGE + ptr];
                 stop = 2;
             }
         }
@@ -482,7 +482,7 @@ int KHero::combat_spell_menu(int c)
         {
             return 0;
         }
-        if (pidx[c] == CORIN && fighter[c].aux == 2)
+        if (activeAvatarIds[c] == CORIN && fighter[c].aux == 2)
         {
             return 1;
         }
@@ -617,7 +617,7 @@ void KHero::hero_choose_action(size_t fighter_index)
     Game.unpress();
     fighter[fighter_index].fighterWillDefend = 0;
     fighter[fighter_index].fighterSpriteFacing = 0;
-    if (pidx[fighter_index] != CORIN && pidx[fighter_index] != CASANDRA)
+    if (activeAvatarIds[fighter_index] != CORIN && activeAvatarIds[fighter_index] != CASANDRA)
     {
         fighter[fighter_index].aux = 0;
     }
@@ -631,7 +631,7 @@ void KHero::hero_choose_action(size_t fighter_index)
         my++;
         if (hero_skillcheck(fighter_index))
         {
-            strcpy(ca[my], sk_names[pidx[fighter_index]]);
+            strcpy(ca[my], sk_names[activeAvatarIds[fighter_index]]);
             chi[my] = C_SKILL;
             my++;
         }
@@ -650,7 +650,7 @@ void KHero::hero_choose_action(size_t fighter_index)
         tt = 0;
         for (equipment_index = 0; equipment_index < NUM_EQUIPMENT; equipment_index++)
         {
-            if (can_invoke_item(party[pidx[fighter_index]].eqp[equipment_index]))
+            if (can_invoke_item(party[activeAvatarIds[fighter_index]].eqp[equipment_index]))
             {
                 tt++;
             }
@@ -819,7 +819,7 @@ void KHero::hero_init()
         {
             clear_bitmap(cframes[fighter_index][frame_index]);
         }
-        unsigned int current_fighter_index = pidx[fighter_index];
+        unsigned int current_fighter_index = activeAvatarIds[fighter_index];
 
         unsigned int fighter_x = current_fighter_index * 64 + 192;
         unsigned int fighter_y = current_fighter_index * 32;
@@ -903,7 +903,7 @@ int KHero::hero_invoke(int whom)
     int dud;
 
     fullblit(double_buffer, back);
-    dud = pidx[whom];
+    dud = activeAvatarIds[whom];
     while (!stop)
     {
         Game.do_check_animation();
@@ -1132,7 +1132,7 @@ void KHero::hero_run()
 
                 if (fighter[fighter_index].fighterSpellEffectStats[S_DEAD] == eDeathType::NOT_DEAD)
                 {
-                    draw_sprite(double_buffer, frames[pidx[fighter_index]][fr], fx, fy);
+                    draw_sprite(double_buffer, frames[activeAvatarIds[fighter_index]][fr], fx, fy);
                 }
             }
             kqDraw.blit2screen(0, 0);

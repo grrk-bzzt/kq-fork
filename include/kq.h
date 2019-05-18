@@ -149,7 +149,7 @@ public:
      * \note Waits at most 20 'ticks'
      */
     void unpress();
-    
+
     /**
      * Wait for ALT
      *
@@ -167,7 +167,7 @@ public:
      * \param   msg String to add to log file
      */
     void klog(const char* msg);
-    
+
     /**
      * Pause for a time
      *
@@ -195,10 +195,10 @@ public:
      * Determine whether the specified character is currently in play.
      *
      * \param   pn Character to ask about
-     * \returns index of member's ID if found, else MAXCHRS if NOT in party.
+     * \returns index of member's ID if found, else ePIDX::MAXCHRS if NOT in party.
      */
     size_t in_party(ePIDX);
-    
+
     /**
      * Wait for scripted movement to finish
      *
@@ -251,7 +251,7 @@ public:
 
     /**
      * Resets the world. Called every new game and load game
-     * 
+     *
      * This function may be called multiple times in some cases. That should be ok.
      */
     void reset_world();
@@ -306,7 +306,7 @@ public:
      *
      */
     void load_heroes();
-    
+
     /**
      * Do everything necessary to load a map
      *
@@ -316,7 +316,7 @@ public:
      * \param   mvy - Same, for y-coord
      */
     void prepare_map(int msx, int msy, int mvx, int mvy);
-    
+
     /**
      * Write debug data to disk
      *
@@ -355,7 +355,7 @@ extern Raster* map_icons[MAX_TILES];
 
 /**
  * Used for animations within tilesets (animation tiles must be sequential).
- * 
+ *
  * The current tile to be drawn to double_buffer is defined as map_icons[tilex[???]].
  * tilex[] is simply a 0-based value ranging from 0..MAX_TILES.
  *
@@ -365,7 +365,7 @@ extern Raster* map_icons[MAX_TILES];
 extern uint16_t tilex[MAX_TILES];
 
 extern Raster* back, *tc, *tc2, *bub[8], *b_shield, *b_shell, *b_repulse, *b_mp;
-extern Raster* cframes[NUM_FIGHTERS][MAXCFRAMES], *tcframes[NUM_FIGHTERS][MAXCFRAMES], *frames[MAXCHRS][MAX_PARTY_MOVEMENT_FRAMES];
+extern Raster* cframes[NUM_FIGHTERS][MAXCFRAMES], *tcframes[NUM_FIGHTERS][MAXCFRAMES], *frames[ePIDX::MAXCHRS][MAX_PARTY_MOVEMENT_FRAMES];
 extern Raster* eframes[TOTAL_MAP_NPC_ENTITIES][MAX_NPC_MOVEMENT_FRAMES], *pgb[9], *sfonts[5];
 extern Raster* bord[8];
 extern Raster* menuptr, *mptr, *sptr, *stspics, *sicons, *bptr, *missbmp, *noway, *upptr, *dnptr;
@@ -378,19 +378,19 @@ extern unsigned char treasure[SIZE_TREASURE];
 extern unsigned char save_spells[SIZE_SAVE_SPELL];
 extern Raster* kfonts;
 extern s_map g_map;
-extern KQEntity g_ent[MAX_ENTITIES];
+extern KQEntity allEntitiesOnTheMap[MAX_ENTITIES];
 extern s_anim tanim[MAX_TILESETS][MAX_ANIM];
 extern s_anim adata[MAX_ANIM];
 extern uint32_t numchrs;
 extern int gp, xofs, yofs, gsvol, gmvol;
-extern ePIDX pidx[MAXCHRS];
+extern ePIDX activeAvatarIds[ePIDX::MAXCHRS];
 extern uint8_t autoparty, alldead, is_sound, deadeffect, vfollow, use_sstone, sound_avail;
 extern const uint8_t kq_version;
 extern uint8_t hold_fade, cansave, skip_intro, wait_retrace, stretch_view, cpu_usage;
 extern uint16_t adelay[MAX_ANIM];
 extern char* strbuf, *savedir;
-extern KPlayer party[MAXCHRS];
-extern s_heroinfo players[MAXCHRS];
+extern KPlayer party[ePIDX::MAXCHRS];
+extern s_heroinfo players[ePIDX::MAXCHRS];
 extern bool display_attack_string;
 extern std::string shop_name;
 extern char attack_string[39];

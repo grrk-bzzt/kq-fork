@@ -146,7 +146,7 @@ int KSaveGame::load_game()
     timer_count = 0;
     ksec = 0;
     hold_fade = 0;
-    Game.change_map(Game.GetCurmap(), g_ent[0].tilex, g_ent[0].tiley, g_ent[0].tilex, g_ent[0].tiley);
+    Game.change_map(Game.GetCurmap(), allEntitiesOnTheMap[0].tilex, allEntitiesOnTheMap[0].tiley, allEntitiesOnTheMap[0].tilex, allEntitiesOnTheMap[0].tiley);
     /* Set music and sound volume */
     set_volume(gsvol, -1);
     Music.set_music_volume(((float)gmvol) / 250.0);

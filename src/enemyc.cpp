@@ -150,14 +150,14 @@ void KqFork::EnemyC::enemy_attack(size_t target_fighter_index)
         c = 0;
         for (fighter_index = 0; fighter_index < numchrs; fighter_index++)
         {
-            if (pidx[fighter_index] == TEMMIN && fighter[fighter_index].aux == 1)
+            if (activeAvatarIds[fighter_index] == TEMMIN && fighter[fighter_index].aux == 1)
             {
                 c = fighter_index + 1;
             }
         }
         if (c != 0)
         {
-            if (pidx[b] != TEMMIN)
+            if (activeAvatarIds[b] != TEMMIN)
             {
                 b = c - 1;
                 fighter[c - 1].aux = 2;
@@ -965,7 +965,7 @@ size_t select_encounter(int en, int etid)
     }
     kqCombat.num_enemies = p;
     /* adjust 'too hard' combat where player is alone and faced by >2 enemies */
-    if (kqCombat.num_enemies > 2 && numchrs == 1 && erows[entry].lvl + 2 > party[pidx[0]].lvl && etid == 99)
+    if (kqCombat.num_enemies > 2 && numchrs == 1 && erows[entry].lvl + 2 > party[activeAvatarIds[0]].lvl && etid == 99)
     {
         kqCombat.num_enemies = 2;
     }

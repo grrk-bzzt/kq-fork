@@ -235,7 +235,7 @@ private:
 
 private:
     /* Text names of hero skills */
-    char sk_names[MAXCHRS][7];
+    char sk_names[ePIDX::MAXCHRS][7];
 
     bool m_CanUseItem;
 };

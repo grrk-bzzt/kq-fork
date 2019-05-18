@@ -821,9 +821,9 @@ static int save_general_props(XMLElement* node)
     addprop(properties, "gold", stats.gold);
     addprop(properties, "time", stats.time);
     addprop(properties, "mapname", Game.GetCurmap());
-    addprop(properties, "mapx", g_ent[0].tilex);
-    addprop(properties, "mapy", g_ent[0].tiley);
-    auto pbegin = std::begin(pidx);
+    addprop(properties, "mapx", allEntitiesOnTheMap[0].tilex);
+    addprop(properties, "mapy", allEntitiesOnTheMap[0].tiley);
+    auto pbegin = std::begin(activeAvatarIds);
     auto pend = std::next(pbegin, numchrs);
     addprop(properties, "party", make_list(pbegin, pend));
     addprop(properties, "random-state", kqrandom->kq_get_random_state());
@@ -870,30 +870,30 @@ static int load_general_props(XMLElement* node)
             }
             else if (property->Attribute("name", "mapx"))
             {
-                g_ent[0].tilex = property->IntAttribute("value");
+                allEntitiesOnTheMap[0].tilex = property->IntAttribute("value");
             }
             else if (property->Attribute("name", "mapy"))
             {
-                g_ent[0].tiley = property->IntAttribute("value");
+                allEntitiesOnTheMap[0].tiley = property->IntAttribute("value");
             }
             else if (property->Attribute("name", "party"))
             {
                 auto pps = parse_list(property->Attribute("value"));
                 auto it = pps.begin();
                 numchrs = 0;
-                for (int i = 0; i < MAXCHRS; ++i)
+                for (int i = 0; i < ePIDX::MAXCHRS; ++i)
                 {
                     if (it != pps.end())
                     {
-                        pidx[i] = static_cast<ePIDX>(*it++);
-                        g_ent[i].eid = pidx[i];
-                        g_ent[i].active = true;
+                        activeAvatarIds[i] = static_cast<ePIDX>(*it++);
+                        allEntitiesOnTheMap[i].eid = activeAvatarIds[i];
+                        allEntitiesOnTheMap[i].active = true;
                         ++numchrs;
                     }
                     else
                     {
-                        pidx[i] = PIDX_UNDEFINED;
-                        g_ent[i].active = false;
+                        activeAvatarIds[i] = PIDX_UNDEFINED;
+                        allEntitiesOnTheMap[i].active = false;
                     }
                 }
             }
@@ -1121,7 +1121,7 @@ s_sgstats s_sgstats::get_current()
     for (auto i = 0U; i < numchrs; ++i)
     {
         auto& chr = stats.characters[i];
-        chr.id = pidx[i];
+        chr.id = activeAvatarIds[i];
         auto& pp = party[chr.id];
         chr.hp = pp.mhp > 0 ? pp.hp * 100 / pp.mhp : 0;
         chr.mp = pp.mmp > 0 ? pp.mp * 100 / pp.mmp : 0;

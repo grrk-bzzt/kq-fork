@@ -50,8 +50,8 @@ static void calc_equippreview(uint32_t aa, uint32_t p2, int ii)
 {
     int c, z;
 
-    c = party[pidx[aa]].eqp[p2];
-    party[pidx[aa]].eqp[p2] = ii;
+    c = party[activeAvatarIds[aa]].eqp[p2];
+    party[activeAvatarIds[aa]].eqp[p2] = ii;
     update_equipstats();
     for (z = 0; z < 13; z++)
     {
@@ -61,7 +61,7 @@ static void calc_equippreview(uint32_t aa, uint32_t p2, int ii)
     {
         tres[z] = fighter[aa].fighterResistance[z];
     }
-    party[pidx[aa]].eqp[p2] = c;
+    party[activeAvatarIds[aa]].eqp[p2] = c;
     update_equipstats();
 }
 
@@ -83,7 +83,7 @@ static void calc_possible_equip(int c, int slot)
         // Check if we have any items at all
         if (g_inv[k].item > 0 && g_inv[k].quantity > 0)
         {
-            if (items[g_inv[k].item].type == slot && items[g_inv[k].item].eq[pidx[c]] != 0)
+            if (items[g_inv[k].item].type == slot && items[g_inv[k].item].eq[activeAvatarIds[c]] != 0)
             {
                 t_inv[tot] = k;
                 tot++;
@@ -170,7 +170,7 @@ static void choose_equipment(int c, int slot)
         if (PlayerInput.balt)
         {
             Game.unpress();
-            if (equip(pidx[c], t_inv[pptr + yptr], 0) == 1)
+            if (equip(activeAvatarIds[c], t_inv[pptr + yptr], 0) == 1)
             {
                 play_effect(SND_EQUIP, 128);
                 stop = 1;
@@ -207,7 +207,7 @@ static int deequip(uint32_t c, uint32_t ptr)
         return 0;
     }
 
-    a = party[pidx[c]].eqp[ptr];
+    a = party[activeAvatarIds[c]].eqp[ptr];
     if (a > 0)
     {
         b = check_inventory(a, 1);
@@ -221,7 +221,7 @@ static int deequip(uint32_t c, uint32_t ptr)
     {
         return 0;
     }
-    party[pidx[c]].eqp[ptr] = 0;
+    party[activeAvatarIds[c]].eqp[ptr] = 0;
     return 1;
 }
 
@@ -241,7 +241,7 @@ static void draw_equipmenu(int c, int sel)
 {
     int l, j, k;
 
-    l = pidx[c];
+    l = activeAvatarIds[c];
     kqDraw.menubox(double_buffer, 12 + xofs, 4 + yofs, 35, 1, eMenuBoxColor::SEMI_TRANSPARENT_BLUE);
     if (sel == 1)
     {
@@ -628,7 +628,7 @@ void equip_menu(uint32_t c)
                     d = 0;
                     for (a = 0; a < NUM_EQUIPMENT; a++)
                     {
-                        if (party[pidx[c]].eqp[a] > 0)
+                        if (party[activeAvatarIds[c]].eqp[a] > 0)
                         {
                             d++;
                             b += deequip(c, a);
@@ -698,7 +698,7 @@ static void optimize_equip(int c)
 
     for (a = 0; a < NUM_EQUIPMENT; a++)
     {
-        if (party[pidx[c]].eqp[a] > 0)
+        if (party[activeAvatarIds[c]].eqp[a] > 0)
         {
             if (deequip(c, a) == 0)
             {
@@ -720,7 +720,7 @@ static void optimize_equip(int c)
     }
     if (maxi > -1)
     {
-        if (equip(pidx[c], t_inv[maxi], 0) == 0)
+        if (equip(activeAvatarIds[c], t_inv[maxi], 0) == 0)
         {
             return;
         }
@@ -741,7 +741,7 @@ static void optimize_equip(int c)
         }
         if (maxi > -1)
         {
-            if (equip(pidx[c], t_inv[maxi], 0) == 0)
+            if (equip(activeAvatarIds[c], t_inv[maxi], 0) == 0)
             {
                 return;
             }
@@ -769,7 +769,7 @@ static void optimize_equip(int c)
     }
     if (maxi > -1)
     {
-        if (equip(pidx[c], t_inv[maxi], 0) == 0)
+        if (equip(activeAvatarIds[c], t_inv[maxi], 0) == 0)
         {
             return;
         }

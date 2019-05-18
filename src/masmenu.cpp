@@ -48,7 +48,7 @@ static int camp_castable(int who, int sno)
     }
     if (magic[sno].use == USE_ANY_INF || magic[sno].use == USE_CAMP_INF)
     {
-        if (party[pidx[who]].mp >= mp_needed(who, sno))
+        if (party[activeAvatarIds[who]].mp >= mp_needed(who, sno))
         {
             return 1;
         }
@@ -69,7 +69,7 @@ static void camp_draw_spell_menu(size_t caster_fighter_index, size_t spell_page,
     eFontColor text_color;
     size_t spell_index, pidx_index, current_spell, first_spell_index;
 
-    pidx_index = pidx[caster_fighter_index];
+    pidx_index = activeAvatarIds[caster_fighter_index];
     first_spell_index = party[pidx_index].spells[spell_page * NUM_SPELLS_PER_PAGE + spell_page_cursor];
     kqDraw.menubox(double_buffer, 80 + xofs, 12 + yofs, 18, 1, eMenuBoxColor::SEMI_TRANSPARENT_BLUE);
     kqDraw.print_font(double_buffer, 140 + xofs, 20 + yofs, _("Magic"), eFontColor::FONTCOLOR_GOLD);
@@ -110,7 +110,7 @@ void camp_spell_menu(int c)
     int pg[2] = {0, 0};
     int ptr[2] = {0, 0};
 
-    if (party[pidx[c]].sts[S_MUTE] > 0)
+    if (party[activeAvatarIds[c]].sts[S_MUTE] > 0)
     {
         play_effect(SND_BAD, 128);
         return;
@@ -186,14 +186,14 @@ void camp_spell_menu(int c)
                 {
                     a = pg[0] * NUM_SPELLS_PER_PAGE + ptr[0];
                     b = pg[1] * NUM_SPELLS_PER_PAGE + ptr[1];
-                    tsn = party[pidx[c]].spells[a];
-                    party[pidx[c]].spells[a] = party[pidx[c]].spells[b];
-                    party[pidx[c]].spells[b] = tsn;
+                    tsn = party[activeAvatarIds[c]].spells[a];
+                    party[activeAvatarIds[c]].spells[a] = party[activeAvatarIds[c]].spells[b];
+                    party[activeAvatarIds[c]].spells[b] = tsn;
                 }
                 if (pg[0] == pg[1] && ptr[0] == ptr[1])
                 {
                     a = pg[0] * NUM_SPELLS_PER_PAGE + ptr[0];
-                    tsn = party[pidx[c]].spells[a];
+                    tsn = party[activeAvatarIds[c]].spells[a];
                     if (tsn > 0)
                     {
                         if (camp_castable(c, tsn) == 1)
@@ -208,7 +208,7 @@ void camp_spell_menu(int c)
             }
             else
             {
-                if (party[pidx[c]].spells[pg[0] * NUM_SPELLS_PER_PAGE + ptr[0]] > 0)
+                if (party[activeAvatarIds[c]].spells[pg[0] * NUM_SPELLS_PER_PAGE + ptr[0]] > 0)
                 {
                     smove = 1;
                     pg[1] = pg[0];
@@ -253,7 +253,7 @@ static void camp_spell_targeting(size_t caster_fighter_index, size_t spell_numbe
     }
     while (tg != PIDX_UNDEFINED)
     {
-        if (party[pidx[caster_fighter_index]].mp < mp_needed(caster_fighter_index, spell_number))
+        if (party[activeAvatarIds[caster_fighter_index]].mp < mp_needed(caster_fighter_index, spell_number))
         {
             return;
         }
@@ -387,7 +387,7 @@ static int need_spell(size_t target_fighter_index, size_t spell_number)
 
     if (target_fighter_index < numchrs)
     {
-        victim_figher_index = pidx[target_fighter_index];
+        victim_figher_index = activeAvatarIds[target_fighter_index];
     }
     switch (spell_number)
     {
@@ -427,7 +427,7 @@ static int need_spell(size_t target_fighter_index, size_t spell_number)
             affected_targets = 0;
             for (figher_index = 0; figher_index < numchrs; figher_index++)
             {
-                if (party[pidx[figher_index]].hp == party[pidx[figher_index]].mhp || party[pidx[figher_index]].sts[S_STONE] != 0 || party[pidx[figher_index]].sts[S_DEAD] != 0)
+                if (party[activeAvatarIds[figher_index]].hp == party[activeAvatarIds[figher_index]].mhp || party[activeAvatarIds[figher_index]].sts[S_STONE] != 0 || party[activeAvatarIds[figher_index]].sts[S_DEAD] != 0)
                 {
                     affected_targets++;
                 }

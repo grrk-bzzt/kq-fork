@@ -125,7 +125,7 @@ void draw_mainmenu(int swho)
     }
     for (size_t fighter_index = 0; fighter_index < numchrs; fighter_index++)
     {
-        draw_playerstat(double_buffer, pidx[fighter_index], 52 + xofs, fighter_index * 64 + 76 + yofs);
+        draw_playerstat(double_buffer, activeAvatarIds[fighter_index], 52 + xofs, fighter_index * 64 + 76 + yofs);
     }
 }
 
@@ -362,7 +362,7 @@ void menu()
  */
 bool player2fighter(size_t partyIndex, KFighter& outFighter)
 {
-    if (partyIndex >= MAXCHRS)
+    if (partyIndex >= ePIDX::MAXCHRS)
     {
         return false;
     }
@@ -660,7 +660,7 @@ void revert_equipstats()
     }
     for (fighter_index = 0; fighter_index < end_fighter_index; fighter_index++)
     {
-        pidx_index = pidx[fighter_index];
+        pidx_index = activeAvatarIds[fighter_index];
         party[pidx_index].hp = fighter[fighter_index].fighterHealth;
         if (party[pidx_index].hp > party[pidx_index].mhp)
         {
@@ -766,7 +766,7 @@ void spec_items()
 /*! \brief Draw a player's status screen
  *
  * Draw the verbose stats of a single player.
- * \param   fighter_index - Character to draw (index in pidx array)
+ * \param   fighter_index - Character to draw (index in activeAvatarIds array)
  */
 void KqFork::status_screen(size_t fighter_index)
 {
@@ -776,7 +776,7 @@ void KqFork::status_screen(size_t fighter_index)
     size_t pidx_index, stats_index;
 
     play_effect(SND_MENU, 128);
-    pidx_index = pidx[fighter_index];
+    pidx_index = activeAvatarIds[fighter_index];
     update_equipstats();
     while (!stop)
     {
@@ -890,14 +890,14 @@ void KqFork::status_screen(size_t fighter_index)
         {
             Game.unpress();
             fighter_index--;
-            pidx_index = pidx[fighter_index];
+            pidx_index = activeAvatarIds[fighter_index];
             play_effect(SND_MENU, 128);
         }
         if (PlayerInput.right && fighter_index < numchrs - 1)
         {
             Game.unpress();
             fighter_index++;
-            pidx_index = pidx[fighter_index];
+            pidx_index = activeAvatarIds[fighter_index];
             play_effect(SND_MENU, 128);
         }
         if (PlayerInput.bctrl)
@@ -920,6 +920,6 @@ void update_equipstats()
 
     for (fighter_index = 0; fighter_index < numchrs; fighter_index++)
     {
-        player2fighter(pidx[fighter_index], fighter[fighter_index]);
+        player2fighter(activeAvatarIds[fighter_index], fighter[fighter_index]);
     }
 }

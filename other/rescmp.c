@@ -24,7 +24,7 @@ enum plr_props
 
 
 /* *INDENT-OFF* */
-s_player default_players[MAXCHRS] = {
+s_player default_players[ePIDX::MAXCHRS] = {
    {"Sensar", 0, 70, 1, 100, 40, 40, 0, 0,
     {800, 500, 700, 300, 300, 4000, 9000, 9000, 0, 7500, 0, 100, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -289,7 +289,7 @@ int main (int argc, char *argv[])
    if (argc == 1) {
       /* No files to process */
       fprintf (stdout, "# Default value dump by %s\nplayer\n", argv[0]);
-      for (i = 0; i < MAXCHRS; ++i)
+      for (i = 0; i < ePIDX::MAXCHRS; ++i)
       {
         save_s_player_txt (&default_players[i], stdout);
       }

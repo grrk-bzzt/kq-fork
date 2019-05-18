@@ -245,7 +245,7 @@ void do_inn_effects(int do_delay)
 {
     for (size_t pidx_index = 0; pidx_index < numchrs; pidx_index++)
     {
-        size_t party_index = pidx[pidx_index];
+        size_t party_index = activeAvatarIds[pidx_index];
         party[party_index].hp = party[party_index].mhp;
         party[party_index].mp = party[party_index].mmp;
         for (size_t stats_index = 0; stats_index < 8; stats_index++)
@@ -300,7 +300,7 @@ void draw_sideshot(int selected_item)
     {
         wx = pidx_index * 72 + 88 + xofs;
         wy = 200 + yofs;
-        draw_sprite(double_buffer, frames[pidx[pidx_index]][2], wx, wy);
+        draw_sprite(double_buffer, frames[activeAvatarIds[pidx_index]][2], wx, wy);
     }
     if (selected_item == -1)
     {
@@ -313,18 +313,18 @@ void draw_sideshot(int selected_item)
         wy = 200 + yofs;
         for (equipment_index = 0; equipment_index < NUM_EQUIPMENT; equipment_index++)
         {
-            if (party[pidx[pidx_index]].eqp[equipment_index] == selected_item)
+            if (party[activeAvatarIds[pidx_index]].eqp[equipment_index] == selected_item)
             {
                 equipped_items++;
             }
         }
         if (slot < 6)
         {
-            if (party[pidx[pidx_index]].eqp[slot] > 0)
+            if (party[activeAvatarIds[pidx_index]].eqp[slot] > 0)
             {
                 for (stats_index = 0; stats_index < NUM_STATS; stats_index++)
                 {
-                    cs[stats_index] = items[selected_item].stats[stats_index] - items[party[pidx[pidx_index]].eqp[slot]].stats[stats_index];
+                    cs[stats_index] = items[selected_item].stats[stats_index] - items[party[activeAvatarIds[pidx_index]].eqp[slot]].stats[stats_index];
                 }
             }
             else
@@ -387,7 +387,7 @@ void draw_sideshot(int selected_item)
                     }
                 }
             }
-            if (items[selected_item].eq[pidx[pidx_index]] == 0)
+            if (items[selected_item].eq[activeAvatarIds[pidx_index]] == 0)
             {
                 draw_sprite(double_buffer, noway, wx, wy);
             }
@@ -398,7 +398,7 @@ void draw_sideshot(int selected_item)
             {
                 for (spell_index = 0; spell_index < 60; spell_index++)
                 {
-                    if (party[pidx[pidx_index]].spells[spell_index] == items[selected_item].hnds)
+                    if (party[activeAvatarIds[pidx_index]].spells[spell_index] == items[selected_item].hnds)
                     {
                         draw_sprite(double_buffer, noway, wx, wy);
                     }
@@ -453,7 +453,7 @@ void inn(const char* iname, uint32_t gold_per_character, int pay)
     total_gold_cost = gold_per_character;
     for (party_index = 0; party_index < numchrs; party_index++)
     {
-        pidx_index = pidx[party_index];
+        pidx_index = activeAvatarIds[party_index];
         if (party[pidx_index].sts[S_POISON] != 0)
         {
             total_gold_cost += gold_per_character / 2;
