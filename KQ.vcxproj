@@ -120,7 +120,6 @@
     <ClCompile Include="src\intrface.cpp" />
     <ClCompile Include="src\itemmenu.cpp" />
     <ClCompile Include="src\kq.cpp" />
-    <ClCompile Include="src\kqentity.cpp" />
     <ClCompile Include="src\magic.cpp" />
     <ClCompile Include="src\markers.cpp" />
     <ClCompile Include="src\masmenu.cpp" />
@@ -167,7 +166,6 @@
     <ClInclude Include="include\itemdefs.h" />
     <ClInclude Include="include\itemmenu.h" />
     <ClInclude Include="include\kq.h" />
-    <ClInclude Include="include\kqentity.h" />
     <ClInclude Include="include\kqsnd.h" />
     <ClInclude Include="include\magic.h" />
     <ClInclude Include="include\maps.h" />
