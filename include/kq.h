@@ -46,7 +46,7 @@ class Raster;
 class KGame
 {
 public:
-	KGame();
+    KGame();
 
     /**
      * Free old map data and load a new one
@@ -63,7 +63,7 @@ public:
      *              to use the default: s_map::stx and s_map::sty)
      * \param   mvy New y-coord for camera
      */
-	void change_map(const std::string& map_name, int msx, int msy, int mvx, int mvy);
+    void change_map(const std::string& map_name, int msx, int msy, int mvx, int mvy);
 
     /**
      * Free old map data and load a new one.
@@ -149,7 +149,7 @@ public:
      * \note Waits at most 20 'ticks'
      */
     void unpress();
-	
+    
     /**
      * Wait for ALT
      *
@@ -167,7 +167,7 @@ public:
      * \param   msg String to add to log file
      */
     void klog(const char* msg);
-	
+    
     /**
      * Pause for a time
      *
@@ -178,7 +178,7 @@ public:
      *
      * \param   dtime Time in frames
      */
-	void kwait(int dtime);
+    void kwait(int dtime);
 
     /**
      * End program due to fatal error
@@ -198,7 +198,7 @@ public:
      * \returns index of member's ID if found, else MAXCHRS if NOT in party.
      */
     size_t in_party(ePIDX);
-	
+    
     /**
      * Wait for scripted movement to finish
      *
@@ -240,7 +240,7 @@ public:
      *        five seconds in the future
      * \returns <0 if an error occurred (i.e. too many pending events)
      */
-	int add_timer_event(const char*, int);
+    int add_timer_event(const char*, int);
 
     /**
      * Delete any pending events
@@ -261,7 +261,7 @@ public:
      *
      * This function calls rest() with the value of 'cpu_usage' as its parameter
      */
-	void kq_yield();
+    void kq_yield();
 
     /**
      * Creates a bitmap, giving an error message with the specified name if it fails.
@@ -275,7 +275,7 @@ public:
      * \param   bitmap_name Name of bitmap
      * \returns the pointer to the created bitmap
      */
-	Raster* alloc_bmp(int bitmap_width, int bitmap_height, const char* bitmap_name);
+    Raster* alloc_bmp(int bitmap_width, int bitmap_height, const char* bitmap_name);
 
     /**
      * Application start-up code
@@ -283,7 +283,7 @@ public:
      * Set up allegro, set up variables, load stuff, blah...
      * This is called once per game.
      */
-	void startup();
+    void startup();
 
     /**
      * Free allocated memory
@@ -297,7 +297,7 @@ public:
      *
      * A separate function to create all global bitmaps needed in the game.
      */
-	void allocate_stuff();
+    void allocate_stuff();
 
     /**
      * Load initial hero stuff from file
@@ -306,7 +306,7 @@ public:
      *
      */
     void load_heroes();
-	
+    
     /**
      * Do everything necessary to load a map
      *
@@ -316,7 +316,7 @@ public:
      * \param   mvy - Same, for y-coord
      */
     void prepare_map(int msx, int msy, int mvx, int mvy);
-	
+    
     /**
      * Write debug data to disk
      *
@@ -326,21 +326,21 @@ public:
      */
     void data_dump();
 
-	std::string GetCurmap();
+    std::string GetCurmap();
 
     void SetCurmap(const std::string& curmap);
 
-	bool IsOverworldMap() const;
+    bool IsOverworldMap() const;
 
 public:
-	const std::string WORLD_MAP;
+    const std::string WORLD_MAP;
 
     /*! The number of frames per second */
-	const int32_t KQ_TICKS;
+    const int32_t KQ_TICKS;
 
 protected:
-	/*! Name of the current map */
-	std::string m_curmap;
+    /*! Name of the current map */
+    std::string m_curmap;
 };
 
 extern int camera_viewport_x, camera_viewport_y, mx, my, steps, lastm[MAX_PARTY_SIZE];

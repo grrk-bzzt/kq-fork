@@ -21,87 +21,87 @@
 /*! \brief An item */
 struct s_item
 {
-	char itemName[17]; /*!< Name of the item */
-	uint8_t icon;  /*!< Small icon */
-	uint8_t kol;   /*!< Color to draw?? See hero_init() */
-	char desc[40]; /*!< One line description */
-	uint8_t tgt;   /*!< Targetting type for combat items. See TGT_* constants in kq.h */
-	uint8_t type; /*!< Relates to which slot (hand, etc.) this item goes into */
-	uint8_t use;  /*!< Usage mode  (see USE_* constants in kq.h) */
-	uint8_t ilvl; /*!< What level this item is */
-	uint8_t hnds; /*!< This is used to index into the ::magic[] array */
+    char itemName[17]; /*!< Name of the item */
+    uint8_t icon;  /*!< Small icon */
+    uint8_t kol;   /*!< Color to draw?? See hero_init() */
+    char desc[40]; /*!< One line description */
+    uint8_t tgt;   /*!< Targetting type for combat items. See TGT_* constants in kq.h */
+    uint8_t type; /*!< Relates to which slot (hand, etc.) this item goes into */
+    uint8_t use;  /*!< Usage mode  (see USE_* constants in kq.h) */
+    uint8_t ilvl; /*!< What level this item is */
+    uint8_t hnds; /*!< This is used to index into the ::magic[] array */
 
-	/*! For seeds, determines what attribute is affected.
-	 * - 0 Strength
-	 * - 1 Agility
-	 * - 2 Vitality
-	 * - 3 Intellect
-	 * - 4 Wisdom
-	 *
-	 * See item_effects()
-	 */
-	uint8_t bst;
-	uint8_t elem; /*!< For runes, what element will it affect (see rs parameter of res_adjust() ) */
-	uint8_t imb;  /*!< imbued - What spell is cast when you "use" this item in combat */
-	uint8_t eff;  /*!< Effect ?? */
-	int bon;      /*!< Bonus ?? */
-	int price;    /*!< Default price of this item, in gp */
-	uint8_t eq[8]; /*!< Who can equip this item. See heroc.h */
-	int stats[13]; /*!< Stat bonuses for equipping this item See A_ constants in kq.h */
-	char res[16];  /*!< Resistances. See R_ constants in kq.h */
+    /*! For seeds, determines what attribute is affected.
+     * - 0 Strength
+     * - 1 Agility
+     * - 2 Vitality
+     * - 3 Intellect
+     * - 4 Wisdom
+     *
+     * See item_effects()
+     */
+    uint8_t bst;
+    uint8_t elem; /*!< For runes, what element will it affect (see rs parameter of res_adjust() ) */
+    uint8_t imb;  /*!< imbued - What spell is cast when you "use" this item in combat */
+    uint8_t eff;  /*!< Effect ?? */
+    int bon;      /*!< Bonus ?? */
+    int price;    /*!< Default price of this item, in gp */
+    uint8_t eq[8]; /*!< Who can equip this item. See heroc.h */
+    int stats[13]; /*!< Stat bonuses for equipping this item See A_ constants in kq.h */
+    char res[16];  /*!< Resistances. See R_ constants in kq.h */
 };
 
 /*! \brief A spell */
 struct s_spell
 {
-	char spellName[14]; /*!< Name of the spell being used */
-	uint8_t icon;  /*!< Picture used in the spell list (which type of spell) */
-	char desc[26]; /*!< Description of what the spell is intended to do */
-	uint8_t stat;
-	uint8_t mpc;
-	uint8_t use;
-	uint8_t tgt;
-	int dmg;
-	int bon; /*!< Bonus for */
-	int hit;
-	uint8_t elem;
-	uint8_t dlvl;
-	uint8_t eff;
-	int clvl[8];
+    char spellName[14]; /*!< Name of the spell being used */
+    uint8_t icon;  /*!< Picture used in the spell list (which type of spell) */
+    char desc[26]; /*!< Description of what the spell is intended to do */
+    uint8_t stat;
+    uint8_t mpc;
+    uint8_t use;
+    uint8_t tgt;
+    int dmg;
+    int bon; /*!< Bonus for */
+    int hit;
+    uint8_t elem;
+    uint8_t dlvl;
+    uint8_t eff;
+    int clvl[8];
 };
 
 /*! \brief A special effect */
 struct s_effect
 {
-	uint8_t numf;   /*!< Number of frames within the sprite */
-	uint16_t xsize; /*!< Width of each frame */
-	uint16_t ysize; /*!< Height of each frame */
-	uint8_t orient; /*!< When 0, draw effect behind fighter; when 1, draw effect in front of fighter */
-	uint16_t delay; /*!< Time to wait between frame transitions */
-	uint8_t kolor;  /*!< Relates to the nth color entry within the PALETTE pal */
-	uint8_t snd;    /*!< Sound that is played when effect is used */
-	char ename[16];
+    uint8_t numf;   /*!< Number of frames within the sprite */
+    uint16_t xsize; /*!< Width of each frame */
+    uint16_t ysize; /*!< Height of each frame */
+    uint8_t orient; /*!< When 0, draw effect behind fighter; when 1, draw effect in front of fighter */
+    uint16_t delay; /*!< Time to wait between frame transitions */
+    uint8_t kolor;  /*!< Relates to the nth color entry within the PALETTE pal */
+    uint8_t snd;    /*!< Sound that is played when effect is used */
+    char ename[16];
 };
 
 /*! \brief An encounter */
 struct s_erow
 {
-	uint8_t tnum; /*!< Encounter number in the Encounter table */
-	uint8_t lvl;  /*!< Level of monsters */
-	uint8_t per; /*!< When random encounters are specified, this is the cumulative percentage that this one will be selected */
-	uint8_t idx[5]; /*!< Index of enemies */
+    uint8_t tnum; /*!< Encounter number in the Encounter table */
+    uint8_t lvl;  /*!< Level of monsters */
+    uint8_t per; /*!< When random encounters are specified, this is the cumulative percentage that this one will be selected */
+    uint8_t idx[5]; /*!< Index of enemies */
 };
 
 /*! \brief An actual battle */
 struct s_encounter
 {
-	uint8_t extra_byte;  /*!< Map where this battle occurs */
-	uint8_t extra_byte2; /*!< Zone that triggers this battle */
-	uint8_t enc;   /*!< For random encounters, a 1 in enc chance there will not be combat */
-	uint8_t etnum; /*!< Select rows in the encounter table */
-	uint8_t eidx;  /*!< Select a specific row, or 99 to pick a random one */
-	char bmusic[16];  /*!< music file to play */
-	char backimg[20]; /*!< Background image */
+    uint8_t extra_byte;  /*!< Map where this battle occurs */
+    uint8_t extra_byte2; /*!< Zone that triggers this battle */
+    uint8_t enc;   /*!< For random encounters, a 1 in enc chance there will not be combat */
+    uint8_t etnum; /*!< Select rows in the encounter table */
+    uint8_t eidx;  /*!< Select a specific row, or 99 to pick a random one */
+    char bmusic[16];  /*!< music file to play */
+    char backimg[20]; /*!< Background image */
 };
 
 extern PALETTE pal;

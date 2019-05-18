@@ -15,17 +15,17 @@
 
 bool KBounds::Add(std::shared_ptr<KBound> bound)
 {
-	m_bounds.push_back(bound);
-	return true;
+    m_bounds.push_back(bound);
+    return true;
 }
 
 std::shared_ptr<KBound> KBounds::GetBound(size_t index)
 {
-	if (index < m_bounds.size())
-	{
-		return m_bounds[index];
-	}
-	return nullptr;
+    if (index < m_bounds.size())
+    {
+        return m_bounds[index];
+    }
+    return nullptr;
 }
 
 /*! \brief Determine whether given coordinates are within any bounding boxes
@@ -39,43 +39,43 @@ std::shared_ptr<KBound> KBounds::GetBound(size_t index)
 */
 uint32_t KBounds::IsBound(const uint16_t left, const uint16_t top, const uint16_t right, const uint16_t bottom) const
 {
-	size_t i;
-	uint16_t x1, y1, x2, y2;
+    size_t i;
+    uint16_t x1, y1, x2, y2;
 
-	if (left <= right)
-	{
-		x1 = left;
-		x2 = right;
-	}
-	else
-	{
-		x1 = right;
-		x2 = left;
-	}
+    if (left <= right)
+    {
+        x1 = left;
+        x2 = right;
+    }
+    else
+    {
+        x1 = right;
+        x2 = left;
+    }
 
-	if (top <= bottom)
-	{
-		y1 = top;
-		y2 = bottom;
-	}
-	else
-	{
-		y1 = bottom;
-		y2 = top;
-	}
+    if (top <= bottom)
+    {
+        y1 = top;
+        y2 = bottom;
+    }
+    else
+    {
+        y1 = bottom;
+        y2 = top;
+    }
 
-	for (i = 0; i < m_bounds.size(); ++i)
-	{
-		auto current_bound = m_bounds[i];
-		if (x1 > current_bound->right || x2 < current_bound->left || y1 > current_bound->bottom || y2 < current_bound->top)
-		{
-			continue;
-		}
-		else
-		{
-			return i + 1;
-		}
-	}
+    for (i = 0; i < m_bounds.size(); ++i)
+    {
+        auto current_bound = m_bounds[i];
+        if (x1 > current_bound->right || x2 < current_bound->left || y1 > current_bound->bottom || y2 < current_bound->top)
+        {
+            continue;
+        }
+        else
+        {
+            return i + 1;
+        }
+    }
 
-	return 0; // not found
+    return 0; // not found
 }

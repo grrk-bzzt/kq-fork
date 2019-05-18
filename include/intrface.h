@@ -3,8 +3,8 @@
 /* Special identifiers for bubble() */
 enum eHero
 {
-	HERO1 = 200,
-	HERO2 = 201
+    HERO1 = 200,
+    HERO2 = 201
 };
 
 void do_autoexec();

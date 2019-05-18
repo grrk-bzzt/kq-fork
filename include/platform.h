@@ -10,12 +10,12 @@
 
 enum eDirectories
 {
-	DATA_DIR = 0,
-	MAP_DIR = 1,
-	SAVE_DIR = 2,
-	MUSIC_DIR = 3,
-	SCRIPT_DIR = 4,
-	SETTINGS_DIR = 5,
+    DATA_DIR = 0,
+    MAP_DIR = 1,
+    SAVE_DIR = 2,
+    MUSIC_DIR = 3,
+    SCRIPT_DIR = 4,
+    SETTINGS_DIR = 5,
 };
 
 /* Get the directory for application data (music, gfx, etc.)

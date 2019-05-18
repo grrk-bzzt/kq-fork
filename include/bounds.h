@@ -25,11 +25,11 @@ struct PACKFILE;
 struct KBound
 {
 public:
-	short left;   /*!< Left edge of the bounding box */
-	short top;    /*!< Top edge of the bounding box */
-	short right;  /*!< Right edge of the bounding box */
-	short bottom; /*!< Bottom edge of the bounding box */
-	short btile;  /*!< Index of the tile to draw everywhere BUT here */
+    short left;   /*!< Left edge of the bounding box */
+    short top;    /*!< Top edge of the bounding box */
+    short right;  /*!< Right edge of the bounding box */
+    short bottom; /*!< Bottom edge of the bounding box */
+    short btile;  /*!< Index of the tile to draw everywhere BUT here */
 };
 
 /*! \brief Container holding array of bounds
@@ -43,27 +43,27 @@ public:
 class KBounds
 {
 public:
-	KBounds()
-	{
-	}
-	~KBounds()
-	{
-	}
+    KBounds()
+    {
+    }
+    ~KBounds()
+    {
+    }
 
-	// Add a new bound to the map. Returns true on success, or false on failure.
-	bool Add(std::shared_ptr<KBound> bound);
+    // Add a new bound to the map. Returns true on success, or false on failure.
+    bool Add(std::shared_ptr<KBound> bound);
 
-	// Return a pointer to the bound at the given @param index. If index is
-	// invalid, returns null.
-	std::shared_ptr<KBound> GetBound(size_t index);
+    // Return a pointer to the bound at the given @param index. If index is
+    // invalid, returns null.
+    std::shared_ptr<KBound> GetBound(size_t index);
 
-	size_t Size()
-	{
-		return m_bounds.size();
-	}
+    size_t Size()
+    {
+        return m_bounds.size();
+    }
 
-	uint32_t IsBound(const uint16_t left, const uint16_t top, const uint16_t right, const uint16_t bottom) const;
+    uint32_t IsBound(const uint16_t left, const uint16_t top, const uint16_t right, const uint16_t bottom) const;
 
 protected:
-	std::vector<std::shared_ptr<KBound>> m_bounds;
+    std::vector<std::shared_ptr<KBound>> m_bounds;
 };

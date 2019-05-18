@@ -335,205 +335,205 @@ void set_shadow(int, int, int);
 
 const struct luaL_Reg lrs[] =
 {
-	{ "add_chr", KQ_add_chr },
-	{ "add_quest_item", KQ_add_quest_item },
-	{ "add_special_item", KQ_add_special_item },
-	{ "add_timer", KQ_add_timer },
-	{ "battle", KQ_battle },
-	{ "bubble_ex", KQ_bubble_ex },
-	{ "calc_viewport", KQ_calc_viewport },
-	{ "change_map", KQ_change_map },
-	{ "check_key", KQ_check_key },
-	{ "chest", KQ_chest },
-	{ "clear_buffer", KQ_clear_buffer },
-	{ "combat", KQ_combat },
-	{ "copy_ent", KQ_copy_ent },
-	{ "copy_tile_all", KQ_copy_tile_all },
-	{ "create_special_item", KQ_create_special_item },
-	{ "dark_mbox", KQ_dark_mbox },
-	{ "do_fadein", KQ_do_fadein },
-	{ "do_fadeout", KQ_do_fadeout },
-	{ "do_inn_effects", KQ_do_inn_effects },
-	{ "door_in", KQ_door_in },
-	{ "door_out", KQ_door_out },
-	{ "draw_pstat", KQ_draw_pstat },
-	{ "drawframe", KQ_drawframe },
-	{ "drawmap", KQ_drawmap },
-	{ "drawsprite", KQ_drawsprite },
-	{ "face_each_other", KQ_face_each_other },
-	{ "gameover_ex", KQ_gameover_ex },
-	{ "get_alldead", KQ_get_alldead },
-	{ "get_autoparty", KQ_get_autoparty },
-	{ "get_bounds", KQ_get_bounds },
-	{ "get_ent_active", KQ_get_ent_active },
-	{ "get_ent_atype", KQ_get_ent_atype },
-	{ "get_ent_chrx", KQ_get_ent_chrx },
-	{ "get_ent_facehero", KQ_get_ent_facehero },
-	{ "get_ent_facing", KQ_get_ent_facing },
-	{ "get_ent_id", KQ_get_ent_id },
-	{ "get_ent_movemode", KQ_get_ent_movemode },
-	{ "get_ent_obsmode", KQ_get_ent_obsmode },
-	{ "get_ent_snapback", KQ_get_ent_snapback },
-	{ "get_ent_speed", KQ_get_ent_speed },
-	{ "get_ent_tile", KQ_get_ent_tile },
-	{ "get_ent_tilex", KQ_get_ent_tilex },
-	{ "get_ent_tiley", KQ_get_ent_tiley },
-	{ "get_ent_transl", KQ_get_ent_transl },
-	{ "get_gp", KQ_get_gp },
-	{ "get_marker_tilex", KQ_get_marker_tilex },
-	{ "get_marker_tiley", KQ_get_marker_tiley },
-	{ "get_noe", KQ_get_noe },
-	{ "get_numchrs", KQ_get_numchrs },
-	{ "get_party_eqp", KQ_get_party_eqp },
-	{ "get_party_hp", KQ_get_party_hp },
-	{ "get_party_lvl", KQ_get_party_lvl },
-	{ "get_party_mhp", KQ_get_party_mhp },
-	{ "get_party_mmp", KQ_get_party_mmp },
-	{ "get_party_mp", KQ_get_party_mp },
-	{ "get_party_mrp", KQ_get_party_mrp },
-	{ "get_party_name", KQ_get_party_name },
-	{ "get_party_next", KQ_get_party_next },
-	{ "get_party_res", KQ_get_party_res },
-	{ "get_party_stats", KQ_get_party_stats },
-	{ "get_party_xp", KQ_get_party_xp },
-	{ "get_pidx", KQ_get_pidx },
-	{ "get_progress", KQ_get_progress },
-	{ "get_skip_intro", KQ_get_skip_intro },
-	{ "get_treasure", KQ_get_treasure },
-	{ "get_vx", KQ_get_vx },
-	{ "get_vy", KQ_get_vy },
-	{ "gettext", KQ_gettext },
-	{ "give_item", KQ_give_item },
-	{ "give_xp", KQ_give_xp },
-	{ "has_special_item", KQ_has_special_item },
-	{ "in_forest", KQ_in_forest },
-	{ "inn", KQ_inn },
-	{ "istable", KQ_istable },
-	{ "krnd", KQ_krnd },
-	{ "light_mbox", KQ_light_mbox },
-	{ "log", KQ_log },
-	{ "marker", KQ_marker },
-	{ "mbox", KQ_mbox },
-	{ "make_sprite", KQ_make_sprite },
-	{ "move_camera", KQ_move_camera },
-	{ "move_entity", KQ_move_entity },
-	{ "msg", KQ_msg },
-	{ "orient_heroes", KQ_orient_heroes },
-	{ "pause_song", KQ_pause_song },
-	{ "place_ent", KQ_place_ent },
-	{ "play_map_song", KQ_play_map_song },
-	{ "play_song", KQ_play_song },
-	{ "pnum", KQ_pnum },
-	{ "portbubble_ex", KQ_portbubble_ex },
-	{ "portthought_ex", KQ_portthought_ex },
-	{ "print", KQ_print },
-	{ "prompt", KQ_prompt },
-	{ "ptext", KQ_ptext },
-	{ "read_controls", KQ_read_controls },
-	{ "remove_chr", KQ_remove_chr },
-	{ "remove_special_item", KQ_remove_special_item },
-	{ "rest", KQ_rest },
-	{ "screen_dump", KQ_screen_dump },
-	{ "select_team", KQ_select_team },
-	{ "set_all_equip", KQ_set_all_equip },
-	{ "set_alldead", KQ_set_alldead },
-	{ "set_autoparty", KQ_set_autoparty },
-	{ "set_background", KQ_set_background },
-	{ "set_btile", KQ_set_btile },
-	{ "set_can_use_item", KQ_set_can_use_item },
-	{ "set_desc", KQ_set_desc },
-	{ "set_ent_active", KQ_set_ent_active },
-	{ "set_ent_atype", KQ_set_ent_atype },
-	{ "set_ent_chrx", KQ_set_ent_chrx },
-	{ "set_ent_facehero", KQ_set_ent_facehero },
-	{ "set_ent_facing", KQ_set_ent_facing },
-	{ "set_ent_id", KQ_set_ent_id },
-	{ "set_ent_movemode", KQ_set_ent_movemode },
-	{ "set_ent_obsmode", KQ_set_ent_obsmode },
-	{ "set_ent_script", KQ_set_ent_script },
-	{ "set_ent_snapback", KQ_set_ent_snapback },
-	{ "set_ent_speed", KQ_set_ent_speed },
-	{ "set_ent_target", KQ_set_ent_target },
-	{ "set_ent_tilex", KQ_set_ent_tilex },
-	{ "set_ent_tiley", KQ_set_ent_tiley },
-	{ "set_ent_transl", KQ_set_ent_transl },
-	{ "set_foreground", KQ_set_foreground },
-	{ "set_ftile", KQ_set_ftile },
-	{ "set_gp", KQ_set_gp },
-	{ "set_holdfade", KQ_set_holdfade },
-	{ "set_map_mode", KQ_set_map_mode },
-	{ "set_marker", KQ_set_marker },
-	{ "set_midground", KQ_set_midground },
-	{ "set_mtile", KQ_set_mtile },
-	{ "set_noe", KQ_set_noe },
-	{ "set_obs", KQ_set_obs },
-	{ "set_party_eqp", KQ_set_party_eqp },
-	{ "set_party_hp", KQ_set_party_hp },
-	{ "set_party_lvl", KQ_set_party_lvl },
-	{ "set_party_mhp", KQ_set_party_mhp },
-	{ "set_party_mmp", KQ_set_party_mmp },
-	{ "set_party_mp", KQ_set_party_mp },
-	{ "set_party_mrp", KQ_set_party_mrp },
-	{ "set_party_next", KQ_set_party_next },
-	{ "set_party_res", KQ_set_party_res },
-	{ "set_party_stats", KQ_set_party_stats },
-	{ "set_party_xp", KQ_set_party_xp },
-	{ "set_progress", KQ_set_progress },
-	{ "set_run", KQ_set_run },
-	{ "set_save", KQ_set_save },
-	{ "set_shadow", KQ_set_shadow },
-	{ "set_sstone", KQ_set_sstone },
-	{ "set_tile_all", KQ_set_tile_all },
-	{ "set_treasure", KQ_set_treasure },
-	{ "set_vfollow", KQ_set_vfollow },
-	{ "set_vx", KQ_set_vx },
-	{ "set_vy", KQ_set_vy },
-	{ "set_warp", KQ_set_warp },
-	{ "set_zone", KQ_set_zone },
-	{ "sfx", KQ_sfx },
-	{ "shop_add_item", KQ_shop_add_item },
-	{ "shop_create", KQ_shop_create },
-	{ "shop", KQ_shop },
-	{ "stop_song", KQ_stop_song },
-	{ "thought_ex", KQ_thought_ex },
-	{ "unpause_map_song", KQ_unpause_map_song },
-	{ "use_up", KQ_use_up },
-	{ "view_range", KQ_view_range },
-	{ "wait_enter", KQ_wait_enter },
-	{ "wait_for_entity", KQ_wait_for_entity },
-	{ "wait", KQ_wait },
-	{ "warp", KQ_warp },
-	/*   { "get_tile_all", KQ_get_tile_all }, */
-	{ nullptr, nullptr } /* Must always be the LAST entry */
+    { "add_chr", KQ_add_chr },
+    { "add_quest_item", KQ_add_quest_item },
+    { "add_special_item", KQ_add_special_item },
+    { "add_timer", KQ_add_timer },
+    { "battle", KQ_battle },
+    { "bubble_ex", KQ_bubble_ex },
+    { "calc_viewport", KQ_calc_viewport },
+    { "change_map", KQ_change_map },
+    { "check_key", KQ_check_key },
+    { "chest", KQ_chest },
+    { "clear_buffer", KQ_clear_buffer },
+    { "combat", KQ_combat },
+    { "copy_ent", KQ_copy_ent },
+    { "copy_tile_all", KQ_copy_tile_all },
+    { "create_special_item", KQ_create_special_item },
+    { "dark_mbox", KQ_dark_mbox },
+    { "do_fadein", KQ_do_fadein },
+    { "do_fadeout", KQ_do_fadeout },
+    { "do_inn_effects", KQ_do_inn_effects },
+    { "door_in", KQ_door_in },
+    { "door_out", KQ_door_out },
+    { "draw_pstat", KQ_draw_pstat },
+    { "drawframe", KQ_drawframe },
+    { "drawmap", KQ_drawmap },
+    { "drawsprite", KQ_drawsprite },
+    { "face_each_other", KQ_face_each_other },
+    { "gameover_ex", KQ_gameover_ex },
+    { "get_alldead", KQ_get_alldead },
+    { "get_autoparty", KQ_get_autoparty },
+    { "get_bounds", KQ_get_bounds },
+    { "get_ent_active", KQ_get_ent_active },
+    { "get_ent_atype", KQ_get_ent_atype },
+    { "get_ent_chrx", KQ_get_ent_chrx },
+    { "get_ent_facehero", KQ_get_ent_facehero },
+    { "get_ent_facing", KQ_get_ent_facing },
+    { "get_ent_id", KQ_get_ent_id },
+    { "get_ent_movemode", KQ_get_ent_movemode },
+    { "get_ent_obsmode", KQ_get_ent_obsmode },
+    { "get_ent_snapback", KQ_get_ent_snapback },
+    { "get_ent_speed", KQ_get_ent_speed },
+    { "get_ent_tile", KQ_get_ent_tile },
+    { "get_ent_tilex", KQ_get_ent_tilex },
+    { "get_ent_tiley", KQ_get_ent_tiley },
+    { "get_ent_transl", KQ_get_ent_transl },
+    { "get_gp", KQ_get_gp },
+    { "get_marker_tilex", KQ_get_marker_tilex },
+    { "get_marker_tiley", KQ_get_marker_tiley },
+    { "get_noe", KQ_get_noe },
+    { "get_numchrs", KQ_get_numchrs },
+    { "get_party_eqp", KQ_get_party_eqp },
+    { "get_party_hp", KQ_get_party_hp },
+    { "get_party_lvl", KQ_get_party_lvl },
+    { "get_party_mhp", KQ_get_party_mhp },
+    { "get_party_mmp", KQ_get_party_mmp },
+    { "get_party_mp", KQ_get_party_mp },
+    { "get_party_mrp", KQ_get_party_mrp },
+    { "get_party_name", KQ_get_party_name },
+    { "get_party_next", KQ_get_party_next },
+    { "get_party_res", KQ_get_party_res },
+    { "get_party_stats", KQ_get_party_stats },
+    { "get_party_xp", KQ_get_party_xp },
+    { "get_pidx", KQ_get_pidx },
+    { "get_progress", KQ_get_progress },
+    { "get_skip_intro", KQ_get_skip_intro },
+    { "get_treasure", KQ_get_treasure },
+    { "get_vx", KQ_get_vx },
+    { "get_vy", KQ_get_vy },
+    { "gettext", KQ_gettext },
+    { "give_item", KQ_give_item },
+    { "give_xp", KQ_give_xp },
+    { "has_special_item", KQ_has_special_item },
+    { "in_forest", KQ_in_forest },
+    { "inn", KQ_inn },
+    { "istable", KQ_istable },
+    { "krnd", KQ_krnd },
+    { "light_mbox", KQ_light_mbox },
+    { "log", KQ_log },
+    { "marker", KQ_marker },
+    { "mbox", KQ_mbox },
+    { "make_sprite", KQ_make_sprite },
+    { "move_camera", KQ_move_camera },
+    { "move_entity", KQ_move_entity },
+    { "msg", KQ_msg },
+    { "orient_heroes", KQ_orient_heroes },
+    { "pause_song", KQ_pause_song },
+    { "place_ent", KQ_place_ent },
+    { "play_map_song", KQ_play_map_song },
+    { "play_song", KQ_play_song },
+    { "pnum", KQ_pnum },
+    { "portbubble_ex", KQ_portbubble_ex },
+    { "portthought_ex", KQ_portthought_ex },
+    { "print", KQ_print },
+    { "prompt", KQ_prompt },
+    { "ptext", KQ_ptext },
+    { "read_controls", KQ_read_controls },
+    { "remove_chr", KQ_remove_chr },
+    { "remove_special_item", KQ_remove_special_item },
+    { "rest", KQ_rest },
+    { "screen_dump", KQ_screen_dump },
+    { "select_team", KQ_select_team },
+    { "set_all_equip", KQ_set_all_equip },
+    { "set_alldead", KQ_set_alldead },
+    { "set_autoparty", KQ_set_autoparty },
+    { "set_background", KQ_set_background },
+    { "set_btile", KQ_set_btile },
+    { "set_can_use_item", KQ_set_can_use_item },
+    { "set_desc", KQ_set_desc },
+    { "set_ent_active", KQ_set_ent_active },
+    { "set_ent_atype", KQ_set_ent_atype },
+    { "set_ent_chrx", KQ_set_ent_chrx },
+    { "set_ent_facehero", KQ_set_ent_facehero },
+    { "set_ent_facing", KQ_set_ent_facing },
+    { "set_ent_id", KQ_set_ent_id },
+    { "set_ent_movemode", KQ_set_ent_movemode },
+    { "set_ent_obsmode", KQ_set_ent_obsmode },
+    { "set_ent_script", KQ_set_ent_script },
+    { "set_ent_snapback", KQ_set_ent_snapback },
+    { "set_ent_speed", KQ_set_ent_speed },
+    { "set_ent_target", KQ_set_ent_target },
+    { "set_ent_tilex", KQ_set_ent_tilex },
+    { "set_ent_tiley", KQ_set_ent_tiley },
+    { "set_ent_transl", KQ_set_ent_transl },
+    { "set_foreground", KQ_set_foreground },
+    { "set_ftile", KQ_set_ftile },
+    { "set_gp", KQ_set_gp },
+    { "set_holdfade", KQ_set_holdfade },
+    { "set_map_mode", KQ_set_map_mode },
+    { "set_marker", KQ_set_marker },
+    { "set_midground", KQ_set_midground },
+    { "set_mtile", KQ_set_mtile },
+    { "set_noe", KQ_set_noe },
+    { "set_obs", KQ_set_obs },
+    { "set_party_eqp", KQ_set_party_eqp },
+    { "set_party_hp", KQ_set_party_hp },
+    { "set_party_lvl", KQ_set_party_lvl },
+    { "set_party_mhp", KQ_set_party_mhp },
+    { "set_party_mmp", KQ_set_party_mmp },
+    { "set_party_mp", KQ_set_party_mp },
+    { "set_party_mrp", KQ_set_party_mrp },
+    { "set_party_next", KQ_set_party_next },
+    { "set_party_res", KQ_set_party_res },
+    { "set_party_stats", KQ_set_party_stats },
+    { "set_party_xp", KQ_set_party_xp },
+    { "set_progress", KQ_set_progress },
+    { "set_run", KQ_set_run },
+    { "set_save", KQ_set_save },
+    { "set_shadow", KQ_set_shadow },
+    { "set_sstone", KQ_set_sstone },
+    { "set_tile_all", KQ_set_tile_all },
+    { "set_treasure", KQ_set_treasure },
+    { "set_vfollow", KQ_set_vfollow },
+    { "set_vx", KQ_set_vx },
+    { "set_vy", KQ_set_vy },
+    { "set_warp", KQ_set_warp },
+    { "set_zone", KQ_set_zone },
+    { "sfx", KQ_sfx },
+    { "shop_add_item", KQ_shop_add_item },
+    { "shop_create", KQ_shop_create },
+    { "shop", KQ_shop },
+    { "stop_song", KQ_stop_song },
+    { "thought_ex", KQ_thought_ex },
+    { "unpause_map_song", KQ_unpause_map_song },
+    { "use_up", KQ_use_up },
+    { "view_range", KQ_view_range },
+    { "wait_enter", KQ_wait_enter },
+    { "wait_for_entity", KQ_wait_for_entity },
+    { "wait", KQ_wait },
+    { "warp", KQ_warp },
+    /*   { "get_tile_all", KQ_get_tile_all }, */
+    { nullptr, nullptr } /* Must always be the LAST entry */
 };
 
 /*! \brief Maps a text field name to an identifier */
 struct s_field
 {
-	const char* name;
-	int id;
+    const char* name;
+    int id;
 };
 
 // *INDENT-OFF*
 s_field fields[] = {
-	{ "name", 0 },    // Name of entity
-	{ "xp", 1 },      // Entity experience
-	{ "next", 2 },    // Experience left for next level-up
-	{ "lvl", 3 },     // Current level of entity
-	{ "mrp", 4 },     // Magic actually required for a spell (can be reduced with I_MANALOCKET)
-	{ "hp", 5 },      // Entity's current hit points
-	{ "mhp", 6 },     // Maximum hit points
-	{ "mp", 7 },      // Current magic points
-	{ "mmp", 8 },     // Maximum magic points
-	{ "id", 9 },      // Index # of entity, which determines look and skills
-	{ "tilex", 10 },  // Position of entity, full x tile
-	{ "tiley", 11 },  // Position of entity, full y tile
-	{ "eid", 12 },    // Entity ID
-	{ "chrx", 13 },   // Appearance of entity
-	{ "facing", 14 }, // Direction facing
-	{ "active", 15 }, // Active or not
-	{ "say", 16 },    // Text bubble
-	{ "think", 17 },  // Thought bubble
+    { "name", 0 },    // Name of entity
+    { "xp", 1 },      // Entity experience
+    { "next", 2 },    // Experience left for next level-up
+    { "lvl", 3 },     // Current level of entity
+    { "mrp", 4 },     // Magic actually required for a spell (can be reduced with I_MANALOCKET)
+    { "hp", 5 },      // Entity's current hit points
+    { "mhp", 6 },     // Maximum hit points
+    { "mp", 7 },      // Current magic points
+    { "mmp", 8 },     // Maximum magic points
+    { "id", 9 },      // Index # of entity, which determines look and skills
+    { "tilex", 10 },  // Position of entity, full x tile
+    { "tiley", 11 },  // Position of entity, full y tile
+    { "eid", 12 },    // Entity ID
+    { "chrx", 13 },   // Appearance of entity
+    { "facing", 14 }, // Direction facing
+    { "active", 15 }, // Active or not
+    { "say", 16 },    // Text bubble
+    { "think", 17 },  // Thought bubble
 };
 // *INDENT-ON*
 
@@ -560,9 +560,9 @@ char marker_name[255];
 
 enum
 {
-	NOT_CHANGING,
-	CHANGE_TO_COORDS,
-	CHANGE_TO_MARKER
+    NOT_CHANGING,
+    CHANGE_TO_COORDS,
+    CHANGE_TO_MARKER
 } changing_map;
 
 /*! \brief Check to change the map
@@ -572,24 +572,24 @@ enum
  */
 void KQ_check_map_change()
 {
-	switch (changing_map)
-	{
-	case CHANGE_TO_COORDS:
-		Game.change_map(tmap_name, tmx, tmy, tmvx, tmvy);
-		changing_map = NOT_CHANGING;
-		break;
+    switch (changing_map)
+    {
+    case CHANGE_TO_COORDS:
+        Game.change_map(tmap_name, tmx, tmy, tmvx, tmvy);
+        changing_map = NOT_CHANGING;
+        break;
 
-	case CHANGE_TO_MARKER:
-		Game.change_map(tmap_name, marker_name, tmx, tmy);
-		changing_map = NOT_CHANGING;
-		break;
+    case CHANGE_TO_MARKER:
+        Game.change_map(tmap_name, marker_name, tmx, tmy);
+        changing_map = NOT_CHANGING;
+        break;
 
-	case NOT_CHANGING:
-		break;
+    case NOT_CHANGING:
+        break;
 
-	default:
-		break;
-	}
+    default:
+        break;
+    }
 }
 
 /*! \brief Run initial code
@@ -601,18 +601,18 @@ void KQ_check_map_change()
  */
 void do_autoexec()
 {
-	int oldtop = lua_gettop(theL);
+    int oldtop = lua_gettop(theL);
 
 #ifdef DEBUGMODE
-	lua_pushcfunction(theL, KQ_traceback);
-	lua_getglobal(theL, "autoexec");
-	lua_pcall(theL, 0, 0, oldtop + 1);
+    lua_pushcfunction(theL, KQ_traceback);
+    lua_getglobal(theL, "autoexec");
+    lua_pcall(theL, 0, 0, oldtop + 1);
 #else
-	lua_getglobal(theL, "autoexec");
-	lua_call(theL, 0, 0);
+    lua_getglobal(theL, "autoexec");
+    lua_call(theL, 0, 0);
 #endif
-	lua_settop(theL, oldtop);
-	KQ_check_map_change();
+    lua_settop(theL, oldtop);
+    KQ_check_map_change();
 }
 
 /*! \brief Trigger entity action
@@ -624,20 +624,20 @@ void do_autoexec()
  */
 void do_entity(int en_num)
 {
-	int oldtop = lua_gettop(theL);
+    int oldtop = lua_gettop(theL);
 
 #ifdef DEBUGMODE
-	lua_pushcfunction(theL, KQ_traceback);
-	lua_getglobal(theL, "entity_handler");
-	lua_pushnumber(theL, en_num - MAX_PARTY_SIZE);
-	lua_pcall(theL, 1, 0, oldtop + 1);
+    lua_pushcfunction(theL, KQ_traceback);
+    lua_getglobal(theL, "entity_handler");
+    lua_pushnumber(theL, en_num - MAX_PARTY_SIZE);
+    lua_pcall(theL, 1, 0, oldtop + 1);
 #else
-	lua_getglobal(theL, "entity_handler");
-	lua_pushnumber(theL, en_num - MAX_PARTY_SIZE);
-	lua_call(theL, 1, 0);
+    lua_getglobal(theL, "entity_handler");
+    lua_pushnumber(theL, en_num - MAX_PARTY_SIZE);
+    lua_call(theL, 1, 0);
 #endif
-	lua_settop(theL, oldtop);
-	KQ_check_map_change();
+    lua_settop(theL, oldtop);
+    KQ_check_map_change();
 }
 
 #ifdef KQ_CHEATS
@@ -650,30 +650,30 @@ void do_entity(int en_num)
  */
 void do_luacheat()
 {
-	int oldtop;
+    int oldtop;
 
-	/* kqres might return null if the cheat file doesn't exist.
-	 * in that case, just do a no-op.
-	 */
-	std::string cheatfile = kqres(SCRIPT_DIR, "cheat");
-	if (cheatfile.empty())
-	{
-		return;
-	}
-	oldtop = lua_gettop(theL);
+    /* kqres might return null if the cheat file doesn't exist.
+     * in that case, just do a no-op.
+     */
+    std::string cheatfile = kqres(SCRIPT_DIR, "cheat");
+    if (cheatfile.empty())
+    {
+        return;
+    }
+    oldtop = lua_gettop(theL);
 #ifdef DEBUGMODE
-	lua_pushcfunction(theL, KQ_traceback);
+    lua_pushcfunction(theL, KQ_traceback);
 #endif
-	KqFork::lua_dofile(theL, cheatfile.c_str());
-	lua_getglobal(theL, "cheat");
+    KqFork::lua_dofile(theL, cheatfile.c_str());
+    lua_getglobal(theL, "cheat");
 #ifdef DEBUGMODE
-	lua_pcall(theL, 0, 0, oldtop + 1);
+    lua_pcall(theL, 0, 0, oldtop + 1);
 #else
-	lua_call(theL, 0, 0);
+    lua_call(theL, 0, 0);
 #endif
-	lua_settop(theL, oldtop);
-	KQ_check_map_change();
-	kqDraw.message(_("Cheating complete."), 255, 50, xofs, yofs);
+    lua_settop(theL, oldtop);
+    KQ_check_map_change();
+    kqDraw.message(_("Cheating complete."), 255, 50, xofs, yofs);
 }
 #endif
 
@@ -687,47 +687,47 @@ void do_luacheat()
  */
 void do_luainit(const char* fname, int global)
 {
-	int oldtop;
-	const struct luaL_Reg* rg = lrs;
-	if (theL != nullptr)
-	{
-		do_luakill();
-	}
-	/* In Lua 5.1, this is a compatibility #define to luaL_newstate */
-	/* In Lua 5.2, this #define doesn't exist anymode. Switching to luaL_newstate */
-	theL = luaL_newstate();
-	if (theL == nullptr)
-	{
-		Game.program_death(_("Could not initialize scripting engine"));
-	}
-	/* This line breaks compatibility with Lua 5.0. Hopefully, we can do a full
-	 * upgrade later. */
-	luaL_openlibs(theL);
-	KqFork::fieldsort();
-	while (rg->name)
-	{
-		lua_register(theL, rg->name, rg->func);
-		++rg;
-	}
-	KqFork::init_obj(theL);
-	KqFork::init_markers(theL);
-	oldtop = lua_gettop(theL);
-	if (global)
-	{
-		if (KqFork::lua_dofile(theL, kqres(SCRIPT_DIR, "global").c_str()) != 0)
-		{
-			/* lua_dofile already displayed error message */
-			Game.program_death(strbuf);
-		}
-	}
+    int oldtop;
+    const struct luaL_Reg* rg = lrs;
+    if (theL != nullptr)
+    {
+        do_luakill();
+    }
+    /* In Lua 5.1, this is a compatibility #define to luaL_newstate */
+    /* In Lua 5.2, this #define doesn't exist anymode. Switching to luaL_newstate */
+    theL = luaL_newstate();
+    if (theL == nullptr)
+    {
+        Game.program_death(_("Could not initialize scripting engine"));
+    }
+    /* This line breaks compatibility with Lua 5.0. Hopefully, we can do a full
+     * upgrade later. */
+    luaL_openlibs(theL);
+    KqFork::fieldsort();
+    while (rg->name)
+    {
+        lua_register(theL, rg->name, rg->func);
+        ++rg;
+    }
+    KqFork::init_obj(theL);
+    KqFork::init_markers(theL);
+    oldtop = lua_gettop(theL);
+    if (global)
+    {
+        if (KqFork::lua_dofile(theL, kqres(SCRIPT_DIR, "global").c_str()) != 0)
+        {
+            /* lua_dofile already displayed error message */
+            Game.program_death(strbuf);
+        }
+    }
 
-	if (KqFork::lua_dofile(theL, kqres(SCRIPT_DIR, fname).c_str()) != 0)
-	{
-		/* lua_dofile already displayed error message */
-		Game.program_death(strbuf);
-	}
-	lua_settop(theL, oldtop);
-	changing_map = NOT_CHANGING;
+    if (KqFork::lua_dofile(theL, kqres(SCRIPT_DIR, fname).c_str()) != 0)
+    {
+        /* lua_dofile already displayed error message */
+        Game.program_death(strbuf);
+    }
+    lua_settop(theL, oldtop);
+    changing_map = NOT_CHANGING;
 }
 
 /*! \brief Kill the lua VM
@@ -736,12 +736,12 @@ void do_luainit(const char* fname, int global)
  */
 void do_luakill()
 {
-	Game.reset_timer_events();
-	if (theL)
-	{
-		lua_close(theL);
-		theL = nullptr;
-	}
+    Game.reset_timer_events();
+    if (theL)
+    {
+        lua_close(theL);
+        theL = nullptr;
+    }
 }
 
 /*! \brief Run initial graphical code
@@ -751,18 +751,18 @@ void do_luakill()
  */
 void do_postexec()
 {
-	int oldtop = lua_gettop(theL);
+    int oldtop = lua_gettop(theL);
 
 #ifdef DEBUGMODE
-	lua_pushcfunction(theL, KQ_traceback);
-	lua_getglobal(theL, "postexec");
-	lua_pcall(theL, 0, 0, oldtop + 1);
+    lua_pushcfunction(theL, KQ_traceback);
+    lua_getglobal(theL, "postexec");
+    lua_pcall(theL, 0, 0, oldtop + 1);
 #else
-	lua_getglobal(theL, "postexec");
-	lua_call(theL, 0, 0);
+    lua_getglobal(theL, "postexec");
+    lua_call(theL, 0, 0);
 #endif
-	lua_settop(theL, oldtop);
-	KQ_check_map_change();
+    lua_settop(theL, oldtop);
+    KQ_check_map_change();
 }
 
 /*! \brief Get quest info items from script
@@ -772,14 +772,14 @@ void do_postexec()
  */
 void do_questinfo()
 {
-	int oldtop = lua_gettop(theL);
+    int oldtop = lua_gettop(theL);
 
-	lua_getglobal(theL, "get_quest_info");
-	if (!lua_isnil(theL, -1))
-	{
-		lua_call(theL, 0, 0);
-	}
-	lua_settop(theL, oldtop);
+    lua_getglobal(theL, "get_quest_info");
+    if (!lua_isnil(theL, -1))
+    {
+        lua_call(theL, 0, 0);
+    }
+    lua_settop(theL, oldtop);
 }
 
 /*! \brief trigger time events
@@ -790,32 +790,32 @@ void do_questinfo()
  */
 void do_timefunc(const char* funcname)
 {
-	int oldtop = lua_gettop(theL);
+    int oldtop = lua_gettop(theL);
 
 #ifdef DEBUGMODE
-	lua_pushcfunction(theL, KQ_traceback);
-	lua_getglobal(theL, funcname);
-	if (!lua_isnil(theL, -1))
-	{
-		lua_pcall(theL, 1, 0, oldtop + 1);
-	}
-	else
-	{
-		lua_pop(theL, 1);
-	}
+    lua_pushcfunction(theL, KQ_traceback);
+    lua_getglobal(theL, funcname);
+    if (!lua_isnil(theL, -1))
+    {
+        lua_pcall(theL, 1, 0, oldtop + 1);
+    }
+    else
+    {
+        lua_pop(theL, 1);
+    }
 #else
-	lua_getglobal(theL, funcname);
-	if (!lua_isnil(theL, -1))
-	{
-		lua_call(theL, 1, 0);
-	}
-	else
-	{
-		lua_pop(theL, 1);
-	}
+    lua_getglobal(theL, funcname);
+    if (!lua_isnil(theL, -1))
+    {
+        lua_call(theL, 1, 0);
+    }
+    else
+    {
+        lua_pop(theL, 1);
+    }
 #endif
-	lua_settop(theL, oldtop);
-	KQ_check_map_change();
+    lua_settop(theL, oldtop);
+    KQ_check_map_change();
 }
 
 /*! \brief Trigger zone action
@@ -828,20 +828,20 @@ void do_timefunc(const char* funcname)
  */
 void do_zone(int zn_num)
 {
-	int oldtop = lua_gettop(theL);
+    int oldtop = lua_gettop(theL);
 
 #ifdef DEBUGMODE
-	lua_pushcfunction(theL, KQ_traceback);
-	lua_getglobal(theL, "zone_handler");
-	lua_pushnumber(theL, zn_num);
-	lua_pcall(theL, 1, 0, oldtop + 1);
+    lua_pushcfunction(theL, KQ_traceback);
+    lua_getglobal(theL, "zone_handler");
+    lua_pushnumber(theL, zn_num);
+    lua_pcall(theL, 1, 0, oldtop + 1);
 #else
-	lua_getglobal(theL, "zone_handler");
-	lua_pushnumber(theL, zn_num);
-	lua_call(theL, 1, 0);
+    lua_getglobal(theL, "zone_handler");
+    lua_pushnumber(theL, zn_num);
+    lua_call(theL, 1, 0);
 #endif
-	lua_settop(theL, oldtop);
-	KQ_check_map_change();
+    lua_settop(theL, oldtop);
+    KQ_check_map_change();
 }
 
 /*! \brief Initialize world specific variables
@@ -854,79 +854,79 @@ void do_zone(int zn_num)
  */
 void lua_user_init()
 {
-	do_luakill();
-	do_luainit("init", 1);
-	lua_getglobal(theL, "lua_user_init");
-	lua_call(theL, 0, 0);
+    do_luakill();
+    do_luainit("init", 1);
+    lua_getglobal(theL, "lua_user_init");
+    lua_call(theL, 0, 0);
 }
 
 int fieldcmp(const void* pa, const void* pb)
 {
-	const struct s_field* a = (const struct s_field*)pa;
-	const struct s_field* b = (const struct s_field*)pb;
+    const struct s_field* a = (const struct s_field*)pa;
+    const struct s_field* b = (const struct s_field*)pb;
 
-	return (strcmp(a->name, b->name));
+    return (strcmp(a->name, b->name));
 }
 
 void KqFork::fieldsort()
 {
-	qsort(fields, sizeof(fields) / sizeof(*fields), sizeof(struct s_field), fieldcmp);
+    qsort(fields, sizeof(fields) / sizeof(*fields), sizeof(struct s_field), fieldcmp);
 }
 
 struct readerbuf_t
 {
-	FILE* in;
-	char buffer[1024];
+    FILE* in;
+    char buffer[1024];
 };
 
 const char* KqFork::filereader(lua_State*, void* data, size_t* size)
 {
-	auto r = reinterpret_cast<readerbuf_t*>(data);
-	*size = fread(r->buffer, sizeof(char), sizeof(r->buffer), r->in);
-	return r->buffer;
+    auto r = reinterpret_cast<readerbuf_t*>(data);
+    *size = fread(r->buffer, sizeof(char), sizeof(r->buffer), r->in);
+    return r->buffer;
 }
 
 const char* KqFork::stringreader(lua_State* /*L*/, void* data, size_t* size)
 {
-	char** f = (char**)data;
-	char* ans = *f;
+    char** f = (char**)data;
+    char* ans = *f;
 
-	if (ans == nullptr)
-	{
-		*size = 0;
-	}
-	else
-	{
-		*size = strlen(ans);
-		*f = nullptr;
-	}
-	return ans;
+    if (ans == nullptr)
+    {
+        *size = 0;
+    }
+    else
+    {
+        *size = strlen(ans);
+        *f = nullptr;
+    }
+    return ans;
 }
 
 std::shared_ptr<KMarker> KqFork::KQ_find_marker(const std::string& name, bool isMarkerRequired)
 {
-	auto found_marker = g_map.markers.GetMarker(name);
-	if (found_marker != nullptr)
-	{
-		return found_marker;
-	}
+    auto found_marker = g_map.markers.GetMarker(name);
+    if (found_marker != nullptr)
+    {
+        return found_marker;
+    }
 
-	if (isMarkerRequired)
-	{
-		/* Error, marker name not found */
-		if (!name.empty())
-		{
-			sprintf(strbuf, _("Marker \"%s\" not found."), name.c_str());
-		}
-		else
-		{
-			sprintf(strbuf, _("Marker \"(null)\" not found."));
-		}
-		lua_pushstring(theL, strbuf);
-		lua_error(theL);
-		/* never returns here... */
-	}
-	return nullptr;
+    if (isMarkerRequired)
+    {
+        /* Error, marker name not found */
+        if (!name.empty())
+        {
+            sprintf(strbuf, _("Marker \"%s\" not found."), name.c_str());
+        }
+        else
+        {
+            sprintf(strbuf, _("Marker \"(null)\" not found."));
+        }
+        lua_pushstring(theL, strbuf);
+        lua_error(theL);
+        /* never returns here... */
+    }
+    return nullptr;
 }
 
 /*! \brief Get the field number from a name.
@@ -938,198 +938,198 @@ std::shared_ptr<KMarker> KqFork::KQ_find_marker(const std::string& name, bool is
  */
 int get_field(const char* n)
 {
-	s_field st;
+    s_field st;
 
-	st.name = n;
-	s_field* ans = (struct s_field*)bsearch(&st, fields, sizeof(fields) / sizeof(*fields), sizeof(struct s_field), fieldcmp);
-	return (ans ? ans->id : -1);
+    st.name = n;
+    s_field* ans = (struct s_field*)bsearch(&st, fields, sizeof(fields) / sizeof(*fields), sizeof(struct s_field), fieldcmp);
+    return (ans ? ans->id : -1);
 }
 
 void KqFork::init_markers(lua_State* L)
 {
-	lua_newtable(L);
-	for (size_t i = 0; i < g_map.markers.Size(); i++)
-	{
-		auto marker = g_map.markers.GetMarker(i);
-		if (marker != nullptr)
-		{
-			lua_pushstring(L, marker->markerName.c_str());
-			lua_newtable(L);
-			lua_pushstring(L, "x");
-			lua_pushnumber(L, marker->x);
-			lua_rawset(L, -3);
-			lua_pushstring(L, "y");
-			lua_pushnumber(L, marker->y);
-			lua_rawset(L, -3);
-			lua_rawset(L, -3);
-		}
-	}
-	lua_setglobal(L, "markers");
+    lua_newtable(L);
+    for (size_t i = 0; i < g_map.markers.Size(); i++)
+    {
+        auto marker = g_map.markers.GetMarker(i);
+        if (marker != nullptr)
+        {
+            lua_pushstring(L, marker->markerName.c_str());
+            lua_newtable(L);
+            lua_pushstring(L, "x");
+            lua_pushnumber(L, marker->x);
+            lua_rawset(L, -3);
+            lua_pushstring(L, "y");
+            lua_pushnumber(L, marker->y);
+            lua_rawset(L, -3);
+            lua_rawset(L, -3);
+        }
+    }
+    lua_setglobal(L, "markers");
 }
 
 void KqFork::init_obj(lua_State* L)
 {
-	size_t i = 0;
+    size_t i = 0;
 
-	/* do all the players */
-	lua_newtable(L);
-	lua_pushstring(L, "__index");
-	lua_pushcfunction(L, KQ_char_getter);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__newindex");
-	lua_pushcfunction(L, KQ_char_setter);
-	lua_settable(L, -3);
+    /* do all the players */
+    lua_newtable(L);
+    lua_pushstring(L, "__index");
+    lua_pushcfunction(L, KQ_char_getter);
+    lua_settable(L, -3);
+    lua_pushstring(L, "__newindex");
+    lua_pushcfunction(L, KQ_char_setter);
+    lua_settable(L, -3);
 
-	for (i = 0; i < MAXCHRS; ++i)
-	{
-		lua_newtable(L);
-		lua_pushvalue(L, -2);
-		lua_setmetatable(L, -1);
-		lua_pushstring(L, LUA_PLR_KEY);
-		lua_pushlightuserdata(L, &party[i]);
-		lua_rawset(L, -3);
-		lua_setglobal(L, party[i].playerName.c_str());
-	}
-	/* party */
-	for (i = 0; i < numchrs; ++i)
-	{
-		lua_getglobal(L, party[pidx[i]].playerName.c_str());
-		/* also fill in the entity reference */
-		lua_pushstring(L, LUA_ENT_KEY);
-		lua_pushlightuserdata(L, &g_ent[i]);
-		lua_rawset(L, -3);
-	}
-	/* party pseudo-array */
-	lua_newtable(L);
-	lua_newtable(L);
-	lua_pushstring(L, "__index");
-	lua_pushcfunction(L, KQ_party_getter);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__newindex");
-	lua_pushcfunction(L, KQ_party_setter);
-	lua_settable(L, -3);
-	lua_setmetatable(L, -2);
-	lua_setglobal(L, "party");
-	/* player[] array */
-	lua_newtable(L);
-	for (i = 0; i < MAXCHRS; ++i)
-	{
-		lua_getglobal(L, party[i].playerName.c_str());
-		lua_rawseti(L, -2, i);
-	}
-	lua_setglobal(L, "player");
-	/* entity[] array */
-	lua_newtable(L);
-	/* ents */
-	for (i = 0; i < kEntity.getNumberOfMapEntities(); ++i)
-	{
-		lua_newtable(L);
-		lua_pushvalue(L, -2);
-		lua_setmetatable(L, -2);
-		lua_pushstring(L, LUA_ENT_KEY);
-		lua_pushlightuserdata(L, &g_ent[i + MAX_PARTY_SIZE]);
-		lua_rawset(L, -3);
-		lua_rawseti(L, -2, i);
-	}
-	/* heroes */
-	for (i = 0; i < numchrs; ++i)
-	{
-		lua_getglobal(L, party[pidx[i]].playerName.c_str());
-		lua_rawseti(L, -2, i + kEntity.getNumberOfMapEntities());
-	}
-	lua_setglobal(L, "entity");
+    for (i = 0; i < MAXCHRS; ++i)
+    {
+        lua_newtable(L);
+        lua_pushvalue(L, -2);
+        lua_setmetatable(L, -1);
+        lua_pushstring(L, LUA_PLR_KEY);
+        lua_pushlightuserdata(L, &party[i]);
+        lua_rawset(L, -3);
+        lua_setglobal(L, party[i].playerName.c_str());
+    }
+    /* party */
+    for (i = 0; i < numchrs; ++i)
+    {
+        lua_getglobal(L, party[pidx[i]].playerName.c_str());
+        /* also fill in the entity reference */
+        lua_pushstring(L, LUA_ENT_KEY);
+        lua_pushlightuserdata(L, &g_ent[i]);
+        lua_rawset(L, -3);
+    }
+    /* party pseudo-array */
+    lua_newtable(L);
+    lua_newtable(L);
+    lua_pushstring(L, "__index");
+    lua_pushcfunction(L, KQ_party_getter);
+    lua_settable(L, -3);
+    lua_pushstring(L, "__newindex");
+    lua_pushcfunction(L, KQ_party_setter);
+    lua_settable(L, -3);
+    lua_setmetatable(L, -2);
+    lua_setglobal(L, "party");
+    /* player[] array */
+    lua_newtable(L);
+    for (i = 0; i < MAXCHRS; ++i)
+    {
+        lua_getglobal(L, party[i].playerName.c_str());
+        lua_rawseti(L, -2, i);
+    }
+    lua_setglobal(L, "player");
+    /* entity[] array */
+    lua_newtable(L);
+    /* ents */
+    for (i = 0; i < kEntity.getNumberOfMapEntities(); ++i)
+    {
+        lua_newtable(L);
+        lua_pushvalue(L, -2);
+        lua_setmetatable(L, -2);
+        lua_pushstring(L, LUA_ENT_KEY);
+        lua_pushlightuserdata(L, &g_ent[i + MAX_PARTY_SIZE]);
+        lua_rawset(L, -3);
+        lua_rawseti(L, -2, i);
+    }
+    /* heroes */
+    for (i = 0; i < numchrs; ++i)
+    {
+        lua_getglobal(L, party[pidx[i]].playerName.c_str());
+        lua_rawseti(L, -2, i + kEntity.getNumberOfMapEntities());
+    }
+    lua_setglobal(L, "entity");
 }
 
 int KQ_add_chr(lua_State* L)
 {
-	ePIDX a = (ePIDX) static_cast<int>(lua_tointeger(L, 1));
+    ePIDX a = (ePIDX) static_cast<int>(lua_tointeger(L, 1));
 
-	if (numchrs < MAX_PARTY_SIZE)
-	{
-		pidx[numchrs] = a;
-		g_ent[numchrs].active = true;
-		g_ent[numchrs].eid = (int)a;
-		g_ent[numchrs].setIdentity(0);
-		numchrs++;
-	}
-	return 0;
+    if (numchrs < MAX_PARTY_SIZE)
+    {
+        pidx[numchrs] = a;
+        g_ent[numchrs].active = true;
+        g_ent[numchrs].eid = (int)a;
+        g_ent[numchrs].setIdentity(0);
+        numchrs++;
+    }
+    return 0;
 }
 
 int KQ_add_quest_item(lua_State* L)
 {
-	const char* keyname = lua_tostring(L, 1);
-	const char* info = lua_tostring(L, 2);
+    const char* keyname = lua_tostring(L, 1);
+    const char* info = lua_tostring(L, 2);
 
-	add_questinfo(keyname, info);
-	return 0;
+    add_questinfo(keyname, info);
+    return 0;
 }
 
 int KQ_create_special_item(lua_State* L)
 {
-	const char* name = lua_tostring(L, 1);
-	const char* description = lua_tostring(L, 2);
-	int icon = lua_tonumber(L, 3);
-	int index = lua_tonumber(L, 4);
+    const char* name = lua_tostring(L, 1);
+    const char* description = lua_tostring(L, 2);
+    int icon = lua_tonumber(L, 3);
+    int index = lua_tonumber(L, 4);
 
-	strncpy(special_items[index].specialItemName, name, sizeof(special_items[index].specialItemName));
-	special_items[index].specialItemName[sizeof(special_items[index].specialItemName) - 1] = '\0';
-	strncpy(special_items[index].description, description, sizeof(special_items[index].description));
-	special_items[index].description[sizeof(special_items[index].description) - 1] = '\0';
-	special_items[index].icon = icon;
-	return 0;
+    strncpy(special_items[index].specialItemName, name, sizeof(special_items[index].specialItemName));
+    special_items[index].specialItemName[sizeof(special_items[index].specialItemName) - 1] = '\0';
+    strncpy(special_items[index].description, description, sizeof(special_items[index].description));
+    special_items[index].description[sizeof(special_items[index].description) - 1] = '\0';
+    special_items[index].icon = icon;
+    return 0;
 }
 
 int KQ_add_special_item(lua_State* L)
 {
-	int index, quantity;
+    int index, quantity;
 
-	index = lua_tonumber(L, 1);
+    index = lua_tonumber(L, 1);
 
-	if (lua_gettop(L) > 1)
-	{
-		quantity = lua_tonumber(L, 2);
-	}
-	else
-	{
-		quantity = 1;
-	}
+    if (lua_gettop(L) > 1)
+    {
+        quantity = lua_tonumber(L, 2);
+    }
+    else
+    {
+        quantity = 1;
+    }
 
-	player_special_items[index] += quantity;
-	return 0;
+    player_special_items[index] += quantity;
+    return 0;
 }
 
 int KQ_has_special_item(lua_State* L)
 {
-	int index;
+    int index;
 
-	index = lua_tonumber(L, 1);
+    index = lua_tonumber(L, 1);
 
-	if (player_special_items[index])
-	{
-		lua_pushnumber(L, player_special_items[index]);
-	}
-	else
-	{
-		lua_pushnil(L);
-	}
-	return 1;
+    if (player_special_items[index])
+    {
+        lua_pushnumber(L, player_special_items[index]);
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
+    return 1;
 }
 
 int KQ_remove_special_item(lua_State* L)
 {
-	int index = lua_tonumber(L, 1);
+    int index = lua_tonumber(L, 1);
 
-	player_special_items[index] = 0;
-	return 0;
+    player_special_items[index] = 0;
+    return 0;
 }
 
 int KQ_add_timer(lua_State* L)
 {
-	const char* funcname = lua_tostring(L, 1);
-	auto delta = lua_tointeger(L, 2);
+    const char* funcname = lua_tostring(L, 1);
+    auto delta = lua_tointeger(L, 2);
 
-	lua_pushnumber(L, Game.add_timer_event(funcname, delta));
-	return 1;
+    lua_pushnumber(L, Game.add_timer_event(funcname, delta));
+    return 1;
 }
 
 /*! \brief Do a battle
@@ -1147,8 +1147,8 @@ int KQ_add_timer(lua_State* L)
  */
 int KQ_battle(lua_State* L)
 {
-	(void)L;
-	return 1;
+    (void)L;
+    return 1;
 }
 
 /* The text_ex function just takes one string, and does the line breaks automatically.
@@ -1159,11 +1159,11 @@ int KQ_battle(lua_State* L)
  */
 int KQ_bubble_ex(lua_State* L)
 {
-	int entity = KqFork::real_entity_num(L, 1);
-	const char* msg = lua_tostring(L, 2);
+    int entity = KqFork::real_entity_num(L, 1);
+    const char* msg = lua_tostring(L, 2);
 
-	kqDraw.text_ex(eBubbleStyle::BUBBLE_TEXT, entity, msg);
-	return 0;
+    kqDraw.text_ex(eBubbleStyle::BUBBLE_TEXT, entity, msg);
+    return 0;
 }
 
 /* Adds portrait to bubble message.
@@ -1171,17 +1171,17 @@ int KQ_bubble_ex(lua_State* L)
  */
 int KQ_portbubble_ex(lua_State* L)
 {
-	int entity = KqFork::real_entity_num(L, 1);
-	const char* msg = lua_tostring(L, 2);
+    int entity = KqFork::real_entity_num(L, 1);
+    const char* msg = lua_tostring(L, 2);
 
-	kqDraw.porttext_ex(eBubbleStyle::BUBBLE_TEXT, entity, msg);
-	return 0;
+    kqDraw.porttext_ex(eBubbleStyle::BUBBLE_TEXT, entity, msg);
+    return 0;
 }
 
 int KQ_calc_viewport(lua_State* L)
 {
-	Game.calc_viewport();
-	return 0;
+    Game.calc_viewport();
+    return 0;
 }
 
 /*!\brief Change to a different map
@@ -1190,25 +1190,25 @@ int KQ_calc_viewport(lua_State* L)
  */
 int KQ_change_map(lua_State* L)
 {
-	strcpy(tmap_name, lua_tostring(L, 1));
-	if (lua_type(L, 2) == LUA_TSTRING)
-	{
-		/* it's the ("map", "marker") form */
-		strcpy(marker_name, lua_tostring(L, 2));
-		tmx = (int)lua_tonumber(L, 3);
-		tmy = (int)lua_tonumber(L, 4);
-		changing_map = CHANGE_TO_MARKER;
-	}
-	else
-	{
-		/* (assume) it's the ("map", x, y, x, y) form */
-		tmx = (int)lua_tonumber(L, 2);
-		tmy = (int)lua_tonumber(L, 3);
-		tmvx = (int)lua_tonumber(L, 4);
-		tmvy = (int)lua_tonumber(L, 5);
-		changing_map = CHANGE_TO_COORDS;
-	}
-	return 0;
+    strcpy(tmap_name, lua_tostring(L, 1));
+    if (lua_type(L, 2) == LUA_TSTRING)
+    {
+        /* it's the ("map", "marker") form */
+        strcpy(marker_name, lua_tostring(L, 2));
+        tmx = (int)lua_tonumber(L, 3);
+        tmy = (int)lua_tonumber(L, 4);
+        changing_map = CHANGE_TO_MARKER;
+    }
+    else
+    {
+        /* (assume) it's the ("map", x, y, x, y) form */
+        tmx = (int)lua_tonumber(L, 2);
+        tmy = (int)lua_tonumber(L, 3);
+        tmvx = (int)lua_tonumber(L, 4);
+        tmvy = (int)lua_tonumber(L, 5);
+        changing_map = CHANGE_TO_COORDS;
+    }
+    return 0;
 }
 
 /*! \brief Object interface for party
@@ -1217,124 +1217,124 @@ int KQ_change_map(lua_State* L)
  */
 int KQ_char_getter(lua_State* L)
 {
-	signed int prop;
-	int top;
-	KPlayer* pl = nullptr;
-	KQEntity* ent = nullptr;
+    signed int prop;
+    int top;
+    KPlayer* pl = nullptr;
+    KQEntity* ent = nullptr;
 
-	prop = get_field(lua_tostring(L, 2));
-	if (prop == -1)
-	{
-		/* it is a user-defined property, get it directly */
-		lua_rawget(L, 1);
-		return 1;
-	}
-	lua_pushstring(L, LUA_PLR_KEY);
-	lua_rawget(L, 1);
-	pl = (KPlayer*)lua_touserdata(L, -1);
-	lua_pop(L, 1);
-	lua_pushstring(L, LUA_ENT_KEY);
-	lua_rawget(L, 1);
-	ent = (KQEntity*)lua_touserdata(L, -1);
-	lua_pop(L, 1);
-	top = lua_gettop(L);
-	if (pl)
-	{
-		/* These properties relate to s_player structures */
-		switch (prop)
-		{
-		case 0:
-			lua_pushstring(L, pl->playerName.c_str());
-			break;
+    prop = get_field(lua_tostring(L, 2));
+    if (prop == -1)
+    {
+        /* it is a user-defined property, get it directly */
+        lua_rawget(L, 1);
+        return 1;
+    }
+    lua_pushstring(L, LUA_PLR_KEY);
+    lua_rawget(L, 1);
+    pl = (KPlayer*)lua_touserdata(L, -1);
+    lua_pop(L, 1);
+    lua_pushstring(L, LUA_ENT_KEY);
+    lua_rawget(L, 1);
+    ent = (KQEntity*)lua_touserdata(L, -1);
+    lua_pop(L, 1);
+    top = lua_gettop(L);
+    if (pl)
+    {
+        /* These properties relate to s_player structures */
+        switch (prop)
+        {
+        case 0:
+            lua_pushstring(L, pl->playerName.c_str());
+            break;
 
-		case 1:
-			lua_pushnumber(L, pl->xp);
-			break;
+        case 1:
+            lua_pushnumber(L, pl->xp);
+            break;
 
-		case 2:
-			lua_pushnumber(L, pl->next);
-			break;
+        case 2:
+            lua_pushnumber(L, pl->next);
+            break;
 
-		case 3:
-			lua_pushnumber(L, pl->lvl);
-			break;
+        case 3:
+            lua_pushnumber(L, pl->lvl);
+            break;
 
-		case 4:
-			lua_pushnumber(L, pl->mrp);
-			break;
+        case 4:
+            lua_pushnumber(L, pl->mrp);
+            break;
 
-		case 5:
-			lua_pushnumber(L, pl->hp);
-			break;
+        case 5:
+            lua_pushnumber(L, pl->hp);
+            break;
 
-		case 6:
-			lua_pushnumber(L, pl->mhp);
-			break;
+        case 6:
+            lua_pushnumber(L, pl->mhp);
+            break;
 
-		case 7:
-			lua_pushnumber(L, pl->mp);
-			break;
+        case 7:
+            lua_pushnumber(L, pl->mp);
+            break;
 
-		case 8:
-			lua_pushnumber(L, pl->mmp);
-			break;
+        case 8:
+            lua_pushnumber(L, pl->mmp);
+            break;
 
-		case 9:
-			lua_pushnumber(L, pl - party);
-			break;
+        case 9:
+            lua_pushnumber(L, pl - party);
+            break;
 
-		default:
-			break;
-		}
-	}
-	if (ent)
-	{
-		/* These properties relate to s_entity structures */
-		switch (prop)
-		{
-		case 10:
-			lua_pushnumber(L, ent->tilex);
-			break;
+        default:
+            break;
+        }
+    }
+    if (ent)
+    {
+        /* These properties relate to s_entity structures */
+        switch (prop)
+        {
+        case 10:
+            lua_pushnumber(L, ent->tilex);
+            break;
 
-		case 11:
-			lua_pushnumber(L, ent->tiley);
-			break;
+        case 11:
+            lua_pushnumber(L, ent->tiley);
+            break;
 
-		case 12:
-			lua_pushnumber(L, ent->eid);
-			break;
+        case 12:
+            lua_pushnumber(L, ent->eid);
+            break;
 
-		case 13:
-			lua_pushnumber(L, ent->identity());
-			break;
+        case 13:
+            lua_pushnumber(L, ent->identity());
+            break;
 
-		case 14:
-			lua_pushnumber(L, ent->facing);
-			break;
+        case 14:
+            lua_pushnumber(L, ent->facing);
+            break;
 
-		case 15:
-			lua_pushnumber(L, ent->active ? 1 : 0);
-			break;
+        case 15:
+            lua_pushnumber(L, ent->active ? 1 : 0);
+            break;
 
-		case 16:
-			lua_pushcfunction(L, KQ_bubble_ex);
-			break;
+        case 16:
+            lua_pushcfunction(L, KQ_bubble_ex);
+            break;
 
-		case 17:
-			lua_pushcfunction(L, KQ_thought_ex);
+        case 17:
+            lua_pushcfunction(L, KQ_thought_ex);
 
-		default:
-			break;
-		}
-	}
-	if (top == lua_gettop(L))
-	{
-		/* Apparently nothing happened. */
-		/* i.e. you asked for an ent property of something that wasn't an ent */
-		/* or a player property for something that wasn't a player */
-		lua_pushnil(L);
-	}
-	return 1;
+        default:
+            break;
+        }
+    }
+    if (top == lua_gettop(L))
+    {
+        /* Apparently nothing happened. */
+        /* i.e. you asked for an ent property of something that wasn't an ent */
+        /* or a player property for something that wasn't a player */
+        lua_pushnil(L);
+    }
+    return 1;
 }
 
 /*! \brief Object interface for character
@@ -1345,233 +1345,233 @@ int KQ_char_getter(lua_State* L)
  */
 int KQ_char_setter(lua_State* L)
 {
-	int prop;
-	KPlayer* pl = nullptr;
-	KQEntity* ent = nullptr;
+    int prop;
+    KPlayer* pl = nullptr;
+    KQEntity* ent = nullptr;
 
-	prop = get_field(lua_tostring(L, 2));
-	if (prop == -1)
-	{
-		/* It is a user-defined property, set it directly in the table */
-		lua_rawset(L, 1);
-		return 0;
-	}
-	lua_pushstring(L, LUA_PLR_KEY);
-	lua_rawget(L, 1);
-	pl = (KPlayer*)lua_touserdata(L, -1);
-	lua_pop(L, 1);
-	lua_pushstring(L, LUA_ENT_KEY);
-	lua_rawget(L, 1);
-	ent = (KQEntity*)lua_touserdata(L, -1);
-	lua_pop(L, 1);
-	if (pl)
-	{
-		/* These properties relate to 's_player' structures */
-		switch (prop)
-		{
-		case 0:
-			pl->playerName = lua_tostring(L, 3);
-			break;
+    prop = get_field(lua_tostring(L, 2));
+    if (prop == -1)
+    {
+        /* It is a user-defined property, set it directly in the table */
+        lua_rawset(L, 1);
+        return 0;
+    }
+    lua_pushstring(L, LUA_PLR_KEY);
+    lua_rawget(L, 1);
+    pl = (KPlayer*)lua_touserdata(L, -1);
+    lua_pop(L, 1);
+    lua_pushstring(L, LUA_ENT_KEY);
+    lua_rawget(L, 1);
+    ent = (KQEntity*)lua_touserdata(L, -1);
+    lua_pop(L, 1);
+    if (pl)
+    {
+        /* These properties relate to 's_player' structures */
+        switch (prop)
+        {
+        case 0:
+            pl->playerName = lua_tostring(L, 3);
+            break;
 
-		case 1:
-			pl->xp = (int)lua_tonumber(L, 3);
-			break;
+        case 1:
+            pl->xp = (int)lua_tonumber(L, 3);
+            break;
 
-		case 2:
-			pl->next = (int)lua_tonumber(L, 3);
-			break;
+        case 2:
+            pl->next = (int)lua_tonumber(L, 3);
+            break;
 
-		case 3:
-			pl->lvl = (int)lua_tonumber(L, 3);
-			break;
+        case 3:
+            pl->lvl = (int)lua_tonumber(L, 3);
+            break;
 
-		case 4:
-			pl->mrp = (int)lua_tonumber(L, 3);
-			break;
+        case 4:
+            pl->mrp = (int)lua_tonumber(L, 3);
+            break;
 
-		case 5:
-			pl->hp = (int)lua_tonumber(L, 3);
-			break;
+        case 5:
+            pl->hp = (int)lua_tonumber(L, 3);
+            break;
 
-		case 6:
-			pl->mhp = (int)lua_tonumber(L, 3);
-			break;
+        case 6:
+            pl->mhp = (int)lua_tonumber(L, 3);
+            break;
 
-		case 7:
-			pl->mp = (int)lua_tonumber(L, 3);
-			break;
+        case 7:
+            pl->mp = (int)lua_tonumber(L, 3);
+            break;
 
-		case 8:
-			pl->mmp = (int)lua_tonumber(L, 3);
-			break;
+        case 8:
+            pl->mmp = (int)lua_tonumber(L, 3);
+            break;
 
-		case 9:
-			/* id is readonly */
-			break;
+        case 9:
+            /* id is readonly */
+            break;
 
-		default:
-			break;
-		}
-	}
-	if (ent)
-	{
-		/* these properties relate to 's_entity' structures */
-		switch (prop)
-		{
-		case 10:
-			ent->tilex = (int)lua_tonumber(L, 3);
-			break;
+        default:
+            break;
+        }
+    }
+    if (ent)
+    {
+        /* these properties relate to 's_entity' structures */
+        switch (prop)
+        {
+        case 10:
+            ent->tilex = (int)lua_tonumber(L, 3);
+            break;
 
-		case 11:
-			ent->tiley = (int)lua_tonumber(L, 3);
-			break;
+        case 11:
+            ent->tiley = (int)lua_tonumber(L, 3);
+            break;
 
-		case 12:
-			ent->eid = (int)lua_tonumber(L, 3);
-			break;
+        case 12:
+            ent->eid = (int)lua_tonumber(L, 3);
+            break;
 
-		case 13:
-			ent->setIdentity(lua_tonumber(L, 3));
-			break;
+        case 13:
+            ent->setIdentity(lua_tonumber(L, 3));
+            break;
 
-		case 14:
-			ent->facing = (int)lua_tonumber(L, 3);
-			break;
+        case 14:
+            ent->facing = (int)lua_tonumber(L, 3);
+            break;
 
-		case 15:
-			ent->active = (lua_tonumber(L, 3) != 0);
-			break;
+        case 15:
+            ent->active = (lua_tonumber(L, 3) != 0);
+            break;
 
-		default:
-			break;
-		}
-	}
-	return 0;
+        default:
+            break;
+        }
+    }
+    return 0;
 }
 
 int KQ_check_key(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		lua_pushnumber(L, g_keys[a]);
-	}
-	else
-	{
-		lua_pushnumber(L, 0);
-	}
-	return 1;
+    if (a >= 0 && a <= 7)
+    {
+        lua_pushnumber(L, g_keys[a]);
+    }
+    else
+    {
+        lua_pushnumber(L, 0);
+    }
+    return 1;
 }
 
 int KQ_chest(lua_State* L)
 {
-	size_t fighter_index = 0;
-	int gd = 0;
-	auto tno = lua_tointeger(L, 1);
-	auto ino = lua_tointeger(L, 2);
-	auto amt = lua_tointeger(L, 3);
-	uint32_t chestx = (uint32_t)lua_tonumber(L, 4);
-	uint32_t chesty = (uint32_t)lua_tonumber(L, 5);
-	auto tile = lua_tointeger(L, 6);
+    size_t fighter_index = 0;
+    int gd = 0;
+    auto tno = lua_tointeger(L, 1);
+    auto ino = lua_tointeger(L, 2);
+    auto amt = lua_tointeger(L, 3);
+    uint32_t chestx = (uint32_t)lua_tonumber(L, 4);
+    uint32_t chesty = (uint32_t)lua_tonumber(L, 5);
+    auto tile = lua_tointeger(L, 6);
 
-	if (tno > -1 && treasure[tno] != 0)
-	{
-		return 0;
-	}
+    if (tno > -1 && treasure[tno] != 0)
+    {
+        return 0;
+    }
 
-	if (ino == 0)
-	{
-		gp += amt;
-		sprintf(strbuf, _("Found %d gp!"), (int)amt);
-		play_effect(SND_MONEY, 128);
-		kqDraw.message(strbuf, 255, 0, xofs, yofs);
-		if (tno > -1)
-		{
-			treasure[tno] = 1;
-		}
+    if (ino == 0)
+    {
+        gp += amt;
+        sprintf(strbuf, _("Found %d gp!"), (int)amt);
+        play_effect(SND_MONEY, 128);
+        kqDraw.message(strbuf, 255, 0, xofs, yofs);
+        if (tno > -1)
+        {
+            treasure[tno] = 1;
+        }
 
-		/* TT: Here I want to check whether L::[4-6] exist. If so, set that
-		 * tile to the given value, and set the zone zero (so we can't search
-		 * in the same place twice.
-		 */
-		if (chestx < g_map.xsize || chesty < g_map.ysize)
-		{
-			set_mtile(chestx, chesty, tile);
-		}
+        /* TT: Here I want to check whether L::[4-6] exist. If so, set that
+         * tile to the given value, and set the zone zero (so we can't search
+         * in the same place twice.
+         */
+        if (chestx < g_map.xsize || chesty < g_map.ysize)
+        {
+            set_mtile(chestx, chesty, tile);
+        }
 
-		return 0;
-	}
-	/* PH TODO: This next bit is not needed because the inventory is shared */
-	if (numchrs == 1)
-	{
-		if (check_inventory(ino, amt) > 0)
-		{
-			gd = 1;
-		}
-	}
-	else
-	{
-		while (fighter_index < numchrs)
-		{
-			if (check_inventory(ino, amt) > 0)
-			{
-				gd = 1;
-				fighter_index = numchrs;
-			}
-			fighter_index++;
-		}
-	}
-	if (gd == 1)
-	{
-		if (amt == 1)
-		{
-			sprintf(strbuf, _("%s procured!"), items[ino].itemName);
-		}
-		else
-		{
-			sprintf(strbuf, _("%s ^%d procured!"), items[ino].itemName, (int)amt);
-		}
-		play_effect(SND_UNEQUIP, 128);
-		kqDraw.message(strbuf, items[ino].icon, 0, xofs, yofs);
-		if (tno > -1)
-		{
-			treasure[tno] = 1;
-		}
-		return 0;
-	}
-	if (amt == 1)
-	{
-		sprintf(strbuf, _("%s not taken!"), items[ino].itemName);
-	}
-	else
-	{
-		sprintf(strbuf, _("%s ^%d not taken!"), items[ino].itemName, (int)amt);
-	}
-	kqDraw.message(strbuf, items[ino].icon, 0, xofs, yofs);
-	return 0;
+        return 0;
+    }
+    /* PH TODO: This next bit is not needed because the inventory is shared */
+    if (numchrs == 1)
+    {
+        if (check_inventory(ino, amt) > 0)
+        {
+            gd = 1;
+        }
+    }
+    else
+    {
+        while (fighter_index < numchrs)
+        {
+            if (check_inventory(ino, amt) > 0)
+            {
+                gd = 1;
+                fighter_index = numchrs;
+            }
+            fighter_index++;
+        }
+    }
+    if (gd == 1)
+    {
+        if (amt == 1)
+        {
+            sprintf(strbuf, _("%s procured!"), items[ino].itemName);
+        }
+        else
+        {
+            sprintf(strbuf, _("%s ^%d procured!"), items[ino].itemName, (int)amt);
+        }
+        play_effect(SND_UNEQUIP, 128);
+        kqDraw.message(strbuf, items[ino].icon, 0, xofs, yofs);
+        if (tno > -1)
+        {
+            treasure[tno] = 1;
+        }
+        return 0;
+    }
+    if (amt == 1)
+    {
+        sprintf(strbuf, _("%s not taken!"), items[ino].itemName);
+    }
+    else
+    {
+        sprintf(strbuf, _("%s ^%d not taken!"), items[ino].itemName, (int)amt);
+    }
+    kqDraw.message(strbuf, items[ino].icon, 0, xofs, yofs);
+    return 0;
 }
 
 int KQ_clear_buffer(lua_State* L)
 {
-	(void)L;
-	clear_bitmap(double_buffer);
-	return 0;
+    (void)L;
+    clear_bitmap(double_buffer);
+    return 0;
 }
 
 int KQ_combat(lua_State* L)
 {
-	kqCombat.combat((int)lua_tonumber(L, 1));
-	return 0;
+    kqCombat.combat((int)lua_tonumber(L, 1));
+    return 0;
 }
 
 int KQ_copy_ent(lua_State* L)
 {
-	size_t a = static_cast<size_t>(KqFork::real_entity_num(L, 1));
-	size_t b = static_cast<size_t>(KqFork::real_entity_num(L, 2));
+    size_t a = static_cast<size_t>(KqFork::real_entity_num(L, 1));
+    size_t b = static_cast<size_t>(KqFork::real_entity_num(L, 2));
 
-	g_ent[b] = g_ent[a];
-	return 0;
+    g_ent[b] = g_ent[a];
+    return 0;
 }
 
 /*! \brief Copy tile block
@@ -1589,237 +1589,237 @@ int KQ_copy_ent(lua_State* L)
  */
 int KQ_copy_tile_all(lua_State* L)
 {
-	auto sx = lua_tointeger(L, 1);
-	auto sy = lua_tointeger(L, 2);
-	auto dx = lua_tointeger(L, 3);
-	auto dy = lua_tointeger(L, 4);
-	uint32_t wid = (uint32_t)lua_tonumber(L, 5);
-	uint32_t hgt = (uint32_t)lua_tonumber(L, 6);
-	size_t os, od, i, j;
+    auto sx = lua_tointeger(L, 1);
+    auto sy = lua_tointeger(L, 2);
+    auto dx = lua_tointeger(L, 3);
+    auto dy = lua_tointeger(L, 4);
+    uint32_t wid = (uint32_t)lua_tonumber(L, 5);
+    uint32_t hgt = (uint32_t)lua_tonumber(L, 6);
+    size_t os, od, i, j;
 
-	/*
-	sprintf (strbuf, "Copy (%d,%d)x(%d,%d) to (%d,%d)", sx, sy, wid, hgt, dx, dy);
-	Game.klog(strbuf);
-	*/
-	for (j = 0; j < hgt; ++j)
-	{
-		for (i = 0; i < wid; ++i)
-		{
-			os = sx + i + g_map.xsize * (sy + j);
-			od = dx + i + g_map.xsize * (dy + j);
-			map_seg[od] = map_seg[os];
-			f_seg[od] = f_seg[os];
-			b_seg[od] = b_seg[os];
-			z_seg[od] = z_seg[os];
-			o_seg[od] = o_seg[os];
-			s_seg[od] = s_seg[os];
-		}
-	}
-	return 0;
+    /*
+    sprintf (strbuf, "Copy (%d,%d)x(%d,%d) to (%d,%d)", sx, sy, wid, hgt, dx, dy);
+    Game.klog(strbuf);
+    */
+    for (j = 0; j < hgt; ++j)
+    {
+        for (i = 0; i < wid; ++i)
+        {
+            os = sx + i + g_map.xsize * (sy + j);
+            od = dx + i + g_map.xsize * (dy + j);
+            map_seg[od] = map_seg[os];
+            f_seg[od] = f_seg[os];
+            b_seg[od] = b_seg[os];
+            z_seg[od] = z_seg[os];
+            o_seg[od] = o_seg[os];
+            s_seg[od] = s_seg[os];
+        }
+    }
+    return 0;
 }
 
 int KQ_dark_mbox(lua_State* L)
 {
-	kqDraw.menubox(double_buffer, (int)lua_tonumber(L, 1) + xofs, (int)lua_tonumber(L, 2) + yofs, (int)lua_tonumber(L, 3), (int)lua_tonumber(L, 4), eMenuBoxColor::DARKBLUE);
-	return 0;
+    kqDraw.menubox(double_buffer, (int)lua_tonumber(L, 1) + xofs, (int)lua_tonumber(L, 2) + yofs, (int)lua_tonumber(L, 3), (int)lua_tonumber(L, 4), eMenuBoxColor::DARKBLUE);
+    return 0;
 }
 
 int KQ_do_fadein(lua_State* L)
 {
-	kqDraw.do_transition(TRANS_FADE_IN, (int)lua_tonumber(L, 1));
-	return 0;
+    kqDraw.do_transition(TRANS_FADE_IN, (int)lua_tonumber(L, 1));
+    return 0;
 }
 
 int KQ_do_fadeout(lua_State* L)
 {
-	kqDraw.do_transition(TRANS_FADE_OUT, (int)lua_tonumber(L, 1));
-	return 0;
+    kqDraw.do_transition(TRANS_FADE_OUT, (int)lua_tonumber(L, 1));
+    return 0;
 }
 
 int KQ_do_inn_effects(lua_State* L)
 {
-	do_inn_effects((int)lua_tonumber(L, 1));
-	return 0;
+    do_inn_effects((int)lua_tonumber(L, 1));
+    return 0;
 }
 
 int KQ_door_in(lua_State* L)
 {
-	int hx, hy, hy2, db, dt;
-	int x, y;
+    int hx, hy, hy2, db, dt;
+    int x, y;
 
-	use_sstone = 0;
+    use_sstone = 0;
 
-	hx = g_ent[0].tilex;
-	hy = g_ent[0].tiley;
-	hy2 = hy - 1;
-	db = map_seg[hy * g_map.xsize + hx];
-	dt = map_seg[hy2 * g_map.xsize + hx];
-	if (g_map.tileset == 1)
-	{
-		set_btile(hx, hy, db + 433);
-		if (dt == 149)
-		{
-			set_btile(hx, hy2, 571);
-		}
-		else
-		{
-			set_btile(hx, hy2, dt + 433);
-		}
-	}
-	else
-	{
-		set_btile(hx, hy, db + 3);
-	}
-	play_effect(25, 128);
-	kqDraw.drawmap();
-	kqDraw.blit2screen(xofs, yofs);
-	kq_wait(50);
+    hx = g_ent[0].tilex;
+    hy = g_ent[0].tiley;
+    hy2 = hy - 1;
+    db = map_seg[hy * g_map.xsize + hx];
+    dt = map_seg[hy2 * g_map.xsize + hx];
+    if (g_map.tileset == 1)
+    {
+        set_btile(hx, hy, db + 433);
+        if (dt == 149)
+        {
+            set_btile(hx, hy2, 571);
+        }
+        else
+        {
+            set_btile(hx, hy2, dt + 433);
+        }
+    }
+    else
+    {
+        set_btile(hx, hy, db + 3);
+    }
+    play_effect(25, 128);
+    kqDraw.drawmap();
+    kqDraw.blit2screen(xofs, yofs);
+    kq_wait(50);
 
-	if (lua_type(L, 1) == LUA_TSTRING)
-	{
-		/* It's in "marker" form */
-		std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
-		if (m != nullptr)
-		{
-			x = m->x + lua_tointeger(L, 2);
-			y = m->y + lua_tointeger(L, 3);
-		}
-		else
-		{
-			// If the marker is not found then don't warp
-			return 0;
-		}
-	}
-	else
-	{
-		/* It's in the (x, y) form */
-		x = lua_tointeger(L, 1) + lua_tointeger(L, 3);
-		y = lua_tointeger(L, 2) + lua_tointeger(L, 4);
-	}
-	Game.warp(x, y, 8);
+    if (lua_type(L, 1) == LUA_TSTRING)
+    {
+        /* It's in "marker" form */
+        std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
+        if (m != nullptr)
+        {
+            x = m->x + lua_tointeger(L, 2);
+            y = m->y + lua_tointeger(L, 3);
+        }
+        else
+        {
+            // If the marker is not found then don't warp
+            return 0;
+        }
+    }
+    else
+    {
+        /* It's in the (x, y) form */
+        x = lua_tointeger(L, 1) + lua_tointeger(L, 3);
+        y = lua_tointeger(L, 2) + lua_tointeger(L, 4);
+    }
+    Game.warp(x, y, 8);
 
-	// Don't forget to set the door tile back to its "unopened" state
-	set_btile(hx, hy, db);
-	if (g_map.tileset == 1)
-	{
-		set_btile(hx, hy2, dt);
-	}
+    // Don't forget to set the door tile back to its "unopened" state
+    set_btile(hx, hy, db);
+    if (g_map.tileset == 1)
+    {
+        set_btile(hx, hy2, dt);
+    }
 
-	return 0;
+    return 0;
 }
 
 int KQ_door_out(lua_State* L)
 {
-	int x, y;
+    int x, y;
 
-	use_sstone = 1;
+    use_sstone = 1;
 
-	if (lua_type(L, 1) == LUA_TSTRING)
-	{
-		/* It's in "marker" form */
-		std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
-		if (m != nullptr)
-		{
-			x = m->x + lua_tointeger(L, 2);
-			y = m->y + lua_tointeger(L, 3);
-		}
-		else
-		{
-			// If the marker is found then don't warp.
-			return 0;
-		}
-	}
-	else
-	{
-		/* It's in the (x, y) form */
-		x = lua_tointeger(L, 1) + lua_tointeger(L, 3);
-		y = lua_tointeger(L, 2) + lua_tointeger(L, 4);
-	}
-	Game.warp(x, y, 8);
+    if (lua_type(L, 1) == LUA_TSTRING)
+    {
+        /* It's in "marker" form */
+        std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
+        if (m != nullptr)
+        {
+            x = m->x + lua_tointeger(L, 2);
+            y = m->y + lua_tointeger(L, 3);
+        }
+        else
+        {
+            // If the marker is found then don't warp.
+            return 0;
+        }
+    }
+    else
+    {
+        /* It's in the (x, y) form */
+        x = lua_tointeger(L, 1) + lua_tointeger(L, 3);
+        y = lua_tointeger(L, 2) + lua_tointeger(L, 4);
+    }
+    Game.warp(x, y, 8);
 
-	return 0;
+    return 0;
 }
 
 int KQ_draw_pstat(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a < MAXCHRS)
-	{
-		draw_playerstat(double_buffer, a, (int)lua_tonumber(L, 2) + xofs, (int)lua_tonumber(L, 3) + yofs);
-	}
-	return 0;
+    if (a >= 0 && a < MAXCHRS)
+    {
+        draw_playerstat(double_buffer, a, (int)lua_tonumber(L, 2) + xofs, (int)lua_tonumber(L, 3) + yofs);
+    }
+    return 0;
 }
 
 int KQ_drawframe(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
-	auto b = lua_tointeger(L, 2);
+    auto a = lua_tointeger(L, 1);
+    auto b = lua_tointeger(L, 2);
 
-	draw_sprite(double_buffer, frames[a][b], (int)lua_tonumber(L, 3) + xofs, (int)lua_tonumber(L, 4) + yofs);
-	return 0;
+    draw_sprite(double_buffer, frames[a][b], (int)lua_tonumber(L, 3) + xofs, (int)lua_tonumber(L, 4) + yofs);
+    return 0;
 }
 
 int KQ_drawmap(lua_State* L)
 {
-	(void)L;
-	kqDraw.drawmap();
-	return 0;
+    (void)L;
+    kqDraw.drawmap();
+    return 0;
 }
 
 int KQ_face_each_other(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
-	int b = KqFork::real_entity_num(L, 2);
+    int a = KqFork::real_entity_num(L, 1);
+    int b = KqFork::real_entity_num(L, 2);
 
-	if (numchrs == 2)
-	{
-		if (g_ent[a].tilex == g_ent[b].tilex)
-		{
-			if (g_ent[a].tiley > g_ent[b].tiley)
-			{
-				g_ent[a].facing = FACE_UP;
-				g_ent[b].facing = FACE_DOWN;
-			}
-			else
-			{
-				g_ent[a].facing = FACE_DOWN;
-				g_ent[b].facing = FACE_UP;
-			}
-		}
-		else
-		{
-			if (g_ent[a].tilex > g_ent[b].tilex)
-			{
-				g_ent[a].facing = FACE_LEFT;
-				g_ent[b].facing = FACE_RIGHT;
-			}
-			else
-			{
-				g_ent[a].facing = FACE_RIGHT;
-				g_ent[b].facing = FACE_LEFT;
-			}
-		}
-	}
-	return 0;
+    if (numchrs == 2)
+    {
+        if (g_ent[a].tilex == g_ent[b].tilex)
+        {
+            if (g_ent[a].tiley > g_ent[b].tiley)
+            {
+                g_ent[a].facing = FACE_UP;
+                g_ent[b].facing = FACE_DOWN;
+            }
+            else
+            {
+                g_ent[a].facing = FACE_DOWN;
+                g_ent[b].facing = FACE_UP;
+            }
+        }
+        else
+        {
+            if (g_ent[a].tilex > g_ent[b].tilex)
+            {
+                g_ent[a].facing = FACE_LEFT;
+                g_ent[b].facing = FACE_RIGHT;
+            }
+            else
+            {
+                g_ent[a].facing = FACE_RIGHT;
+                g_ent[b].facing = FACE_LEFT;
+            }
+        }
+    }
+    return 0;
 }
 
 int KQ_gameover_ex(lua_State* L)
 {
-	alldead = ((int)lua_tonumber(L, 1) == 0 ? 0 : 1);
-	return 1;
+    alldead = ((int)lua_tonumber(L, 1) == 0 ? 0 : 1);
+    return 1;
 }
 
 int KQ_get_alldead(lua_State* L)
 {
-	lua_pushnumber(L, alldead);
-	return 1;
+    lua_pushnumber(L, alldead);
+    return 1;
 }
 
 int KQ_get_autoparty(lua_State* L)
 {
-	lua_pushnumber(L, autoparty);
-	return 1;
+    lua_pushnumber(L, autoparty);
+    return 1;
 }
 
 /*! \brief Return index of bounding area if player is inside it
@@ -1832,112 +1832,112 @@ int KQ_get_autoparty(lua_State* L)
  */
 int KQ_get_bounds(lua_State* L)
 {
-	int a;
-	uint16_t ent_x, ent_y;
-	uint32_t found_index;
+    int a;
+    uint16_t ent_x, ent_y;
+    uint32_t found_index;
 
-	if (lua_isnumber(L, 1))
-	{
-		a = KqFork::real_entity_num(L, 1);
+    if (lua_isnumber(L, 1))
+    {
+        a = KqFork::real_entity_num(L, 1);
 
-		ent_x = g_ent[a].tilex;
-		ent_y = g_ent[a].tiley;
-		found_index = g_map.bounds.IsBound(ent_x, ent_y, ent_x, ent_y);
-		if (found_index > 0)
-		{
-			lua_pushnumber(L, found_index - 1);
-		}
-		else
-		{
-			lua_pushnumber(L, -1);
-		}
-	}
-	else
-	{
-		lua_pushnil(L);
-	}
+        ent_x = g_ent[a].tilex;
+        ent_y = g_ent[a].tiley;
+        found_index = g_map.bounds.IsBound(ent_x, ent_y, ent_x, ent_y);
+        if (found_index > 0)
+        {
+            lua_pushnumber(L, found_index - 1);
+        }
+        else
+        {
+            lua_pushnumber(L, -1);
+        }
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
 
-	return 1;
+    return 1;
 }
 
 int KQ_get_ent_active(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, g_ent[a].active ? 1 : 0);
-	return 1;
+    lua_pushnumber(L, g_ent[a].active ? 1 : 0);
+    return 1;
 }
 
 int KQ_get_ent_atype(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, g_ent[a].atype);
-	return 1;
+    lua_pushnumber(L, g_ent[a].atype);
+    return 1;
 }
 
 int KQ_get_ent_chrx(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, g_ent[a].identity());
-	return 1;
+    lua_pushnumber(L, g_ent[a].identity());
+    return 1;
 }
 
 int KQ_get_ent_facehero(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, g_ent[a].facehero);
-	return 1;
+    lua_pushnumber(L, g_ent[a].facehero);
+    return 1;
 }
 
 int KQ_get_ent_facing(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, g_ent[a].facing);
-	return 1;
+    lua_pushnumber(L, g_ent[a].facing);
+    return 1;
 }
 
 int KQ_get_ent_id(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, g_ent[a].eid);
-	return 1;
+    lua_pushnumber(L, g_ent[a].eid);
+    return 1;
 }
 
 int KQ_get_ent_movemode(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, g_ent[a].movemode);
-	return 1;
+    lua_pushnumber(L, g_ent[a].movemode);
+    return 1;
 }
 
 int KQ_get_ent_obsmode(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, g_ent[a].obsmode);
-	return 1;
+    lua_pushnumber(L, g_ent[a].obsmode);
+    return 1;
 }
 
 int KQ_get_ent_snapback(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, g_ent[a].snapback);
-	return 1;
+    lua_pushnumber(L, g_ent[a].snapback);
+    return 1;
 }
 
 int KQ_get_ent_speed(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, g_ent[a].speed);
-	return 1;
+    lua_pushnumber(L, g_ent[a].speed);
+    return 1;
 }
 
 /*! \brief Return both x/y coords together
@@ -1949,41 +1949,41 @@ int KQ_get_ent_speed(lua_State* L)
  */
 int KQ_get_ent_tile(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, g_ent[a].tilex);
-	lua_pushnumber(L, g_ent[a].tiley);
-	return 2;
+    lua_pushnumber(L, g_ent[a].tilex);
+    lua_pushnumber(L, g_ent[a].tiley);
+    return 2;
 }
 
 int KQ_get_ent_tilex(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, g_ent[a].tilex);
-	return 1;
+    lua_pushnumber(L, g_ent[a].tilex);
+    return 1;
 }
 
 int KQ_get_ent_tiley(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, g_ent[a].tiley);
-	return 1;
+    lua_pushnumber(L, g_ent[a].tiley);
+    return 1;
 }
 
 int KQ_get_ent_transl(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, g_ent[a].isSemiTransparent ? 1 : 0);
-	return 1;
+    lua_pushnumber(L, g_ent[a].isSemiTransparent ? 1 : 0);
+    return 1;
 }
 
 int KQ_get_gp(lua_State* L)
 {
-	lua_pushnumber(L, gp);
-	return 1;
+    lua_pushnumber(L, gp);
+    return 1;
 }
 
 /*! \brief Get the x-coord of marker
@@ -1993,17 +1993,17 @@ int KQ_get_gp(lua_State* L)
  */
 int KQ_get_marker_tilex(lua_State* L)
 {
-	const char* marker_name = lua_tostring(L, 1);
-	std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(marker_name, true);
-	if (m != nullptr)
-	{
-		lua_pushnumber(L, m->x);
-	}
-	else
-	{
-		lua_pushnil(L);
-	}
-	return 1;
+    const char* marker_name = lua_tostring(L, 1);
+    std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(marker_name, true);
+    if (m != nullptr)
+    {
+        lua_pushnumber(L, m->x);
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
+    return 1;
 }
 
 /*! \brief Get the y-coord of marker
@@ -2013,29 +2013,29 @@ int KQ_get_marker_tilex(lua_State* L)
  */
 int KQ_get_marker_tiley(lua_State* L)
 {
-	const char* marker_name = lua_tostring(L, 1);
-	std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(marker_name, true);
-	if (m != nullptr)
-	{
-		lua_pushnumber(L, m->y);
-	}
-	else
-	{
-		lua_pushnil(L);
-	}
-	return 1;
+    const char* marker_name = lua_tostring(L, 1);
+    std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(marker_name, true);
+    if (m != nullptr)
+    {
+        lua_pushnumber(L, m->y);
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
+    return 1;
 }
 
 int KQ_get_noe(lua_State* L)
 {
-	lua_pushnumber(L, kEntity.getNumberOfMapEntities());
-	return 1;
+    lua_pushnumber(L, kEntity.getNumberOfMapEntities());
+    return 1;
 }
 
 int KQ_get_numchrs(lua_State* L)
 {
-	lua_pushnumber(L, numchrs);
-	return 1;
+    lua_pushnumber(L, numchrs);
+    return 1;
 }
 
 /*! \brief Get person's equipment (unused)
@@ -2048,14 +2048,14 @@ int KQ_get_numchrs(lua_State* L)
  */
 int KQ_get_party_eqp(lua_State* L)
 {
-	uint32_t a = (uint32_t)lua_tonumber(L, 1);
-	uint32_t b = (uint32_t)lua_tonumber(L, 2);
+    uint32_t a = (uint32_t)lua_tonumber(L, 1);
+    uint32_t b = (uint32_t)lua_tonumber(L, 2);
 
-	if (a < MAXCHRS && b < NUM_EQUIPMENT)
-	{
-		lua_pushnumber(L, party[a].eqp[b]);
-	}
-	return 1;
+    if (a < MAXCHRS && b < NUM_EQUIPMENT)
+    {
+        lua_pushnumber(L, party[a].eqp[b]);
+    }
+    return 1;
 }
 
 /*! \brief Get person's HP
@@ -2067,13 +2067,13 @@ int KQ_get_party_eqp(lua_State* L)
  */
 int KQ_get_party_hp(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		lua_pushnumber(L, party[a].hp);
-	}
-	return 1;
+    if (a >= 0 && a <= 7)
+    {
+        lua_pushnumber(L, party[a].hp);
+    }
+    return 1;
 }
 
 /*! \brief Get person's level
@@ -2085,13 +2085,13 @@ int KQ_get_party_hp(lua_State* L)
  */
 int KQ_get_party_lvl(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		lua_pushnumber(L, party[a].lvl);
-	}
-	return 1;
+    if (a >= 0 && a <= 7)
+    {
+        lua_pushnumber(L, party[a].lvl);
+    }
+    return 1;
 }
 
 /*! \brief Get person's MHP
@@ -2103,13 +2103,13 @@ int KQ_get_party_lvl(lua_State* L)
  */
 int KQ_get_party_mhp(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		lua_pushnumber(L, party[a].mhp);
-	}
-	return 1;
+    if (a >= 0 && a <= 7)
+    {
+        lua_pushnumber(L, party[a].mhp);
+    }
+    return 1;
 }
 
 /*! \brief Get person's MMP
@@ -2121,13 +2121,13 @@ int KQ_get_party_mhp(lua_State* L)
  */
 int KQ_get_party_mmp(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		lua_pushnumber(L, party[a].mmp);
-	}
-	return 1;
+    if (a >= 0 && a <= 7)
+    {
+        lua_pushnumber(L, party[a].mmp);
+    }
+    return 1;
 }
 
 /*! \brief Get person's MP
@@ -2139,13 +2139,13 @@ int KQ_get_party_mmp(lua_State* L)
  */
 int KQ_get_party_mp(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		lua_pushnumber(L, party[a].mp);
-	}
-	return 1;
+    if (a >= 0 && a <= 7)
+    {
+        lua_pushnumber(L, party[a].mp);
+    }
+    return 1;
 }
 
 /*! \brief Get person's mrp
@@ -2157,13 +2157,13 @@ int KQ_get_party_mp(lua_State* L)
  */
 int KQ_get_party_mrp(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		lua_pushnumber(L, party[a].mrp);
-	}
-	return 1;
+    if (a >= 0 && a <= 7)
+    {
+        lua_pushnumber(L, party[a].mrp);
+    }
+    return 1;
 }
 
 /*! \brief Get person's name
@@ -2175,13 +2175,13 @@ int KQ_get_party_mrp(lua_State* L)
  */
 int KQ_get_party_name(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		lua_pushstring(L, party[a].playerName.c_str());
-	}
-	return 1;
+    if (a >= 0 && a <= 7)
+    {
+        lua_pushstring(L, party[a].playerName.c_str());
+    }
+    return 1;
 }
 
 /*! \brief Get person's needed experience
@@ -2193,13 +2193,13 @@ int KQ_get_party_name(lua_State* L)
  */
 int KQ_get_party_next(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		lua_pushnumber(L, party[a].next);
-	}
-	return 1;
+    if (a >= 0 && a <= 7)
+    {
+        lua_pushnumber(L, party[a].next);
+    }
+    return 1;
 }
 
 /*! \brief Get person's res
@@ -2212,14 +2212,14 @@ int KQ_get_party_next(lua_State* L)
  */
 int KQ_get_party_res(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
-	auto b = lua_tointeger(L, 2);
+    auto a = lua_tointeger(L, 1);
+    auto b = lua_tointeger(L, 2);
 
-	if (a >= 0 && a <= 7 && b >= 0 && b <= 15)
-	{
-		lua_pushnumber(L, party[a].res[b]);
-	}
-	return 1;
+    if (a >= 0 && a <= 7 && b >= 0 && b <= 15)
+    {
+        lua_pushnumber(L, party[a].res[b]);
+    }
+    return 1;
 }
 
 /*! \brief Get person's stats
@@ -2232,14 +2232,14 @@ int KQ_get_party_res(lua_State* L)
  */
 int KQ_get_party_stats(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
-	auto b = lua_tointeger(L, 2);
+    auto a = lua_tointeger(L, 1);
+    auto b = lua_tointeger(L, 2);
 
-	if (a >= 0 && a <= 7 && b >= 0 && b <= 12)
-	{
-		lua_pushnumber(L, party[a].stats[b]);
-	}
-	return 1;
+    if (a >= 0 && a <= 7 && b >= 0 && b <= 12)
+    {
+        lua_pushnumber(L, party[a].stats[b]);
+    }
+    return 1;
 }
 
 /*! \brief Get person's experience
@@ -2251,13 +2251,13 @@ int KQ_get_party_stats(lua_State* L)
  */
 int KQ_get_party_xp(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		lua_pushnumber(L, party[a].xp);
-	}
-	return 1;
+    if (a >= 0 && a <= 7)
+    {
+        lua_pushnumber(L, party[a].xp);
+    }
+    return 1;
 }
 
 /*! \brief Get player ID
@@ -2269,10 +2269,10 @@ int KQ_get_party_xp(lua_State* L)
  */
 int KQ_get_pidx(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	lua_pushnumber(L, pidx[a]);
-	return 1;
+    lua_pushnumber(L, pidx[a]);
+    return 1;
 }
 
 /*! \brief Get player progress
@@ -2284,54 +2284,54 @@ int KQ_get_pidx(lua_State* L)
  */
 int KQ_get_progress(lua_State* L)
 {
-	// For error messages
-	const char* function_name = "get_progress: ";
+    // For error messages
+    const char* function_name = "get_progress: ";
 
-	if (lua_isnumber(L, 1))
-	{
-		uint32_t progress_index = (uint32_t)lua_tonumber(L, 1);
+    if (lua_isnumber(L, 1))
+    {
+        uint32_t progress_index = (uint32_t)lua_tonumber(L, 1);
 
-		if (progress_index < SIZE_PROGRESS)
-		{
-			lua_pushnumber(L, progress[progress_index]);
-			return 1;
-		}
-		else
-		{
-			return luaL_error(L, "%sExpected integer from 0 to %d. Got %d.", function_name, SIZE_PROGRESS - 1, (signed int)progress_index);
-		}
-	}
+        if (progress_index < SIZE_PROGRESS)
+        {
+            lua_pushnumber(L, progress[progress_index]);
+            return 1;
+        }
+        else
+        {
+            return luaL_error(L, "%sExpected integer from 0 to %d. Got %d.", function_name, SIZE_PROGRESS - 1, (signed int)progress_index);
+        }
+    }
 
-	return luaL_error(L, "%sArgument must be an integer.", function_name);
+    return luaL_error(L, "%sArgument must be an integer.", function_name);
 }
 
 int KQ_get_treasure(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a < SIZE_TREASURE)
-	{
-		lua_pushnumber(L, treasure[a]);
-	}
-	return 1;
+    if (a >= 0 && a < SIZE_TREASURE)
+    {
+        lua_pushnumber(L, treasure[a]);
+    }
+    return 1;
 }
 
 int KQ_get_skip_intro(lua_State* L)
 {
-	lua_pushnumber(L, skip_intro);
-	return 1;
+    lua_pushnumber(L, skip_intro);
+    return 1;
 }
 
 int KQ_get_vx(lua_State* L)
 {
-	lua_pushnumber(L, camera_viewport_x);
-	return 1;
+    lua_pushnumber(L, camera_viewport_x);
+    return 1;
 }
 
 int KQ_get_vy(lua_State* L)
 {
-	lua_pushnumber(L, camera_viewport_y);
-	return 1;
+    lua_pushnumber(L, camera_viewport_y);
+    return 1;
 }
 
 /*! \brief Get translation for a message
@@ -2343,36 +2343,36 @@ int KQ_get_vy(lua_State* L)
  */
 int KQ_gettext(lua_State* L)
 {
-	const char* t = lua_tostring(L, 1);
+    const char* t = lua_tostring(L, 1);
 
-	lua_pushstring(L, gettext(t));
-	return 1;
+    lua_pushstring(L, gettext(t));
+    return 1;
 }
 
 int KQ_give_item(lua_State* L)
 {
-	check_inventory((int)lua_tonumber(L, 1), (int)lua_tonumber(L, 2));
-	return 0;
+    check_inventory((int)lua_tonumber(L, 1), (int)lua_tonumber(L, 2));
+    return 0;
 }
 
 int KQ_give_xp(lua_State* L)
 {
-	give_xp((int)lua_tonumber(L, 1), (int)lua_tonumber(L, 2), (int)lua_tonumber(L, 3));
-	return 0;
+    give_xp((int)lua_tonumber(L, 1), (int)lua_tonumber(L, 2), (int)lua_tonumber(L, 3));
+    return 0;
 }
 
 int KQ_in_forest(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	lua_pushnumber(L, kqDraw.is_forestsquare(g_ent[a].tilex, g_ent[a].tiley));
-	return 1;
+    lua_pushnumber(L, kqDraw.is_forestsquare(g_ent[a].tilex, g_ent[a].tiley));
+    return 1;
 }
 
 int KQ_inn(lua_State* L)
 {
-	inn(lua_tostring(L, 1), (int)lua_tonumber(L, 2), (int)lua_tonumber(L, 3));
-	return 0;
+    inn(lua_tostring(L, 1), (int)lua_tonumber(L, 2), (int)lua_tonumber(L, 3));
+    return 0;
 }
 
 /*! \brief Is the argument a table or not?
@@ -2383,42 +2383,42 @@ int KQ_inn(lua_State* L)
  */
 int KQ_istable(lua_State* L)
 {
-	if (lua_istable(L, 1))
-	{
-		lua_pushnumber(L, 1);
-	}
-	else
-	{
-		lua_pushnil(L);
-	}
-	return 1;
+    if (lua_istable(L, 1))
+    {
+        lua_pushnumber(L, 1);
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
+    return 1;
 }
 
 int KQ_krnd(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a > 0)
-	{
-		lua_pushnumber(L, kqrandom->random_range_exclusive(0, a));
-	}
-	else
-	{
-		lua_pushnumber(L, 0);
-	}
-	return 1;
+    if (a > 0)
+    {
+        lua_pushnumber(L, kqrandom->random_range_exclusive(0, a));
+    }
+    else
+    {
+        lua_pushnumber(L, 0);
+    }
+    return 1;
 }
 
 int KQ_light_mbox(lua_State* L)
 {
-	kqDraw.menubox(double_buffer, (int)lua_tonumber(L, 1) + xofs, (int)lua_tonumber(L, 2) + yofs, (int)lua_tonumber(L, 3), (int)lua_tonumber(L, 4), eMenuBoxColor::DARKRED);
-	return 0;
+    kqDraw.menubox(double_buffer, (int)lua_tonumber(L, 1) + xofs, (int)lua_tonumber(L, 2) + yofs, (int)lua_tonumber(L, 3), (int)lua_tonumber(L, 4), eMenuBoxColor::DARKRED);
+    return 0;
 }
 
 int KQ_log(lua_State* L)
 {
-	Game.klog(lua_tostring(L, 1));
-	return 0;
+    Game.klog(lua_tostring(L, 1));
+    return 0;
 }
 
 /*! \brief Get marker coordinates
@@ -2432,25 +2432,25 @@ int KQ_log(lua_State* L)
  */
 int KQ_marker(lua_State* L)
 {
-	std::shared_ptr<KMarker> s = KqFork::KQ_find_marker(lua_tostring(L, 1), false);
+    std::shared_ptr<KMarker> s = KqFork::KQ_find_marker(lua_tostring(L, 1), false);
 
-	if (s != nullptr)
-	{
-		lua_pushnumber(L, s->x + lua_tonumber(L, 2));
-		lua_pushnumber(L, s->y + lua_tonumber(L, 3));
-		return 2;
-	}
-	else
-	{
-		lua_pushnil(L);
-		return 1;
-	}
+    if (s != nullptr)
+    {
+        lua_pushnumber(L, s->x + lua_tonumber(L, 2));
+        lua_pushnumber(L, s->y + lua_tonumber(L, 3));
+        return 2;
+    }
+    else
+    {
+        lua_pushnil(L);
+        return 1;
+    }
 }
 
 int KQ_mbox(lua_State* L)
 {
-	kqDraw.menubox(double_buffer, (int)lua_tonumber(L, 1) + xofs, (int)lua_tonumber(L, 2) + yofs, (int)lua_tonumber(L, 3), (int)lua_tonumber(L, 4), eMenuBoxColor::SEMI_TRANSPARENT_BLUE);
-	return 0;
+    kqDraw.menubox(double_buffer, (int)lua_tonumber(L, 1) + xofs, (int)lua_tonumber(L, 2) + yofs, (int)lua_tonumber(L, 3), (int)lua_tonumber(L, 4), eMenuBoxColor::SEMI_TRANSPARENT_BLUE);
+    return 0;
 }
 
 /*! \brief Move the camera
@@ -2461,58 +2461,58 @@ int KQ_mbox(lua_State* L)
  */
 int KQ_move_camera(lua_State* L)
 {
-	int xinc = 0, yinc = 0, xtot = 0, ytot = 0;
-	auto mcx = lua_tointeger(L, 1);
-	auto mcy = lua_tointeger(L, 2);
-	auto dtime = lua_tointeger(L, 3);
+    int xinc = 0, yinc = 0, xtot = 0, ytot = 0;
+    auto mcx = lua_tointeger(L, 1);
+    auto mcy = lua_tointeger(L, 2);
+    auto dtime = lua_tointeger(L, 3);
 
-	if (mcx > camera_viewport_x)
-	{
-		xinc = 1;
-		xtot = mcx - camera_viewport_x;
-	}
-	if (mcx < camera_viewport_x)
-	{
-		xinc = -1;
-		xtot = camera_viewport_x - mcx;
-	}
-	if (mcy > camera_viewport_y)
-	{
-		yinc = 1;
-		ytot = mcy - camera_viewport_y;
-	}
-	if (mcy < camera_viewport_y)
-	{
-		yinc = -1;
-		ytot = camera_viewport_y - mcy;
-	}
-	autoparty = 1;
-	timer_count = 0;
-	while (ytot > 0 || xtot > 0)
-	{
-		if (timer_count >= dtime)
-		{
-			timer_count -= dtime;
-			if (xtot > 0)
-			{
-				camera_viewport_x += xinc;
-				xtot--;
-			}
-			if (ytot > 0)
-			{
-				camera_viewport_y += yinc;
-				ytot--;
-			}
-		}
-		Game.do_check_animation();
-		kqDraw.drawmap();
-		kqDraw.blit2screen(xofs, yofs);
-		Music.poll_music();
-	}
+    if (mcx > camera_viewport_x)
+    {
+        xinc = 1;
+        xtot = mcx - camera_viewport_x;
+    }
+    if (mcx < camera_viewport_x)
+    {
+        xinc = -1;
+        xtot = camera_viewport_x - mcx;
+    }
+    if (mcy > camera_viewport_y)
+    {
+        yinc = 1;
+        ytot = mcy - camera_viewport_y;
+    }
+    if (mcy < camera_viewport_y)
+    {
+        yinc = -1;
+        ytot = camera_viewport_y - mcy;
+    }
+    autoparty = 1;
+    timer_count = 0;
+    while (ytot > 0 || xtot > 0)
+    {
+        if (timer_count >= dtime)
+        {
+            timer_count -= dtime;
+            if (xtot > 0)
+            {
+                camera_viewport_x += xinc;
+                xtot--;
+            }
+            if (ytot > 0)
+            {
+                camera_viewport_y += yinc;
+                ytot--;
+            }
+        }
+        Game.do_check_animation();
+        kqDraw.drawmap();
+        kqDraw.blit2screen(xofs, yofs);
+        Music.poll_music();
+    }
 
-	timer_count = 0;
-	autoparty = 0;
-	return 0;
+    timer_count = 0;
+    autoparty = 0;
+    return 0;
 }
 
 /*! \brief Automatically find a path for the entity to take
@@ -2531,38 +2531,38 @@ int KQ_move_camera(lua_State* L)
  */
 int KQ_move_entity(lua_State* L)
 {
-	int entity_id = KqFork::real_entity_num(L, 1);
-	int kill = 0, target_x = 0, target_y = 0;
+    int entity_id = KqFork::real_entity_num(L, 1);
+    int kill = 0, target_x = 0, target_y = 0;
 
-	std::string buffer;
+    std::string buffer;
 
-	if (lua_type(L, 2) == LUA_TSTRING)
-	{
-		std::shared_ptr<KMarker> pMarker = KqFork::KQ_find_marker(lua_tostring(L, 2), true);
-		if (pMarker != nullptr)
-		{
-			target_x = pMarker->x;
-			target_y = pMarker->y;
-			kill = (int)lua_tonumber(L, 3);
-		}
-	}
-	else
-	{
-		target_x = (int)lua_tonumber(L, 2);
-		target_y = (int)lua_tonumber(L, 3);
-		kill = (int)lua_tonumber(L, 4);
-	}
+    if (lua_type(L, 2) == LUA_TSTRING)
+    {
+        std::shared_ptr<KMarker> pMarker = KqFork::KQ_find_marker(lua_tostring(L, 2), true);
+        if (pMarker != nullptr)
+        {
+            target_x = pMarker->x;
+            target_y = pMarker->y;
+            kill = (int)lua_tonumber(L, 3);
+        }
+    }
+    else
+    {
+        target_x = (int)lua_tonumber(L, 2);
+        target_y = (int)lua_tonumber(L, 3);
+        kill = (int)lua_tonumber(L, 4);
+    }
 
-	KMovement::eStatus status = kMovement.find_path(buffer, entity_id, g_ent[entity_id].tilex, g_ent[entity_id].tiley, target_x, target_y);
+    KMovement::eStatus status = kMovement.find_path(buffer, entity_id, g_ent[entity_id].tilex, g_ent[entity_id].tiley, target_x, target_y);
 
-	/*  FIXME: The fourth parameter is a ugly hack for now.  */
-	if (kill)
-	{
-		buffer.append("K");
-	}
+    /*  FIXME: The fourth parameter is a ugly hack for now.  */
+    if (kill)
+    {
+        buffer.append("K");
+    }
 
-	kEntity.set_script(entity_id, buffer);
-	return 0;
+    kEntity.set_script(entity_id, buffer);
+    return 0;
 }
 
 /*! \brief Show message on the screen
@@ -2581,106 +2581,106 @@ int KQ_move_entity(lua_State* L)
  */
 int KQ_msg(lua_State* L)
 {
-	int icn = (lua_isnumber(L, 2) ? (int)lua_tonumber(L, 2) : 255);
+    int icn = (lua_isnumber(L, 2) ? (int)lua_tonumber(L, 2) : 255);
 
-	kqDraw.message(lua_tostring(L, 1), icn, (int)lua_tonumber(L, 3), xofs, yofs);
-	return 0;
+    kqDraw.message(lua_tostring(L, 1), icn, (int)lua_tonumber(L, 3), xofs, yofs);
+    return 0;
 }
 
 int KQ_orient_heroes(lua_State* L)
 {
-	(void)L;
-	/*
-	if (numchrs == 2)
-	{
-		lastm[1] = MOVE_NOT;
-		if (g_ent[0].tilex == g_ent[1].tilex && g_ent[0].tiley == g_ent[1].tiley)
-		{
-			lastm[0] = MOVE_NOT;
-			return 0;
-		}
-		if (g_ent[0].tilex == g_ent[1].tilex)
-		{
-			if (g_ent[0].tiley < g_ent[1].tiley)
-			{
-				lastm[0] = MOVE_UP;
-			}
-			else
-			{
-				lastm[0] = MOVE_DOWN;
-			}
-			return 0;
-		}
-		if (g_ent[0].tiley == g_ent[1].tiley)
-		{
-			if (g_ent[0].tilex < g_ent[1].tilex)
-			{
-				lastm[0] = MOVE_LEFT;
-			}
-			else
-			{
-				lastm[0] = MOVE_RIGHT;
-			}
-			return 0;
-		}
-	}
-	*/
-	return 0;
+    (void)L;
+    /*
+    if (numchrs == 2)
+    {
+        lastm[1] = MOVE_NOT;
+        if (g_ent[0].tilex == g_ent[1].tilex && g_ent[0].tiley == g_ent[1].tiley)
+        {
+            lastm[0] = MOVE_NOT;
+            return 0;
+        }
+        if (g_ent[0].tilex == g_ent[1].tilex)
+        {
+            if (g_ent[0].tiley < g_ent[1].tiley)
+            {
+                lastm[0] = MOVE_UP;
+            }
+            else
+            {
+                lastm[0] = MOVE_DOWN;
+            }
+            return 0;
+        }
+        if (g_ent[0].tiley == g_ent[1].tiley)
+        {
+            if (g_ent[0].tilex < g_ent[1].tilex)
+            {
+                lastm[0] = MOVE_LEFT;
+            }
+            else
+            {
+                lastm[0] = MOVE_RIGHT;
+            }
+            return 0;
+        }
+    }
+    */
+    return 0;
 }
 
 int KQ_pause_song(lua_State* L)
 {
-	(void)L;
-	Music.pause_music();
-	return 0;
+    (void)L;
+    Music.pause_music();
+    return 0;
 }
 
 int KQ_place_ent(lua_State* L)
 {
-	t_entity entity_index = KqFork::real_entity_num(L, 1);
-	int x = 0, y = 0;
+    t_entity entity_index = KqFork::real_entity_num(L, 1);
+    int x = 0, y = 0;
 
-	if (lua_type(L, 2) == LUA_TSTRING)
-	{
-		/* It's in "marker" form */
-		std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 2), true);
-		if (m != nullptr)
-		{
-			x = m->x;
-			y = m->y;
-		}
-	}
-	else
-	{
-		/* It's in the (x, y) form */
-		x = (int)lua_tonumber(L, 2);
-		y = (int)lua_tonumber(L, 3);
-	}
+    if (lua_type(L, 2) == LUA_TSTRING)
+    {
+        /* It's in "marker" form */
+        std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 2), true);
+        if (m != nullptr)
+        {
+            x = m->x;
+            y = m->y;
+        }
+    }
+    else
+    {
+        /* It's in the (x, y) form */
+        x = (int)lua_tonumber(L, 2);
+        y = (int)lua_tonumber(L, 3);
+    }
 
-	kEntity.place_ent(entity_index, x, y);
-	return 0;
+    kEntity.place_ent(entity_index, x, y);
+    return 0;
 }
 
 int KQ_play_map_song(lua_State* L)
 {
-	(void)L;
-	Music.play_music(g_map.song_file, 0);
-	return 0;
+    (void)L;
+    Music.play_music(g_map.song_file, 0);
+    return 0;
 }
 
 int KQ_play_song(lua_State* L)
 {
-	Music.play_music(lua_tostring(L, 1), 0);
-	return 0;
+    Music.play_music(lua_tostring(L, 1), 0);
+    return 0;
 }
 
 int KQ_pnum(lua_State* L)
 {
-	int a = lua_tointeger(L, 3);
+    int a = lua_tointeger(L, 3);
 
-	sprintf(strbuf, "%d", a);
-	kqDraw.print_font(double_buffer, lua_tointeger(L, 1) + xofs, lua_tointeger(L, 2) + yofs, strbuf, (eFontColor)lua_tointeger(L, 4));
-	return 0;
+    sprintf(strbuf, "%d", a);
+    kqDraw.print_font(double_buffer, lua_tointeger(L, 1) + xofs, lua_tointeger(L, 2) + yofs, strbuf, (eFontColor)lua_tointeger(L, 4));
+    return 0;
 }
 
 /*! \brief Implement Lua prompt dialog
@@ -2697,59 +2697,59 @@ int KQ_pnum(lua_State* L)
  */
 int KQ_prompt(lua_State* L)
 {
-	const char* txt[4];
-	char pbuf[256];
-	int b;
-	uint32_t nonblank = 0;
-	uint32_t nopts = 0;
+    const char* txt[4];
+    char pbuf[256];
+    int b;
+    uint32_t nonblank = 0;
+    uint32_t nopts = 0;
 
-	/* The B_TEXT or B_THOUGHT is ignored */
-	b = KqFork::real_entity_num(L, 1);
-	nopts = static_cast<uint32_t>(lua_tonumber(L, 2));
+    /* The B_TEXT or B_THOUGHT is ignored */
+    b = KqFork::real_entity_num(L, 1);
+    nopts = static_cast<uint32_t>(lua_tonumber(L, 2));
 
-	if (nopts > 4)
-	{
-		nopts = 4;
-	}
+    if (nopts > 4)
+    {
+        nopts = 4;
+    }
 
-	pbuf[0] = '\0';
-	nonblank = 0;
+    pbuf[0] = '\0';
+    nonblank = 0;
 
-	for (size_t a = 0; a < 4; a++)
-	{
-		txt[a] = lua_tostring(L, a + 4);
-		if (txt[a] && (strlen(txt[a]) > 0))
-		{
-			nonblank = a + 1;
-		}
-	}
+    for (size_t a = 0; a < 4; a++)
+    {
+        txt[a] = lua_tostring(L, a + 4);
+        if (txt[a] && (strlen(txt[a]) > 0))
+        {
+            nonblank = a + 1;
+        }
+    }
 
-	if (nonblank > nopts)
-	{
-		/* bug: long strings will crash it! */
-		for (size_t a = 0; a < nonblank - nopts; ++a)
-		{
-			if (a != 0)
-			{
-				strcat(pbuf, "\n");
-			}
-			strcat(pbuf, txt[a]);
-		}
-		lua_pushnumber(L, kqDraw.prompt_ex(b, pbuf, &txt[nonblank - nopts], nopts));
-	}
-	else
-	{
-		/* User asked for all the lines to be options */
-		lua_pushnumber(L, kqDraw.prompt_ex(b, _("Choose one"), txt, nopts));
-	}
+    if (nonblank > nopts)
+    {
+        /* bug: long strings will crash it! */
+        for (size_t a = 0; a < nonblank - nopts; ++a)
+        {
+            if (a != 0)
+            {
+                strcat(pbuf, "\n");
+            }
+            strcat(pbuf, txt[a]);
+        }
+        lua_pushnumber(L, kqDraw.prompt_ex(b, pbuf, &txt[nonblank - nopts], nopts));
+    }
+    else
+    {
+        /* User asked for all the lines to be options */
+        lua_pushnumber(L, kqDraw.prompt_ex(b, _("Choose one"), txt, nopts));
+    }
 
-	return 1;
+    return 1;
 }
 
 int KQ_ptext(lua_State* L)
 {
-	kqDraw.print_font(double_buffer, (int)lua_tonumber(L, 1) + xofs, (int)lua_tonumber(L, 2) + yofs, lua_tostring(L, 3), (eFontColor)lua_tointeger(L, 4));
-	return 0;
+    kqDraw.print_font(double_buffer, (int)lua_tonumber(L, 1) + xofs, (int)lua_tonumber(L, 2) + yofs, lua_tostring(L, 3), (eFontColor)lua_tointeger(L, 4));
+    return 0;
 }
 
 /* This allows the LUA script to accept keyboard input, useful for things such
@@ -2763,104 +2763,104 @@ int KQ_ptext(lua_State* L)
  */
 int KQ_read_controls(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
-	auto b = lua_tointeger(L, 2);
-	auto c = lua_tointeger(L, 3);
-	auto d = lua_tointeger(L, 4);
-	auto e = lua_tointeger(L, 5);
-	auto f = lua_tointeger(L, 6);
-	auto g = lua_tointeger(L, 7);
-	auto h = lua_tointeger(L, 8);
-	int z;
+    auto a = lua_tointeger(L, 1);
+    auto b = lua_tointeger(L, 2);
+    auto c = lua_tointeger(L, 3);
+    auto d = lua_tointeger(L, 4);
+    auto e = lua_tointeger(L, 5);
+    auto f = lua_tointeger(L, 6);
+    auto g = lua_tointeger(L, 7);
+    auto h = lua_tointeger(L, 8);
+    int z;
 
-	for (z = 0; z < 8; z++)
-	{
-		g_keys[z] = 0;
-	}
+    for (z = 0; z < 8; z++)
+    {
+        g_keys[z] = 0;
+    }
 
-	PlayerInput.readcontrols();
-	if (PlayerInput.up && a == 1)
-	{
-		Game.unpress();
-		g_keys[0] = 1;
-	}
-	if (PlayerInput.down && b == 1)
-	{
-		Game.unpress();
-		g_keys[1] = 1;
-	}
-	if (PlayerInput.left && c == 1)
-	{
-		Game.unpress();
-		g_keys[2] = 1;
-	}
-	if (PlayerInput.right && d == 1)
-	{
-		Game.unpress();
-		g_keys[3] = 1;
-	}
-	if (PlayerInput.balt && e == 1)
-	{
-		Game.unpress();
-		g_keys[4] = 1;
-	}
-	if (PlayerInput.bctrl && f == 1)
-	{
-		Game.unpress();
-		g_keys[5] = 1;
-	}
-	if (PlayerInput.benter && g == 1)
-	{
-		Game.unpress();
-		g_keys[6] = 1;
-	}
-	if (PlayerInput.besc && h == 1)
-	{
-		Game.unpress();
-		g_keys[7] = 1;
-	}
-	return 0;
+    PlayerInput.readcontrols();
+    if (PlayerInput.up && a == 1)
+    {
+        Game.unpress();
+        g_keys[0] = 1;
+    }
+    if (PlayerInput.down && b == 1)
+    {
+        Game.unpress();
+        g_keys[1] = 1;
+    }
+    if (PlayerInput.left && c == 1)
+    {
+        Game.unpress();
+        g_keys[2] = 1;
+    }
+    if (PlayerInput.right && d == 1)
+    {
+        Game.unpress();
+        g_keys[3] = 1;
+    }
+    if (PlayerInput.balt && e == 1)
+    {
+        Game.unpress();
+        g_keys[4] = 1;
+    }
+    if (PlayerInput.bctrl && f == 1)
+    {
+        Game.unpress();
+        g_keys[5] = 1;
+    }
+    if (PlayerInput.benter && g == 1)
+    {
+        Game.unpress();
+        g_keys[6] = 1;
+    }
+    if (PlayerInput.besc && h == 1)
+    {
+        Game.unpress();
+        g_keys[7] = 1;
+    }
+    return 0;
 }
 
 int KQ_remove_chr(lua_State* L)
 {
-	size_t party_index, party_member_index;
+    size_t party_index, party_member_index;
 
-	if (numchrs > 0)
-	{
-		party_index = Game.in_party((ePIDX) static_cast<int>(lua_tonumber(L, 1)));
-		if (party_index < MAXCHRS)
-		{
-			pidx[party_index] = PIDX_UNDEFINED;
-			numchrs--;
-			if (party_index != MAX_PARTY_SIZE - 1)
-			{
-				for (party_member_index = 0; party_member_index < MAX_PARTY_SIZE - 1; party_member_index++)
-				{
-					if (pidx[party_member_index] == PIDX_UNDEFINED)
-					{
-						pidx[party_member_index] = pidx[party_member_index + 1];
-						pidx[party_member_index + 1] = PIDX_UNDEFINED;
-					}
-				}
-			}
-		}
-	}
-	return 0;
+    if (numchrs > 0)
+    {
+        party_index = Game.in_party((ePIDX) static_cast<int>(lua_tonumber(L, 1)));
+        if (party_index < MAXCHRS)
+        {
+            pidx[party_index] = PIDX_UNDEFINED;
+            numchrs--;
+            if (party_index != MAX_PARTY_SIZE - 1)
+            {
+                for (party_member_index = 0; party_member_index < MAX_PARTY_SIZE - 1; party_member_index++)
+                {
+                    if (pidx[party_member_index] == PIDX_UNDEFINED)
+                    {
+                        pidx[party_member_index] = pidx[party_member_index + 1];
+                        pidx[party_member_index + 1] = PIDX_UNDEFINED;
+                    }
+                }
+            }
+        }
+    }
+    return 0;
 }
 
 int KQ_rest(lua_State* L)
 {
-	kq_wait((int)lua_tonumber(L, 1));
-	return 0;
+    kq_wait((int)lua_tonumber(L, 1));
+    return 0;
 }
 
 /*! \brief Update the screen */
 int KQ_screen_dump(lua_State* L)
 {
-	(void)L;
-	kqDraw.blit2screen(xofs, yofs);
-	return 0;
+    (void)L;
+    kqDraw.blit2screen(xofs, yofs);
+    return 0;
 }
 
 /*! \brief Select your team
@@ -2874,85 +2874,85 @@ int KQ_screen_dump(lua_State* L)
  */
 int KQ_select_team(lua_State* L)
 {
-	static ePIDX team[MAXCHRS];
-	size_t i, t;
+    static ePIDX team[MAXCHRS];
+    size_t i, t;
 
-	for (i = 0; i < MAXCHRS; ++i)
-	{
-		lua_rawgeti(L, 1, i + 1);
-		if (lua_type(L, -1) == LUA_TNIL)
-		{
-			team[i] = PIDX_UNDEFINED;
-		}
-		else
-		{
-			team[i] = (ePIDX) static_cast<int>(lua_tonumber(L, (int)PIDX_UNDEFINED));
-			lua_pushnil(L);
-			lua_rawseti(L, 1, i + 1);
-		}
-		lua_pop(L, 1);
-	}
-	select_party(team, MAXCHRS, 2);
-	t = 1;
-	for (i = 0; i < MAXCHRS; ++i)
-	{
-		if (team[i] != PIDX_UNDEFINED)
-		{
-			lua_pushnumber(L, team[i]);
-			lua_rawseti(L, 1, t++);
-		}
-	}
-	return 1;
+    for (i = 0; i < MAXCHRS; ++i)
+    {
+        lua_rawgeti(L, 1, i + 1);
+        if (lua_type(L, -1) == LUA_TNIL)
+        {
+            team[i] = PIDX_UNDEFINED;
+        }
+        else
+        {
+            team[i] = (ePIDX) static_cast<int>(lua_tonumber(L, (int)PIDX_UNDEFINED));
+            lua_pushnil(L);
+            lua_rawseti(L, 1, i + 1);
+        }
+        lua_pop(L, 1);
+    }
+    select_party(team, MAXCHRS, 2);
+    t = 1;
+    for (i = 0; i < MAXCHRS; ++i)
+    {
+        if (team[i] != PIDX_UNDEFINED)
+        {
+            lua_pushnumber(L, team[i]);
+            lua_rawseti(L, 1, t++);
+        }
+    }
+    return 1;
 }
 
 int KQ_set_all_equip(lua_State* L)
 {
-	uint32_t a = (uint32_t)lua_tonumber(L, 1);
-	uint32_t b;
-	int c;
+    uint32_t a = (uint32_t)lua_tonumber(L, 1);
+    uint32_t b;
+    int c;
 
-	if (a > MAXCHRS)
-	{
-		return 0;
-	}
-	for (b = 0; b < NUM_EQUIPMENT; b++)
-	{
-		c = (int)lua_tonumber(L, b + 2);
-		if (c >= 0)
-		{
-			party[a].eqp[b] = c;
-		}
-	}
-	return 0;
+    if (a > MAXCHRS)
+    {
+        return 0;
+    }
+    for (b = 0; b < NUM_EQUIPMENT; b++)
+    {
+        c = (int)lua_tonumber(L, b + 2);
+        if (c >= 0)
+        {
+            party[a].eqp[b] = c;
+        }
+    }
+    return 0;
 }
 
 int KQ_set_alldead(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a == 0 || a == 1)
-	{
-		alldead = a;
-	}
-	return 0;
+    if (a == 0 || a == 1)
+    {
+        alldead = a;
+    }
+    return 0;
 }
 
 int KQ_set_autoparty(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a == 0 || a == 1)
-	{
-		autoparty = a;
-	}
-	return 0;
+    if (a == 0 || a == 1)
+    {
+        autoparty = a;
+    }
+    return 0;
 }
 
 int KQ_set_background(lua_State* L)
 {
-	draw_background = ((int)lua_tonumber(L, 1) == 0 ? 0 : 1);
+    draw_background = ((int)lua_tonumber(L, 1) == 0 ? 0 : 1);
 
-	return 0;
+    return 0;
 }
 
 /*! Set background tile
@@ -2968,150 +2968,150 @@ int KQ_set_background(lua_State* L)
  */
 int KQ_set_btile(lua_State* L)
 {
-	if (lua_type(L, 1) == LUA_TSTRING)
-	{
-		/* Format:
-		 *    set_btile("marker", value)
-		 */
-		std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
-		if (m != nullptr)
-		{
-			set_btile(m->x, m->y, lua_tointeger(L, 2));
-		}
-	}
-	else
-	{
-		/* Format:
-		 *    set_btile(x, y, value)
-		 */
-		set_btile(lua_tointeger(L, 1), lua_tointeger(L, 2), lua_tointeger(L, 3));
-	}
-	return 0;
+    if (lua_type(L, 1) == LUA_TSTRING)
+    {
+        /* Format:
+         *    set_btile("marker", value)
+         */
+        std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
+        if (m != nullptr)
+        {
+            set_btile(m->x, m->y, lua_tointeger(L, 2));
+        }
+    }
+    else
+    {
+        /* Format:
+         *    set_btile(x, y, value)
+         */
+        set_btile(lua_tointeger(L, 1), lua_tointeger(L, 2), lua_tointeger(L, 3));
+    }
+    return 0;
 }
 
 int KQ_set_desc(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a == 0 || a == 1)
-	{
-		display_desc = a;
-	}
-	return 0;
+    if (a == 0 || a == 1)
+    {
+        display_desc = a;
+    }
+    return 0;
 }
 
 int KQ_set_ent_active(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
-	bool isActive = (lua_tointeger(L, 2) != 0);
+    int a = KqFork::real_entity_num(L, 1);
+    bool isActive = (lua_tointeger(L, 2) != 0);
 
-	g_ent[a].active = isActive;
-	return 0;
+    g_ent[a].active = isActive;
+    return 0;
 }
 
 int KQ_set_ent_atype(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	g_ent[a].atype = (int)lua_tonumber(L, 2);
-	return 0;
+    g_ent[a].atype = (int)lua_tonumber(L, 2);
+    return 0;
 }
 
 int KQ_set_ent_chrx(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	g_ent[a].setIdentity(lua_tonumber(L, 2));
-	return 0;
+    g_ent[a].setIdentity(lua_tonumber(L, 2));
+    return 0;
 }
 
 int KQ_set_ent_facehero(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
-	auto b = lua_tointeger(L, 2);
+    int a = KqFork::real_entity_num(L, 1);
+    auto b = lua_tointeger(L, 2);
 
-	if (b == 0 || b == 1)
-	{
-		g_ent[a].facehero = b;
-	}
-	return 0;
+    if (b == 0 || b == 1)
+    {
+        g_ent[a].facehero = b;
+    }
+    return 0;
 }
 
 int KQ_set_ent_facing(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
-	auto b = lua_tointeger(L, 2);
+    int a = KqFork::real_entity_num(L, 1);
+    auto b = lua_tointeger(L, 2);
 
-	if (b >= FACE_DOWN && b <= FACE_RIGHT)
-	{
-		g_ent[a].facing = b;
-	}
-	return 0;
+    if (b >= FACE_DOWN && b <= FACE_RIGHT)
+    {
+        g_ent[a].facing = b;
+    }
+    return 0;
 }
 
 int KQ_set_ent_id(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	g_ent[a].eid = (int)lua_tonumber(L, 2);
-	return 0;
+    g_ent[a].eid = (int)lua_tonumber(L, 2);
+    return 0;
 }
 
 int KQ_set_ent_movemode(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
-	auto b = lua_tointeger(L, 2);
+    int a = KqFork::real_entity_num(L, 1);
+    auto b = lua_tointeger(L, 2);
 
-	if (b >= 0 && b <= 3)
-	{
-		g_ent[a].movemode = b;
-	}
-	return 0;
+    if (b >= 0 && b <= 3)
+    {
+        g_ent[a].movemode = b;
+    }
+    return 0;
 }
 
 int KQ_set_ent_obsmode(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
-	auto b = lua_tointeger(L, 2);
+    int a = KqFork::real_entity_num(L, 1);
+    auto b = lua_tointeger(L, 2);
 
-	if (b == 0 || b == 1)
-	{
-		g_ent[a].obsmode = b;
-	}
-	return 0;
+    if (b == 0 || b == 1)
+    {
+        g_ent[a].obsmode = b;
+    }
+    return 0;
 }
 
 int KQ_set_ent_script(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
-	std::string script = lua_tostring(L, 2);
+    int a = KqFork::real_entity_num(L, 1);
+    std::string script = lua_tostring(L, 2);
 
-	kEntity.set_script(a, script.c_str());
-	return 0;
+    kEntity.set_script(a, script.c_str());
+    return 0;
 }
 
 int KQ_set_ent_snapback(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
-	auto b = lua_tointeger(L, 2);
+    int a = KqFork::real_entity_num(L, 1);
+    auto b = lua_tointeger(L, 2);
 
-	if (b == 0 || b == 1)
-	{
-		g_ent[a].snapback = b;
-	}
-	return 0;
+    if (b == 0 || b == 1)
+    {
+        g_ent[a].snapback = b;
+    }
+    return 0;
 }
 
 int KQ_set_ent_speed(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
-	auto b = lua_tointeger(L, 2);
+    int a = KqFork::real_entity_num(L, 1);
+    auto b = lua_tointeger(L, 2);
 
-	if (b >= 1 && b <= 7)
-	{
-		g_ent[a].speed = b;
-	}
-	return 0;
+    if (b >= 1 && b <= 7)
+    {
+        g_ent[a].speed = b;
+    }
+    return 0;
 }
 
 /*! \brief Make entity go to a certain point
@@ -3126,46 +3126,46 @@ int KQ_set_ent_speed(lua_State* L)
  */
 int KQ_set_ent_target(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	g_ent[a].target_x = (int)lua_tonumber(L, 2);
-	g_ent[a].target_y = (int)lua_tonumber(L, 3);
-	g_ent[a].movemode = MM_TARGET;
-	return 0;
+    g_ent[a].target_x = (int)lua_tonumber(L, 2);
+    g_ent[a].target_y = (int)lua_tonumber(L, 3);
+    g_ent[a].movemode = MM_TARGET;
+    return 0;
 }
 
 int KQ_set_ent_tilex(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	g_ent[a].tilex = (int)lua_tonumber(L, 2);
-	g_ent[a].x = g_ent[a].tilex * TILE_W;
-	return 0;
+    g_ent[a].tilex = (int)lua_tonumber(L, 2);
+    g_ent[a].x = g_ent[a].tilex * TILE_W;
+    return 0;
 }
 
 int KQ_set_ent_tiley(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
+    int a = KqFork::real_entity_num(L, 1);
 
-	g_ent[a].tiley = (int)lua_tonumber(L, 2);
-	g_ent[a].y = g_ent[a].tiley * TILE_H;
-	return 0;
+    g_ent[a].tiley = (int)lua_tonumber(L, 2);
+    g_ent[a].y = g_ent[a].tiley * TILE_H;
+    return 0;
 }
 
 int KQ_set_ent_transl(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
-	auto b = (lua_tointeger(L, 2) != 0);
+    int a = KqFork::real_entity_num(L, 1);
+    auto b = (lua_tointeger(L, 2) != 0);
 
-	g_ent[a].isSemiTransparent = b;
-	return 0;
+    g_ent[a].isSemiTransparent = b;
+    return 0;
 }
 
 int KQ_set_foreground(lua_State* L)
 {
-	draw_foreground = ((int)lua_tonumber(L, 1) == 0 ? 0 : 1);
+    draw_foreground = ((int)lua_tonumber(L, 1) == 0 ? 0 : 1);
 
-	return 0;
+    return 0;
 }
 
 /*! Set foreground tile
@@ -3181,48 +3181,48 @@ int KQ_set_foreground(lua_State* L)
  */
 int KQ_set_ftile(lua_State* L)
 {
-	if (lua_type(L, 1) == LUA_TSTRING)
-	{
-		/* Format:
-		 *    set_ftile("marker", value)
-		 */
-		std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
-		if (m != nullptr)
-		{
-			set_ftile(m->x, m->y, lua_tointeger(L, 2));
-		}
-	}
-	else
-	{
-		/* Format:
-		 *    set_ftile(x, y, value)
-		 */
-		set_ftile(lua_tointeger(L, 1), lua_tointeger(L, 2), lua_tointeger(L, 3));
-	}
-	return 0;
+    if (lua_type(L, 1) == LUA_TSTRING)
+    {
+        /* Format:
+         *    set_ftile("marker", value)
+         */
+        std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
+        if (m != nullptr)
+        {
+            set_ftile(m->x, m->y, lua_tointeger(L, 2));
+        }
+    }
+    else
+    {
+        /* Format:
+         *    set_ftile(x, y, value)
+         */
+        set_ftile(lua_tointeger(L, 1), lua_tointeger(L, 2), lua_tointeger(L, 3));
+    }
+    return 0;
 }
 
 int KQ_set_gp(lua_State* L)
 {
-	gp = (int)lua_tonumber(L, 1);
-	return 0;
+    gp = (int)lua_tonumber(L, 1);
+    return 0;
 }
 
 int KQ_set_holdfade(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a == 0 || a == 1)
-	{
-		hold_fade = a;
-	}
-	return 0;
+    if (a == 0 || a == 1)
+    {
+        hold_fade = a;
+    }
+    return 0;
 }
 
 int KQ_set_map_mode(lua_State* L)
 {
-	g_map.map_mode = (int)lua_tonumber(L, 1);
-	return 0;
+    g_map.map_mode = (int)lua_tonumber(L, 1);
+    return 0;
 }
 
 /* Change marker position, or if not found, create a new one at specified coords
@@ -3233,31 +3233,31 @@ int KQ_set_map_mode(lua_State* L)
  */
 int KQ_set_marker(lua_State* L)
 {
-	const char* marker_name = lua_tostring(L, 1);
-	const int x_coord = lua_tonumber(L, 2);
-	const int y_coord = lua_tonumber(L, 3);
+    const char* marker_name = lua_tostring(L, 1);
+    const int x_coord = lua_tonumber(L, 2);
+    const int y_coord = lua_tonumber(L, 3);
 
-	std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(marker_name, false);
-	if (m == nullptr)
-	{
-		/* Need to add a new marker */
-		auto new_marker = std::make_shared<KMarker>();
-		new_marker->markerName = marker_name;
-		new_marker->x = x_coord;
-		new_marker->y = y_coord;
-		g_map.markers.Add(new_marker);
-	}
-	m->x = x_coord;
-	m->y = y_coord;
+    std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(marker_name, false);
+    if (m == nullptr)
+    {
+        /* Need to add a new marker */
+        auto new_marker = std::make_shared<KMarker>();
+        new_marker->markerName = marker_name;
+        new_marker->x = x_coord;
+        new_marker->y = y_coord;
+        g_map.markers.Add(new_marker);
+    }
+    m->x = x_coord;
+    m->y = y_coord;
 
-	return 0;
+    return 0;
 }
 
 int KQ_set_midground(lua_State* L)
 {
-	draw_middle = ((int)lua_tonumber(L, 1) == 0 ? 0 : 1);
+    draw_middle = ((int)lua_tonumber(L, 1) == 0 ? 0 : 1);
 
-	return 0;
+    return 0;
 }
 
 /*! Set middle tile
@@ -3273,36 +3273,36 @@ int KQ_set_midground(lua_State* L)
  */
 int KQ_set_mtile(lua_State* L)
 {
-	if (lua_type(L, 1) == LUA_TSTRING)
-	{
-		/* Format:
-		 *    set_mtile("marker", value)
-		 */
-		std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
-		if (m != nullptr)
-		{
-			set_mtile(m->x, m->y, lua_tointeger(L, 2));
-		}
-	}
-	else
-	{
-		/* Format:
-		 *    set_mtile(x, y, value)
-		 */
-		set_mtile(lua_tointeger(L, 1), lua_tointeger(L, 2), lua_tointeger(L, 3));
-	}
-	return 0;
+    if (lua_type(L, 1) == LUA_TSTRING)
+    {
+        /* Format:
+         *    set_mtile("marker", value)
+         */
+        std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
+        if (m != nullptr)
+        {
+            set_mtile(m->x, m->y, lua_tointeger(L, 2));
+        }
+    }
+    else
+    {
+        /* Format:
+         *    set_mtile(x, y, value)
+         */
+        set_mtile(lua_tointeger(L, 1), lua_tointeger(L, 2), lua_tointeger(L, 3));
+    }
+    return 0;
 }
 
 int KQ_set_noe(lua_State* L)
 {
-	uint32_t a = (size_t)lua_tonumber(L, 1);
+    uint32_t a = (size_t)lua_tonumber(L, 1);
 
-	if (a <= MAX_ENTITIES_PER_MAP + MAX_PARTY_SIZE)
-	{
-		kEntity.setNumberOfMapEntities(a);
-	}
-	return 0;
+    if (a <= MAX_ENTITIES_PER_MAP + MAX_PARTY_SIZE)
+    {
+        kEntity.setNumberOfMapEntities(a);
+    }
+    return 0;
 }
 
 /*! Set obstruction
@@ -3318,25 +3318,25 @@ int KQ_set_noe(lua_State* L)
  */
 int KQ_set_obs(lua_State* L)
 {
-	if (lua_type(L, 1) == LUA_TSTRING)
-	{
-		/* Format:
-		 *    set_obs("marker", value)
-		 */
-		std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
-		if (m != nullptr)
-		{
-			set_obs(m->x, m->y, lua_tointeger(L, 2));
-		}
-	}
-	else
-	{
-		/* Format:
-		 *    set_obs(x, y, value)
-		 */
-		set_obs(lua_tointeger(L, 1), lua_tointeger(L, 2), lua_tointeger(L, 3));
-	}
-	return 0;
+    if (lua_type(L, 1) == LUA_TSTRING)
+    {
+        /* Format:
+         *    set_obs("marker", value)
+         */
+        std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
+        if (m != nullptr)
+        {
+            set_obs(m->x, m->y, lua_tointeger(L, 2));
+        }
+    }
+    else
+    {
+        /* Format:
+         *    set_obs(x, y, value)
+         */
+        set_obs(lua_tointeger(L, 1), lua_tointeger(L, 2), lua_tointeger(L, 3));
+    }
+    return 0;
 }
 
 /*! \brief Set person's equipment (unused)
@@ -3350,14 +3350,14 @@ int KQ_set_obs(lua_State* L)
  */
 int KQ_set_party_eqp(lua_State* L)
 {
-	uint32_t a = (uint32_t)lua_tonumber(L, 1);
-	uint32_t b = (uint32_t)lua_tonumber(L, 2);
+    uint32_t a = (uint32_t)lua_tonumber(L, 1);
+    uint32_t b = (uint32_t)lua_tonumber(L, 2);
 
-	if (a < MAXCHRS && b < NUM_EQUIPMENT)
-	{
-		party[a].eqp[b] = (int)lua_tonumber(L, 3);
-	}
-	return 0;
+    if (a < MAXCHRS && b < NUM_EQUIPMENT)
+    {
+        party[a].eqp[b] = (int)lua_tonumber(L, 3);
+    }
+    return 0;
 }
 
 /*! \brief Set person's HP
@@ -3370,13 +3370,13 @@ int KQ_set_party_eqp(lua_State* L)
  */
 int KQ_set_party_hp(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		party[a].hp = (int)lua_tonumber(L, 2);
-	}
-	return 0;
+    if (a >= 0 && a <= 7)
+    {
+        party[a].hp = (int)lua_tonumber(L, 2);
+    }
+    return 0;
 }
 
 /*! \brief Set person's level
@@ -3389,13 +3389,13 @@ int KQ_set_party_hp(lua_State* L)
  */
 int KQ_set_party_lvl(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		party[a].lvl = (int)lua_tonumber(L, 2);
-	}
-	return 0;
+    if (a >= 0 && a <= 7)
+    {
+        party[a].lvl = (int)lua_tonumber(L, 2);
+    }
+    return 0;
 }
 
 /*! \brief Set person's level
@@ -3408,13 +3408,13 @@ int KQ_set_party_lvl(lua_State* L)
  */
 int KQ_set_party_mhp(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		party[a].mhp = (int)lua_tonumber(L, 2);
-	}
-	return 0;
+    if (a >= 0 && a <= 7)
+    {
+        party[a].mhp = (int)lua_tonumber(L, 2);
+    }
+    return 0;
 }
 
 /*! \brief Set person's MMP
@@ -3427,13 +3427,13 @@ int KQ_set_party_mhp(lua_State* L)
  */
 int KQ_set_party_mmp(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		party[a].mmp = (int)lua_tonumber(L, 2);
-	}
-	return 0;
+    if (a >= 0 && a <= 7)
+    {
+        party[a].mmp = (int)lua_tonumber(L, 2);
+    }
+    return 0;
 }
 
 /*! \brief Set person's MP
@@ -3446,13 +3446,13 @@ int KQ_set_party_mmp(lua_State* L)
  */
 int KQ_set_party_mp(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		party[a].mp = (int)lua_tonumber(L, 2);
-	}
-	return 0;
+    if (a >= 0 && a <= 7)
+    {
+        party[a].mp = (int)lua_tonumber(L, 2);
+    }
+    return 0;
 }
 
 /*! \brief Set person's mrp
@@ -3465,13 +3465,13 @@ int KQ_set_party_mp(lua_State* L)
  */
 int KQ_set_party_mrp(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		party[a].mrp = (int)lua_tonumber(L, 2);
-	}
-	return 0;
+    if (a >= 0 && a <= 7)
+    {
+        party[a].mrp = (int)lua_tonumber(L, 2);
+    }
+    return 0;
 }
 
 /*! \brief Set person's needed experience
@@ -3484,13 +3484,13 @@ int KQ_set_party_mrp(lua_State* L)
  */
 int KQ_set_party_next(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		party[a].next = (int)lua_tonumber(L, 2);
-	}
-	return 0;
+    if (a >= 0 && a <= 7)
+    {
+        party[a].next = (int)lua_tonumber(L, 2);
+    }
+    return 0;
 }
 
 /*! \brief Set person's res
@@ -3503,14 +3503,14 @@ int KQ_set_party_next(lua_State* L)
  */
 int KQ_set_party_res(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
-	auto b = lua_tointeger(L, 2);
+    auto a = lua_tointeger(L, 1);
+    auto b = lua_tointeger(L, 2);
 
-	if (a >= 0 && a <= 7 && b >= 0 && b <= 12)
-	{
-		party[a].res[b] = (int)lua_tonumber(L, 3);
-	}
-	return 0;
+    if (a >= 0 && a <= 7 && b >= 0 && b <= 12)
+    {
+        party[a].res[b] = (int)lua_tonumber(L, 3);
+    }
+    return 0;
 }
 
 /*! \brief Set person's stats (unused)
@@ -3524,14 +3524,14 @@ int KQ_set_party_res(lua_State* L)
  */
 int KQ_set_party_stats(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
-	auto b = lua_tointeger(L, 2);
+    auto a = lua_tointeger(L, 1);
+    auto b = lua_tointeger(L, 2);
 
-	if (a >= 0 && a <= 7 && b >= 0 && b <= 12)
-	{
-		party[a].stats[b] = (int)lua_tonumber(L, 3);
-	}
-	return 0;
+    if (a >= 0 && a <= 7 && b >= 0 && b <= 12)
+    {
+        party[a].stats[b] = (int)lua_tonumber(L, 3);
+    }
+    return 0;
 }
 
 /*! \brief Set person's experience
@@ -3544,13 +3544,13 @@ int KQ_set_party_stats(lua_State* L)
  */
 int KQ_set_party_xp(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a >= 0 && a <= 7)
-	{
-		party[a].xp = (int)lua_tonumber(L, 2);
-	}
-	return 0;
+    if (a >= 0 && a <= 7)
+    {
+        party[a].xp = (int)lua_tonumber(L, 2);
+    }
+    return 0;
 }
 
 /*! \brief Set player progress
@@ -3563,47 +3563,47 @@ int KQ_set_party_xp(lua_State* L)
  */
 int KQ_set_progress(lua_State* L)
 {
-	// Both error messages require this prefix.
-	const char* error_prefix = "set_progress: Argument 1";
+    // Both error messages require this prefix.
+    const char* error_prefix = "set_progress: Argument 1";
 
-	if (lua_isnumber(L, 1))
-	{
-		uint32_t progress_index = (uint32_t)lua_tonumber(L, 1);
+    if (lua_isnumber(L, 1))
+    {
+        uint32_t progress_index = (uint32_t)lua_tonumber(L, 1);
 
-		if (progress_index < SIZE_PROGRESS)
-		{
-			progress[progress_index] = (int)lua_tonumber(L, 2);
-			return 0;
-		}
-		else
-		{
-			return luaL_error(L, "%s: Expected integer from 0 to %d. Got %d.", error_prefix, SIZE_PROGRESS - 1, (signed int)progress_index);
-		}
-	}
+        if (progress_index < SIZE_PROGRESS)
+        {
+            progress[progress_index] = (int)lua_tonumber(L, 2);
+            return 0;
+        }
+        else
+        {
+            return luaL_error(L, "%s: Expected integer from 0 to %d. Got %d.", error_prefix, SIZE_PROGRESS - 1, (signed int)progress_index);
+        }
+    }
 
-	return luaL_error(L, "%s must be an integer.", error_prefix);
+    return luaL_error(L, "%s must be an integer.", error_prefix);
 }
 
 int KQ_set_run(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a == 0 || a == 1)
-	{
-		can_run = a;
-	}
-	return 0;
+    if (a == 0 || a == 1)
+    {
+        can_run = a;
+    }
+    return 0;
 }
 
 int KQ_set_save(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a == 0 || a == 1)
-	{
-		cansave = a;
-	}
-	return 0;
+    if (a == 0 || a == 1)
+    {
+        cansave = a;
+    }
+    return 0;
 }
 
 /*! Set shadow number at location
@@ -3619,127 +3619,127 @@ int KQ_set_save(lua_State* L)
  */
 int KQ_set_shadow(lua_State* L)
 {
-	if (lua_type(L, 1) == LUA_TSTRING)
-	{
-		/* Format:
-		 *    set_shadow("marker", value)
-		 */
-		std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
-		if (m != nullptr)
-		{
-			set_shadow(m->x, m->y, lua_tointeger(L, 2));
-		}
-	}
-	else
-	{
-		/* Format:
-		 *    set_shadow(x, y, value)
-		 */
-		set_shadow(lua_tointeger(L, 1), lua_tointeger(L, 2), lua_tointeger(L, 3));
-	}
-	return 0;
+    if (lua_type(L, 1) == LUA_TSTRING)
+    {
+        /* Format:
+         *    set_shadow("marker", value)
+         */
+        std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
+        if (m != nullptr)
+        {
+            set_shadow(m->x, m->y, lua_tointeger(L, 2));
+        }
+    }
+    else
+    {
+        /* Format:
+         *    set_shadow(x, y, value)
+         */
+        set_shadow(lua_tointeger(L, 1), lua_tointeger(L, 2), lua_tointeger(L, 3));
+    }
+    return 0;
 }
 
 int KQ_set_sstone(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a == 0 || a == 1)
-	{
-		use_sstone = a;
-	}
-	return 0;
+    if (a == 0 || a == 1)
+    {
+        use_sstone = a;
+    }
+    return 0;
 }
 
 int KQ_set_tile_all(lua_State* L)
 {
-	int a, tvs[8];
+    int a, tvs[8];
 
-	for (a = 0; a < 8; a++)
-	{
-		tvs[a] = (int)lua_tonumber(L, a + 1);
-	}
-	if (tvs[2] >= 0)
-	{
-		set_btile(tvs[0], tvs[1], tvs[2]);
-	}
-	if (tvs[3] >= 0)
-	{
-		set_mtile(tvs[0], tvs[1], tvs[3]);
-	}
-	if (tvs[4] >= 0)
-	{
-		set_ftile(tvs[0], tvs[1], tvs[4]);
-	}
-	if (tvs[5] >= 0)
-	{
-		set_zone(tvs[0], tvs[1], tvs[5]);
-	}
-	if (tvs[6] >= 0)
-	{
-		set_obs(tvs[0], tvs[1], tvs[6]);
-	}
-	if (tvs[7] >= 0)
-	{
-		set_shadow(tvs[0], tvs[1], tvs[7]);
-	}
-	return 0;
+    for (a = 0; a < 8; a++)
+    {
+        tvs[a] = (int)lua_tonumber(L, a + 1);
+    }
+    if (tvs[2] >= 0)
+    {
+        set_btile(tvs[0], tvs[1], tvs[2]);
+    }
+    if (tvs[3] >= 0)
+    {
+        set_mtile(tvs[0], tvs[1], tvs[3]);
+    }
+    if (tvs[4] >= 0)
+    {
+        set_ftile(tvs[0], tvs[1], tvs[4]);
+    }
+    if (tvs[5] >= 0)
+    {
+        set_zone(tvs[0], tvs[1], tvs[5]);
+    }
+    if (tvs[6] >= 0)
+    {
+        set_obs(tvs[0], tvs[1], tvs[6]);
+    }
+    if (tvs[7] >= 0)
+    {
+        set_shadow(tvs[0], tvs[1], tvs[7]);
+    }
+    return 0;
 }
 
 int KQ_set_treasure(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
-	auto b = lua_tointeger(L, 2);
+    auto a = lua_tointeger(L, 1);
+    auto b = lua_tointeger(L, 2);
 
-	if (a >= 0 && a <= 999)
-	{
-		treasure[a] = lua_tonumber(L, b);
-	}
-	return 0;
+    if (a >= 0 && a <= 999)
+    {
+        treasure[a] = lua_tonumber(L, b);
+    }
+    return 0;
 }
 
 /* Whether the camera view follows the players as they walk around */
 int KQ_set_vfollow(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a == 0 || a == 1)
-	{
-		vfollow = a;
-	}
-	return 0;
+    if (a == 0 || a == 1)
+    {
+        vfollow = a;
+    }
+    return 0;
 }
 
 int KQ_set_vx(lua_State* L)
 {
-	camera_viewport_x = (int)lua_tonumber(L, 1);
-	return 0;
+    camera_viewport_x = (int)lua_tonumber(L, 1);
+    return 0;
 }
 
 int KQ_set_vy(lua_State* L)
 {
-	camera_viewport_y = (int)lua_tonumber(L, 1);
-	return 0;
+    camera_viewport_y = (int)lua_tonumber(L, 1);
+    return 0;
 }
 
 int KQ_set_warp(lua_State* L)
 {
-	auto a = lua_tointeger(L, 1);
+    auto a = lua_tointeger(L, 1);
 
-	if (a == 0 || a == 1)
-	{
-		g_map.can_warp = a;
-	}
-	g_map.warpx = (int)lua_tonumber(L, 2);
-	g_map.warpy = (int)lua_tonumber(L, 3);
-	return 0;
+    if (a == 0 || a == 1)
+    {
+        g_map.can_warp = a;
+    }
+    g_map.warpx = (int)lua_tonumber(L, 2);
+    g_map.warpy = (int)lua_tonumber(L, 3);
+    return 0;
 }
 
 int KQ_set_can_use_item(lua_State* L)
 {
-	bool canItemBeUsed = (0 != lua_tonumber(L, 1));
-	heroc.allowItemUseDuringBattle(canItemBeUsed);
-	return 0;
+    bool canItemBeUsed = (0 != lua_tonumber(L, 1));
+    heroc.allowItemUseDuringBattle(canItemBeUsed);
+    return 0;
 }
 
 /*! Set zone number at location
@@ -3755,53 +3755,53 @@ int KQ_set_can_use_item(lua_State* L)
  */
 int KQ_set_zone(lua_State* L)
 {
-	if (lua_type(L, 1) == LUA_TSTRING)
-	{
-		/* Format:
-		 *    set_zone("marker", value)
-		 */
-		std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
-		if (m != nullptr)
-		{
-			set_zone(m->x, m->y, lua_tointeger(L, 2));
-		}
-	}
-	else
-	{
-		/* Format:
-		 *    set_zone(x, y, value)
-		 */
-		set_zone(lua_tointeger(L, 1), lua_tointeger(L, 2), lua_tointeger(L, 3));
-	}
-	return 0;
+    if (lua_type(L, 1) == LUA_TSTRING)
+    {
+        /* Format:
+         *    set_zone("marker", value)
+         */
+        std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
+        if (m != nullptr)
+        {
+            set_zone(m->x, m->y, lua_tointeger(L, 2));
+        }
+    }
+    else
+    {
+        /* Format:
+         *    set_zone(x, y, value)
+         */
+        set_zone(lua_tointeger(L, 1), lua_tointeger(L, 2), lua_tointeger(L, 3));
+    }
+    return 0;
 }
 
 int KQ_sfx(lua_State* L)
 {
-	if (lua_isnumber(L, 1))
-	{
-		auto sound_effect = lua_tointeger(L, 1);
-		play_effect(sound_effect, 128);
-	}
-	else
-	{
-		printf("KQ_sfx L::1 is NaN");
-	}
-	return 0;
+    if (lua_isnumber(L, 1))
+    {
+        auto sound_effect = lua_tointeger(L, 1);
+        play_effect(sound_effect, 128);
+    }
+    else
+    {
+        printf("KQ_sfx L::1 is NaN");
+    }
+    return 0;
 }
 
 int KQ_shop(lua_State* L)
 {
-	if (lua_isnumber(L, 1))
-	{
-		auto shop_number = lua_tointeger(L, 1);
-		shop(shop_number);
-	}
-	else
-	{
-		printf("KQ_shop L::1 is NaN");
-	}
-	return 0;
+    if (lua_isnumber(L, 1))
+    {
+        auto shop_number = lua_tointeger(L, 1);
+        shop(shop_number);
+    }
+    else
+    {
+        printf("KQ_shop L::1 is NaN");
+    }
+    return 0;
 }
 
 /*! \brief Create a shop from within a LUA script
@@ -3813,70 +3813,70 @@ int KQ_shop(lua_State* L)
  */
 int KQ_shop_create(lua_State* L)
 {
-	int index;
-	const char* name = lua_tostring(L, 1);
+    int index;
+    const char* name = lua_tostring(L, 1);
 
-	index = (int)lua_tonumber(L, 2);
+    index = (int)lua_tonumber(L, 2);
 
-	strncpy(shops[index].shopName, name, 40);
-	num_shops = ((index + 1) > num_shops ? index + 1 : num_shops);
-	return 0;
+    strncpy(shops[index].shopName, name, 40);
+    num_shops = ((index + 1) > num_shops ? index + 1 : num_shops);
+    return 0;
 }
 
 int KQ_shop_add_item(lua_State* L)
 {
-	size_t index, i;
+    size_t index, i;
 
-	index = (size_t)lua_tonumber(L, 1);
-	if (index >= NUMSHOPS)
-	{
-		printf(_("Value passed to shop_add_item() L::1 (%u) >= NUMSHOPS\n"), (uint32_t)index);
-		return 0;
-	}
+    index = (size_t)lua_tonumber(L, 1);
+    if (index >= NUMSHOPS)
+    {
+        printf(_("Value passed to shop_add_item() L::1 (%u) >= NUMSHOPS\n"), (uint32_t)index);
+        return 0;
+    }
 
-	for (i = 0; i < SHOPITEMS; i++)
-	{
-		if (shops[index].items[i] == 0)
-		{
-			break;
-		}
-	}
+    for (i = 0; i < SHOPITEMS; i++)
+    {
+        if (shops[index].items[i] == 0)
+        {
+            break;
+        }
+    }
 
-	if (i == SHOPITEMS)
-	{
-		printf(_("Tried to add too many different items to a shop. Maximum is %d\n"), SHOPITEMS);
-		return 0;
-	}
+    if (i == SHOPITEMS)
+    {
+        printf(_("Tried to add too many different items to a shop. Maximum is %d\n"), SHOPITEMS);
+        return 0;
+    }
 
-	shops[index].items[i] = (int)lua_tonumber(L, 2);
-	shops[index].items_max[i] = (int)lua_tonumber(L, 3);
-	shops[index].items_replenish_time[i] = (int)lua_tonumber(L, 4);
-	return 0;
+    shops[index].items[i] = (int)lua_tonumber(L, 2);
+    shops[index].items_max[i] = (int)lua_tonumber(L, 3);
+    shops[index].items_replenish_time[i] = (int)lua_tonumber(L, 4);
+    return 0;
 }
 
 int KQ_stop_song(lua_State* L)
 {
-	(void)L;
-	Music.stop_music();
-	return 0;
+    (void)L;
+    Music.stop_music();
+    return 0;
 }
 
 int KQ_thought_ex(lua_State* L)
 {
-	int entity = KqFork::real_entity_num(L, 1);
-	const char* msg = lua_tostring(L, 2);
+    int entity = KqFork::real_entity_num(L, 1);
+    const char* msg = lua_tostring(L, 2);
 
-	kqDraw.text_ex(eBubbleStyle::BUBBLE_THOUGHT, entity, msg);
-	return 0;
+    kqDraw.text_ex(eBubbleStyle::BUBBLE_THOUGHT, entity, msg);
+    return 0;
 }
 
 int KQ_portthought_ex(lua_State* L)
 {
-	int entity = KqFork::real_entity_num(L, 1);
-	const char* msg = lua_tostring(L, 2);
+    int entity = KqFork::real_entity_num(L, 1);
+    const char* msg = lua_tostring(L, 2);
 
-	kqDraw.porttext_ex(eBubbleStyle::BUBBLE_THOUGHT, entity, msg);
-	return 0;
+    kqDraw.porttext_ex(eBubbleStyle::BUBBLE_THOUGHT, entity, msg);
+    return 0;
 }
 
 /*! Show stack trace
@@ -3897,69 +3897,69 @@ int KQ_portthought_ex(lua_State* L)
  */
 int KQ_traceback(lua_State* theL)
 {
-	lua_Debug ar;
+    lua_Debug ar;
 
-	/* Function at index 0 is always KQ_traceback; don't show it */
-	int level = 1;
+    /* Function at index 0 is always KQ_traceback; don't show it */
+    int level = 1;
 
-	printf(_("%s\nStack trace:\n"), lua_tostring(theL, -1));
-	while (lua_getstack(theL, level, &ar) != 0)
-	{
-		lua_getinfo(theL, "Sln", &ar);
-		printf(_("#%d Line %d in (%s %s) %s\n"), level, ar.currentline, ar.what, ar.namewhat, ar.name);
-		++level;
-	}
-	kqDraw.message(_("Script error. If KQ was compiled with DEBUGMODE, see allegro.log"), 255, 0, xofs, yofs);
-	return 1;
+    printf(_("%s\nStack trace:\n"), lua_tostring(theL, -1));
+    while (lua_getstack(theL, level, &ar) != 0)
+    {
+        lua_getinfo(theL, "Sln", &ar);
+        printf(_("#%d Line %d in (%s %s) %s\n"), level, ar.currentline, ar.what, ar.namewhat, ar.name);
+        ++level;
+    }
+    kqDraw.message(_("Script error. If KQ was compiled with DEBUGMODE, see allegro.log"), 255, 0, xofs, yofs);
+    return 1;
 }
 
 int KQ_unpause_map_song(lua_State* L)
 {
-	(void)L;
-	Music.resume_music();
-	return 0;
+    (void)L;
+    Music.resume_music();
+    return 0;
 }
 
 int KQ_use_up(lua_State* L)
 {
-	auto i = lua_tointeger(L, 1);
+    auto i = lua_tointeger(L, 1);
 
-	lua_pushnumber(L, useup_item(i));
-	return 1;
+    lua_pushnumber(L, useup_item(i));
+    return 1;
 }
 
 int KQ_view_range(lua_State* L)
 {
-	int a, b[5];
+    int a, b[5];
 
-	for (a = 0; a < 5; a++)
-	{
-		b[a] = (int)lua_tonumber(L, a + 1);
-	}
-	kqDraw.set_view(b[0], b[1], b[2], b[3], b[4]);
-	return 0;
+    for (a = 0; a < 5; a++)
+    {
+        b[a] = (int)lua_tonumber(L, a + 1);
+    }
+    kqDraw.set_view(b[0], b[1], b[2], b[3], b[4]);
+    return 0;
 }
 
 int KQ_wait(lua_State* L)
 {
-	Game.kwait((int)lua_tonumber(L, 1));
-	return 0;
+    Game.kwait((int)lua_tonumber(L, 1));
+    return 0;
 }
 
 int KQ_wait_enter(lua_State* L)
 {
-	(void)L;
-	Game.wait_enter();
-	return 0;
+    (void)L;
+    Game.wait_enter();
+    return 0;
 }
 
 int KQ_wait_for_entity(lua_State* L)
 {
-	int a = KqFork::real_entity_num(L, 1);
-	int b = (lua_gettop(L) > 1 ? KqFork::real_entity_num(L, 2) : a);
+    int a = KqFork::real_entity_num(L, 1);
+    int b = (lua_gettop(L) > 1 ? KqFork::real_entity_num(L, 2) : a);
 
-	Game.wait_for_entity(a, b);
-	return 0;
+    Game.wait_for_entity(a, b);
+    return 0;
 }
 
 /*! \brief Warp to another part of the map
@@ -3979,34 +3979,34 @@ int KQ_wait_for_entity(lua_State* L)
  */
 int KQ_warp(lua_State* L)
 {
-	int x, y, s, warpspeed;
+    int x, y, s, warpspeed;
 
-	if (lua_type(L, 1) == LUA_TSTRING)
-	{
-		/* Format is warp("marker", [speed]) */
-		std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
-		if (m != nullptr)
-		{
-			x = m->x;
-			y = m->y;
-			s = 2;
-		}
-		else
-		{
-			// If the marker is not found then don't warp.
-			return 0;
-		}
-	}
-	else
-	{
-		/* Format is warp(x, y, [speed]) */
-		x = lua_tointeger(L, 1);
-		y = lua_tointeger(L, 2);
-		s = 3;
-	}
-	warpspeed = (lua_isnil(L, s) ? 8 : lua_tointeger(L, s));
-	Game.warp(x, y, warpspeed);
-	return 0;
+    if (lua_type(L, 1) == LUA_TSTRING)
+    {
+        /* Format is warp("marker", [speed]) */
+        std::shared_ptr<KMarker> m = KqFork::KQ_find_marker(lua_tostring(L, 1), true);
+        if (m != nullptr)
+        {
+            x = m->x;
+            y = m->y;
+            s = 2;
+        }
+        else
+        {
+            // If the marker is not found then don't warp.
+            return 0;
+        }
+    }
+    else
+    {
+        /* Format is warp(x, y, [speed]) */
+        x = lua_tointeger(L, 1);
+        y = lua_tointeger(L, 2);
+        s = 3;
+    }
+    warpspeed = (lua_isnil(L, s) ? 8 : lua_tointeger(L, s));
+    Game.warp(x, y, warpspeed);
+    return 0;
 }
 
 /*! \brief Read in a complete file
@@ -4021,31 +4021,31 @@ int KQ_warp(lua_State* L)
  */
 int KqFork::lua_dofile(lua_State* L, const char* filename)
 {
-	auto r = std::make_unique<readerbuf_t>();
-	r->in = fopen(filename, "rb");
-	int ret = 0;
+    auto r = std::make_unique<readerbuf_t>();
+    r->in = fopen(filename, "rb");
+    int ret = 0;
 
-	if (r->in == nullptr)
-	{
-		TRACE("Could not open script %s!\n", filename);
-		Game.program_death("Error opening script file");
-	}
-	ret = lua_load(L, KqFork::filereader, r.get(), filename, nullptr);
-	fclose(r->in);
-	if (ret != 0)
-	{
-		TRACE("Could not parse script %s!\n", get_filename(filename));
-		Game.program_death("Script error");
-	}
+    if (r->in == nullptr)
+    {
+        TRACE("Could not open script %s!\n", filename);
+        Game.program_death("Error opening script file");
+    }
+    ret = lua_load(L, KqFork::filereader, r.get(), filename, nullptr);
+    fclose(r->in);
+    if (ret != 0)
+    {
+        TRACE("Could not parse script %s!\n", get_filename(filename));
+        Game.program_death("Script error");
+    }
 
-	if (lua_pcall(L, 0, LUA_MULTRET, 0) != 0)
-	{
-		TRACE("lua_pcall failed while calling script %s!\n", get_filename(filename));
-		KQ_traceback(L);
-		Game.program_death("Script error");
-	}
+    if (lua_pcall(L, 0, LUA_MULTRET, 0) != 0)
+    {
+        TRACE("lua_pcall failed while calling script %s!\n", get_filename(filename));
+        KQ_traceback(L);
+        Game.program_death("Script error");
+    }
 
-	return 0;
+    return 0;
 }
 
 /*! \brief Obey a command typed in from the console
@@ -4058,58 +4058,58 @@ int KqFork::lua_dofile(lua_State* L, const char* filename)
  */
 int kq_dostring(lua_State* L, const char* cmd)
 {
-	int retval, nrets, top;
-	int i;
+    int retval, nrets, top;
+    int i;
 
-	top = lua_gettop(L);
-	/* Parse the command into an anonymous function on the stack */
-	retval = lua_load(L, (lua_Reader)KqFork::stringreader, &cmd, "<console>", nullptr);
-	if (retval != 0)
-	{
-		scroll_console("Parse error");
-		return retval;
-	}
-	/* Call it with no args and any number of return values */
-	retval = lua_pcall(L, 0, LUA_MULTRET, 0);
-	if (retval != 0)
-	{
-		scroll_console("Execute error");
-		return retval;
-	}
-	nrets = lua_gettop(L) - top;
-	for (i = -nrets; i < 0; ++i)
-	{
-		if (lua_isboolean(L, i))
-		{
-			scroll_console(lua_toboolean(L, i) ? "true" : "false");
-		}
-		else if (lua_isstring(L, i))
-		{
-			scroll_console(lua_tostring(L, i));
-		}
-		else if (lua_isfunction(L, i))
-		{
-			scroll_console("<FUNCTION>");
-		}
-		else if (lua_isuserdata(L, i))
-		{
-			scroll_console("<USERDATA>");
-		}
-		else if (lua_istable(L, i))
-		{
-			scroll_console("<TABLE>");
-		}
-		else if (lua_isnil(L, i))
-		{
-			scroll_console("<NIL>");
-		}
-		else
-		{
-			scroll_console("<OTHER>");
-		}
-	}
-	lua_pop(L, nrets);
-	return 0;
+    top = lua_gettop(L);
+    /* Parse the command into an anonymous function on the stack */
+    retval = lua_load(L, (lua_Reader)KqFork::stringreader, &cmd, "<console>", nullptr);
+    if (retval != 0)
+    {
+        scroll_console("Parse error");
+        return retval;
+    }
+    /* Call it with no args and any number of return values */
+    retval = lua_pcall(L, 0, LUA_MULTRET, 0);
+    if (retval != 0)
+    {
+        scroll_console("Execute error");
+        return retval;
+    }
+    nrets = lua_gettop(L) - top;
+    for (i = -nrets; i < 0; ++i)
+    {
+        if (lua_isboolean(L, i))
+        {
+            scroll_console(lua_toboolean(L, i) ? "true" : "false");
+        }
+        else if (lua_isstring(L, i))
+        {
+            scroll_console(lua_tostring(L, i));
+        }
+        else if (lua_isfunction(L, i))
+        {
+            scroll_console("<FUNCTION>");
+        }
+        else if (lua_isuserdata(L, i))
+        {
+            scroll_console("<USERDATA>");
+        }
+        else if (lua_istable(L, i))
+        {
+            scroll_console("<TABLE>");
+        }
+        else if (lua_isnil(L, i))
+        {
+            scroll_console("<NIL>");
+        }
+        else
+        {
+            scroll_console("<OTHER>");
+        }
+    }
+    lua_pop(L, nrets);
+    return 0;
 }
 
 /*! \brief Obey a command typed in from the console
@@ -4121,14 +4121,14 @@ int kq_dostring(lua_State* L, const char* cmd)
  */
 void do_console_command(const char* cmd)
 {
-	if (theL != nullptr)
-	{
-		kq_dostring(theL, cmd);
-	}
-	else
-	{
-		scroll_console("No script engine running");
-	}
+    if (theL != nullptr)
+    {
+        kq_dostring(theL, cmd);
+    }
+    else
+    {
+        scroll_console("No script engine running");
+    }
 }
 
 /*! \brief Print text to the console
@@ -4139,8 +4139,8 @@ void do_console_command(const char* cmd)
  */
 int KQ_print(lua_State* L)
 {
-	scroll_console(lua_tostring(L, 1));
-	return 0;
+    scroll_console(lua_tostring(L, 1));
+    return 0;
 }
 
 /*! \brief Get party array
@@ -4152,18 +4152,18 @@ int KQ_print(lua_State* L)
  */
 int KQ_party_getter(lua_State* L)
 {
-	uint32_t which = (uint32_t)lua_tonumber(L, 2);
+    uint32_t which = (uint32_t)lua_tonumber(L, 2);
 
-	if (which < numchrs)
-	{
-		lua_getglobal(L, "player");
-		lua_rawgeti(L, -1, pidx[which]);
-	}
-	else
-	{
-		lua_pushnil(L);
-	}
-	return 1;
+    if (which < numchrs)
+    {
+        lua_getglobal(L, "player");
+        lua_rawgeti(L, -1, pidx[which]);
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
+    return 1;
 }
 
 /*! \brief Set party array
@@ -4177,62 +4177,62 @@ int KQ_party_getter(lua_State* L)
  */
 int KQ_party_setter(lua_State* L)
 {
-	size_t which = static_cast<size_t>(lua_tonumber(L, 2));
+    size_t which = static_cast<size_t>(lua_tonumber(L, 2));
 
-	if (which < MAX_PARTY_SIZE)
-	{
-		/* check if it is a valid hero object */
-		if (lua_isnil(L, 3))
-		{
-			/* is there a character there anyway? */
-			if (which >= numchrs)
-			{
-				return 0;
-			}
-			/* it was nil, erase a character */
-			for (size_t i = which; i < (MAX_PARTY_SIZE - 1); ++i)
-			{
-				pidx[i] = pidx[i + 1];
-				memcpy(&g_ent[i], &g_ent[i + 1], sizeof(KQEntity));
-			}
-			--numchrs;
-			g_ent[numchrs].active = false;
-			pidx[numchrs] = PIDX_UNDEFINED;
-		}
-		else if (lua_istable(L, 3))
-		{
-			KPlayer* tt = nullptr;
+    if (which < MAX_PARTY_SIZE)
+    {
+        /* check if it is a valid hero object */
+        if (lua_isnil(L, 3))
+        {
+            /* is there a character there anyway? */
+            if (which >= numchrs)
+            {
+                return 0;
+            }
+            /* it was nil, erase a character */
+            for (size_t i = which; i < (MAX_PARTY_SIZE - 1); ++i)
+            {
+                pidx[i] = pidx[i + 1];
+                memcpy(&g_ent[i], &g_ent[i + 1], sizeof(KQEntity));
+            }
+            --numchrs;
+            g_ent[numchrs].active = false;
+            pidx[numchrs] = PIDX_UNDEFINED;
+        }
+        else if (lua_istable(L, 3))
+        {
+            KPlayer* tt = nullptr;
 
-			lua_pushstring(L, LUA_PLR_KEY);
-			lua_rawget(L, -2);
-			tt = (KPlayer*)lua_touserdata(L, -1);
-			if (tt)
-			{
-				/* OK so far */
-				if (which > numchrs)
-				{
-					which = numchrs;
-				}
-				pidx[which] = (ePIDX)(tt - party);
-				if (which >= numchrs)
-				{
-					/* Added a character in */
-					numchrs = which + 1;
-					memcpy(&g_ent[which], &g_ent[0], sizeof(KQEntity));
-					g_ent[which].x = g_ent[0].x;
-					g_ent[which].y = g_ent[0].y;
-				}
-				g_ent[which].setIdentity(0);
-				g_ent[which].eid = pidx[which];
-			}
-			/* else, it was a table but not a hero */
-		}
-		else
-		{
-			/* else, it wasn't a table */
-		}
-	}
-	return 0;
+            lua_pushstring(L, LUA_PLR_KEY);
+            lua_rawget(L, -2);
+            tt = (KPlayer*)lua_touserdata(L, -1);
+            if (tt)
+            {
+                /* OK so far */
+                if (which > numchrs)
+                {
+                    which = numchrs;
+                }
+                pidx[which] = (ePIDX)(tt - party);
+                if (which >= numchrs)
+                {
+                    /* Added a character in */
+                    numchrs = which + 1;
+                    memcpy(&g_ent[which], &g_ent[0], sizeof(KQEntity));
+                    g_ent[which].x = g_ent[0].x;
+                    g_ent[which].y = g_ent[0].y;
+                }
+                g_ent[which].setIdentity(0);
+                g_ent[which].eid = pidx[which];
+            }
+            /* else, it was a table but not a hero */
+        }
+        else
+        {
+            /* else, it wasn't a table */
+        }
+    }
+    return 0;
 }
 
 /*! \brief Create a bitmap sprite.
@@ -4245,153 +4245,153 @@ int KQ_party_setter(lua_State* L)
  */
 int KQ_make_sprite(lua_State* L)
 {
-	int nel = lua_gettop(L);
-	if (nel >= 1)
-	{
-		const char* filename = lua_tostring(L, 1);
-		Raster* bm = get_cached_image(filename);
-		if (nel == 1)
-		{
-			// Push x, y, w, h
-			lua_pushnumber(L, 0);
-			lua_pushnumber(L, 0);
-			lua_pushnumber(L, bm ? bm->width : 0);
-			lua_pushnumber(L, bm ? bm->height : 0);
-		}
-		else if (nel == 5)
-		{
-			// They're already on the stack
-		}
-		else
-		{
-			// Not 1 or 5 args
-			lua_pushnil(L);
-			return 1;
-		}
-		lua_newtable(L);
-		lua_pushliteral(L, "bitmap");
-		lua_pushlightuserdata(L, bm);
-		lua_rawset(L, 6);
-		lua_pushliteral(L, "x");
-		lua_pushvalue(L, 2);
-		lua_rawset(L, 6);
-		lua_pushliteral(L, "y");
-		lua_pushvalue(L, 3);
-		lua_rawset(L, 6);
-		lua_pushliteral(L, "width");
-		lua_pushvalue(L, 4);
-		lua_rawset(L, 6);
-		lua_pushliteral(L, "height");
-		lua_pushvalue(L, 5);
-		lua_rawset(L, 6);
-	}
-	else
-	{
-		lua_pushnil(L);
-	}
-	return 1;
+    int nel = lua_gettop(L);
+    if (nel >= 1)
+    {
+        const char* filename = lua_tostring(L, 1);
+        Raster* bm = get_cached_image(filename);
+        if (nel == 1)
+        {
+            // Push x, y, w, h
+            lua_pushnumber(L, 0);
+            lua_pushnumber(L, 0);
+            lua_pushnumber(L, bm ? bm->width : 0);
+            lua_pushnumber(L, bm ? bm->height : 0);
+        }
+        else if (nel == 5)
+        {
+            // They're already on the stack
+        }
+        else
+        {
+            // Not 1 or 5 args
+            lua_pushnil(L);
+            return 1;
+        }
+        lua_newtable(L);
+        lua_pushliteral(L, "bitmap");
+        lua_pushlightuserdata(L, bm);
+        lua_rawset(L, 6);
+        lua_pushliteral(L, "x");
+        lua_pushvalue(L, 2);
+        lua_rawset(L, 6);
+        lua_pushliteral(L, "y");
+        lua_pushvalue(L, 3);
+        lua_rawset(L, 6);
+        lua_pushliteral(L, "width");
+        lua_pushvalue(L, 4);
+        lua_rawset(L, 6);
+        lua_pushliteral(L, "height");
+        lua_pushvalue(L, 5);
+        lua_rawset(L, 6);
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
+    return 1;
 }
 
 int KQ_drawsprite(lua_State* L)
 {
-	if (lua_istable(L, 1))
-	{
-		int dx = lua_tonumber(L, 2);
-		int dy = lua_tonumber(L, 3);
-		lua_pushliteral(L, "bitmap");
-		lua_rawget(L, 1);
-		Raster* bm = reinterpret_cast<Raster*>(lua_touserdata(L, -1));
-		lua_pop(L, 1);
+    if (lua_istable(L, 1))
+    {
+        int dx = lua_tonumber(L, 2);
+        int dy = lua_tonumber(L, 3);
+        lua_pushliteral(L, "bitmap");
+        lua_rawget(L, 1);
+        Raster* bm = reinterpret_cast<Raster*>(lua_touserdata(L, -1));
+        lua_pop(L, 1);
 
-		lua_pushliteral(L, "x");
-		lua_rawget(L, 1);
-		int sx = static_cast<int>(lua_tonumber(L, -1));
-		lua_pop(L, 1);
+        lua_pushliteral(L, "x");
+        lua_rawget(L, 1);
+        int sx = static_cast<int>(lua_tonumber(L, -1));
+        lua_pop(L, 1);
 
-		lua_pushliteral(L, "y");
-		lua_rawget(L, 1);
-		int sy = static_cast<int>(lua_tonumber(L, -1));
-		lua_pop(L, 1);
+        lua_pushliteral(L, "y");
+        lua_rawget(L, 1);
+        int sy = static_cast<int>(lua_tonumber(L, -1));
+        lua_pop(L, 1);
 
-		lua_pushliteral(L, "width");
-		lua_rawget(L, 1);
-		int width = static_cast<int>(lua_tonumber(L, -1));
-		lua_pop(L, 1);
+        lua_pushliteral(L, "width");
+        lua_rawget(L, 1);
+        int width = static_cast<int>(lua_tonumber(L, -1));
+        lua_pop(L, 1);
 
-		lua_pushliteral(L, "height");
-		lua_rawget(L, 1);
-		int height = static_cast<int>(lua_tonumber(L, -1));
-		lua_pop(L, 1);
+        lua_pushliteral(L, "height");
+        lua_rawget(L, 1);
+        int height = static_cast<int>(lua_tonumber(L, -1));
+        lua_pop(L, 1);
 
-		masked_blit(bm, double_buffer, sx, sy, dx + xofs, dy + yofs, width, height);
-	}
-	return 0;
+        masked_blit(bm, double_buffer, sx, sy, dx + xofs, dy + yofs, width, height);
+    }
+    return 0;
 }
 
 int KqFork::real_entity_num(lua_State* L, int pos)
 {
-	if (lua_isnumber(L, pos))
-	{
-		auto ee = lua_tointeger(L, pos);
+    if (lua_isnumber(L, pos))
+    {
+        auto ee = lua_tointeger(L, pos);
 
-		switch (ee)
-		{
-		case eHero::HERO1:
-			return 0;
+        switch (ee)
+        {
+        case eHero::HERO1:
+            return 0;
 
-		case eHero::HERO2:
-			return 1;
+        case eHero::HERO2:
+            return 1;
 
-		case 255:
-			return 255;
+        case 255:
+            return 255;
 
-		default:
-			return ee + MAX_PARTY_SIZE;
-		}
-	}
-	if (lua_istable(L, pos))
-	{
-		KQEntity* ent = nullptr;
+        default:
+            return ee + MAX_PARTY_SIZE;
+        }
+    }
+    if (lua_istable(L, pos))
+    {
+        KQEntity* ent = nullptr;
 
-		lua_pushstring(L, LUA_ENT_KEY);
-		lua_rawget(L, pos);
-		ent = (KQEntity*)lua_touserdata(L, -1);
-		lua_pop(L, 1);
-		if (ent)
-		{
-			return ent - g_ent;
-		}
-	}
-	return 255; /* means "nobody" */
+        lua_pushstring(L, LUA_ENT_KEY);
+        lua_rawget(L, pos);
+        ent = (KQEntity*)lua_touserdata(L, -1);
+        lua_pop(L, 1);
+        if (ent)
+        {
+            return ent - g_ent;
+        }
+    }
+    return 255; /* means "nobody" */
 }
 
 void set_btile(int x, int y, int value)
 {
-	map_seg[y * g_map.xsize + x] = value;
+    map_seg[y * g_map.xsize + x] = value;
 }
 
 void set_mtile(int x, int y, int value)
 {
-	b_seg[y * g_map.xsize + x] = value;
+    b_seg[y * g_map.xsize + x] = value;
 }
 
 void set_ftile(int x, int y, int value)
 {
-	f_seg[y * g_map.xsize + x] = value;
+    f_seg[y * g_map.xsize + x] = value;
 }
 
 void set_zone(int x, int y, int value)
 {
-	z_seg[y * g_map.xsize + x] = value;
+    z_seg[y * g_map.xsize + x] = value;
 }
 
 void set_obs(int x, int y, int value)
 {
-	o_seg[y * g_map.xsize + x] = value;
+    o_seg[y * g_map.xsize + x] = value;
 }
 
 void set_shadow(int x, int y, int value)
 {
-	size_t index = y * g_map.xsize + x;
-	s_seg[index] = value;
+    size_t index = y * g_map.xsize + x;
+    s_seg[index] = value;
 }

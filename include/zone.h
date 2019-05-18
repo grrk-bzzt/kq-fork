@@ -3,9 +3,9 @@
 class KZone
 {
 public:
-	int x;
-	int y;
-	int w;
-	int h;
-	int n;
+    int x;
+    int y;
+    int w;
+    int h;
+    int n;
 };

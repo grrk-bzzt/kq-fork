@@ -18,61 +18,61 @@ KMarkers::KMarkers() {}
 
 KMarkers::~KMarkers()
 {
-	for (auto& marker : m_markers)
-	{
-		marker = nullptr;
-	}
-	m_markers.clear();
+    for (auto& marker : m_markers)
+    {
+        marker = nullptr;
+    }
+    m_markers.clear();
 }
 
 bool KMarkers::Add(std::shared_ptr<KMarker> marker)
 {
-	m_markers.push_back(marker);
-	return true;
+    m_markers.push_back(marker);
+    return true;
 }
 
 bool KMarkers::Remove(std::shared_ptr<KMarker> marker)
 {
-	auto found = std::find(m_markers.begin(), m_markers.end(), marker);
-	if (found != m_markers.end())
-	{
-		m_markers.erase(found);
-		return true;
-	}
-	return false;
+    auto found = std::find(m_markers.begin(), m_markers.end(), marker);
+    if (found != m_markers.end())
+    {
+        m_markers.erase(found);
+        return true;
+    }
+    return false;
 }
 
 std::shared_ptr<KMarker> KMarkers::GetMarker(size_t index)
 {
-	if (index < m_markers.size())
-	{
-		return m_markers[index];
-	}
-	return nullptr;
+    if (index < m_markers.size())
+    {
+        return m_markers[index];
+    }
+    return nullptr;
 }
 
 std::shared_ptr<KMarker> KMarkers::GetMarker(const std::string& marker_name)
 {
-	for (auto& marker : m_markers)
-	{
-		if (marker->markerName == marker_name)
-		{
-			return marker;
-		}
-	}
-	return nullptr;
+    for (auto& marker : m_markers)
+    {
+        if (marker->markerName == marker_name)
+        {
+            return marker;
+        }
+    }
+    return nullptr;
 }
 
 std::shared_ptr<KMarker> KMarkers::GetMarker(int32_t x, int32_t y)
 {
-	for (auto& marker : m_markers)
-	{
-		if (marker->x == x && marker->y == y)
-		{
-			return marker;
-		}
-	}
-	return nullptr;
+    for (auto& marker : m_markers)
+    {
+        if (marker->x == x && marker->y == y)
+        {
+            return marker;
+        }
+    }
+    return nullptr;
 }
 
 KMarker Marker;

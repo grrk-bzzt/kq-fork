@@ -43,23 +43,23 @@ std::string gameDir;
  */
 std::string CombinePaths(size_t numStringsToCombine, ...)
 {
-	std::string constructedPath = "";
+    std::string constructedPath = "";
 
-	if (numStringsToCombine == 0)
-	{
-		return constructedPath;
-	}
+    if (numStringsToCombine == 0)
+    {
+        return constructedPath;
+    }
 
-	va_list args;
-	va_start(args, numStringsToCombine);
-	constructedPath += va_arg(args, std::string);
-	for (size_t i = 1; i < numStringsToCombine; i++)
-	{
-		constructedPath += "/";
-		constructedPath += va_arg(args, std::string);
-	}
+    va_list args;
+    va_start(args, numStringsToCombine);
+    constructedPath += va_arg(args, std::string);
+    for (size_t i = 1; i < numStringsToCombine; i++)
+    {
+        constructedPath += "/";
+        constructedPath += va_arg(args, std::string);
+    }
 
-	return constructedPath;
+    return constructedPath;
 }
 
 } // namespace KqFork
@@ -77,24 +77,24 @@ std::string CombinePaths(size_t numStringsToCombine, ...)
  */
 std::string get_resource_file_path(const std::string str1, const std::string str2, const std::string file)
 {
-	FILE* fp = nullptr;
+    FILE* fp = nullptr;
 
-	const std::string userDirFound = KqFork::CombinePaths(3, KqFork::userDir, str2, file);
-	fp = fopen(userDirFound.c_str(), "r");
-	if (fp)
-	{
-		fclose(fp);
-		return userDirFound;
-	}
+    const std::string userDirFound = KqFork::CombinePaths(3, KqFork::userDir, str2, file);
+    fp = fopen(userDirFound.c_str(), "r");
+    if (fp)
+    {
+        fclose(fp);
+        return userDirFound;
+    }
 
-	const std::string customDirFound = KqFork::CombinePaths(3, str1, str2, file);
-	fp = fopen(customDirFound.c_str(), "r");
-	if (fp)
-	{
-		fclose(fp);
-		return customDirFound;
-	}
-	return "";
+    const std::string customDirFound = KqFork::CombinePaths(3, str1, str2, file);
+    fp = fopen(customDirFound.c_str(), "r");
+    if (fp)
+    {
+        fclose(fp);
+        return customDirFound;
+    }
+    return "";
 }
 
 /*! \brief Returns the full path for this lua script.
@@ -111,41 +111,41 @@ std::string get_resource_file_path(const std::string str1, const std::string str
  */
 std::string get_lua_file_path(const std::string file)
 {
-	FILE* fp = nullptr;
+    FILE* fp = nullptr;
 
-	const std::string userDirLob = KqFork::CombinePaths(3, KqFork::userDir, std::string("scripts"), file + ".lob");
-	fp = fopen(userDirLob.c_str(), "r");
-	if (fp)
-	{
-		fclose(fp);
-		return userDirLob;
-	}
+    const std::string userDirLob = KqFork::CombinePaths(3, KqFork::userDir, std::string("scripts"), file + ".lob");
+    fp = fopen(userDirLob.c_str(), "r");
+    if (fp)
+    {
+        fclose(fp);
+        return userDirLob;
+    }
 
-	const std::string userDirLua = KqFork::CombinePaths(3, KqFork::userDir, std::string("scripts"), file + ".lua");
-	fp = fopen(userDirLua.c_str(), "r");
-	if (fp)
-	{
-		fclose(fp);
-		return userDirLua;
-	}
+    const std::string userDirLua = KqFork::CombinePaths(3, KqFork::userDir, std::string("scripts"), file + ".lua");
+    fp = fopen(userDirLua.c_str(), "r");
+    if (fp)
+    {
+        fclose(fp);
+        return userDirLua;
+    }
 
-	const std::string gameDirLob = KqFork::CombinePaths(3, KqFork::gameDir, std::string("scripts"), file + ".lob");
-	fp = fopen(gameDirLob.c_str(), "r");
-	if (fp)
-	{
-		fclose(fp);
-		return gameDirLob;
-	}
+    const std::string gameDirLob = KqFork::CombinePaths(3, KqFork::gameDir, std::string("scripts"), file + ".lob");
+    fp = fopen(gameDirLob.c_str(), "r");
+    if (fp)
+    {
+        fclose(fp);
+        return gameDirLob;
+    }
 
-	const std::string gameDirLua = KqFork::CombinePaths(3, KqFork::gameDir, std::string("scripts"), file + ".lua");
-	fp = fopen(gameDirLua.c_str(), "r");
-	if (fp)
-	{
-		fclose(fp);
-		return gameDirLua;
-	}
+    const std::string gameDirLua = KqFork::CombinePaths(3, KqFork::gameDir, std::string("scripts"), file + ".lua");
+    fp = fopen(gameDirLua.c_str(), "r");
+    if (fp)
+    {
+        fclose(fp);
+        return gameDirLua;
+    }
 
-	return "";
+    return "";
 }
 
 /*! \brief Return the name of 'significant' directories.
@@ -156,64 +156,64 @@ std::string get_lua_file_path(const std::string file)
  */
 std::string kqres(eDirectories dir, const std::string& file)
 {
-	HINSTANCE SHFolder;
-	SHGETFOLDERPATH SHGetFolderPath;
+    HINSTANCE SHFolder;
+    SHGETFOLDERPATH SHGetFolderPath;
 
-	if (!KqFork::bAreUserAndGameDirsInitialized)
-	{
-		WCHAR tmp[MAX_PATH];
-		std::string home;
-		/* Get home directory; this bit originally written by SH */
-		SHFolder = LoadLibrary("shfolder.dll");
-		if (SHFolder != nullptr)
-		{
-			SHGetFolderPath = (SHGETFOLDERPATH)GetProcAddress(SHFolder, "SHGetFolderPathW");
-			if (SHGetFolderPath != nullptr)
-			{
-				/* Get the "Application Data" folder for the current user */
-				if (SHGetFolderPath(nullptr, CSIDL_APPDATA | CSIDL_FLAG_CREATE, nullptr, SHGFP_TYPE_CURRENT, tmp) == S_OK)
-				{
-					home.append(uconvert((const char*)tmp, U_UNICODE, nullptr, U_UTF8, 0));
-				}
-			}
-			FreeLibrary(SHFolder);
-		}
+    if (!KqFork::bAreUserAndGameDirsInitialized)
+    {
+        WCHAR tmp[MAX_PATH];
+        std::string home;
+        /* Get home directory; this bit originally written by SH */
+        SHFolder = LoadLibrary("shfolder.dll");
+        if (SHFolder != nullptr)
+        {
+            SHGetFolderPath = (SHGETFOLDERPATH)GetProcAddress(SHFolder, "SHGetFolderPathW");
+            if (SHGetFolderPath != nullptr)
+            {
+                /* Get the "Application Data" folder for the current user */
+                if (SHGetFolderPath(nullptr, CSIDL_APPDATA | CSIDL_FLAG_CREATE, nullptr, SHGFP_TYPE_CURRENT, tmp) == S_OK)
+                {
+                    home.append(uconvert((const char*)tmp, U_UNICODE, nullptr, U_UTF8, 0));
+                }
+            }
+            FreeLibrary(SHFolder);
+        }
 
-		/* Do not get fooled by a corrupted $HOME */
-		if (home.length() > 0 && home.length() < MAX_PATH)
-		{
-			KqFork::userDir = KqFork::CombinePaths(2, home, std::string("KQ"));
-			/* Always try to make the directory, just to be sure. */
-			_mkdir(KqFork::userDir.c_str());
-		}
-		else
-		{
-			KqFork::userDir = ".";
-		}
-		/* Now the data directory */
-		KqFork::gameDir = ".";
-		KqFork::bAreUserAndGameDirsInitialized = true;
-	}
+        /* Do not get fooled by a corrupted $HOME */
+        if (home.length() > 0 && home.length() < MAX_PATH)
+        {
+            KqFork::userDir = KqFork::CombinePaths(2, home, std::string("KQ"));
+            /* Always try to make the directory, just to be sure. */
+            _mkdir(KqFork::userDir.c_str());
+        }
+        else
+        {
+            KqFork::userDir = ".";
+        }
+        /* Now the data directory */
+        KqFork::gameDir = ".";
+        KqFork::bAreUserAndGameDirsInitialized = true;
+    }
 
-	switch (dir)
-	{
-	case DATA_DIR:
-		return get_resource_file_path(KqFork::gameDir, std::string("data"), file);
-		break;
-	case MAP_DIR:
-		return get_resource_file_path(KqFork::gameDir, std::string("maps"), file);
-		break;
-	case SAVE_DIR:
-	case SETTINGS_DIR:
-		return KqFork::CombinePaths(2, KqFork::userDir, file);
-		break;
-	case MUSIC_DIR:
-		return get_resource_file_path(KqFork::gameDir, std::string("music"), file);
-		break;
-	case SCRIPT_DIR:
-		return get_lua_file_path(file);
-		break;
-	default:
-		return nullptr;
-	}
+    switch (dir)
+    {
+    case DATA_DIR:
+        return get_resource_file_path(KqFork::gameDir, std::string("data"), file);
+        break;
+    case MAP_DIR:
+        return get_resource_file_path(KqFork::gameDir, std::string("maps"), file);
+        break;
+    case SAVE_DIR:
+    case SETTINGS_DIR:
+        return KqFork::CombinePaths(2, KqFork::userDir, file);
+        break;
+    case MUSIC_DIR:
+        return get_resource_file_path(KqFork::gameDir, std::string("music"), file);
+        break;
+    case SCRIPT_DIR:
+        return get_lua_file_path(file);
+        break;
+    default:
+        return nullptr;
+    }
 }

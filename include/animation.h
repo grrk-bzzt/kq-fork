@@ -8,35 +8,35 @@
 
 class KAnimation
 {
-	class KAnimSequence
-	{
-	public:
-		KAnimSequence(const KTmxAnimation& base);
-		~KAnimSequence() = default;
-		KAnimSequence(const KAnimSequence& rhs) = default;
-		KAnimSequence(KAnimSequence&& rhs) = default;
+    class KAnimSequence
+    {
+    public:
+        KAnimSequence(const KTmxAnimation& base);
+        ~KAnimSequence() = default;
+        KAnimSequence(const KAnimSequence& rhs) = default;
+        KAnimSequence(KAnimSequence&& rhs) = default;
 
-		KTmxAnimation::animation_frame current() const;
+        KTmxAnimation::animation_frame current() const;
 
-		void advance();
+        void advance();
         void addNextTime(int millis);
         int getNextTime() const;
 
         KTmxAnimation getAnimation() const;
 
-	private:
-		int nexttime_;
-		size_t index_;
-		const KTmxAnimation animation_;
-	};
+    private:
+        int nexttime_;
+        size_t index_;
+        const KTmxAnimation animation_;
+    };
 
 public:
-	void check_animation(int millis, uint16_t* tilex);
-	void add_animation(const KTmxAnimation& base);
-	void clear_animations();
+    void check_animation(int millis, uint16_t* tilex);
+    void add_animation(const KTmxAnimation& base);
+    void clear_animations();
 
 private:
-	std::vector<KAnimSequence> animations_;
+    std::vector<KAnimSequence> animations_;
 };
 
 extern KAnimation kqAnimation;

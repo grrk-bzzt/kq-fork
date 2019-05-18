@@ -17,36 +17,36 @@ enum eMenuBoxColor
 
 enum eFontColor
 {
-	FONTCOLOR_NORMAL = 0,
-	FONTCOLOR_RED = 1,
-	FONTCOLOR_YELLOW = 2,
-	FONTCOLOR_GREEN = 3,
-	FONTCOLOR_DARK = 4,
-	FONTCOLOR_GOLD = 5,
-	FONTCOLOR_BIG = 6,
+    FONTCOLOR_NORMAL = 0,
+    FONTCOLOR_RED = 1,
+    FONTCOLOR_YELLOW = 2,
+    FONTCOLOR_GREEN = 3,
+    FONTCOLOR_DARK = 4,
+    FONTCOLOR_GOLD = 5,
+    FONTCOLOR_BIG = 6,
 
-	NUM_FONT_COLORS // always last
+    NUM_FONT_COLORS // always last
 };
 
 enum eFont
 {
-	FONT_WHITE = 0,
-	FONT_RED,
-	FONT_YELLOW,
-	FONT_GREEN,
-	FONT_PURPLE,
-	FONT_DECIDE,
+    FONT_WHITE = 0,
+    FONT_RED,
+    FONT_YELLOW,
+    FONT_GREEN,
+    FONT_PURPLE,
+    FONT_DECIDE,
 
-	NUM_FONTS // always last
+    NUM_FONTS // always last
 };
 
 enum eBubbleStyle
 {
-	BUBBLE_TEXT = 0,
-	BUBBLE_THOUGHT = 1,
-	BUBBLE_MESSAGE = 2,
+    BUBBLE_TEXT = 0,
+    BUBBLE_THOUGHT = 1,
+    BUBBLE_MESSAGE = 2,
 
-	NUM_BUBBLE_STYLES // always last
+    NUM_BUBBLE_STYLES // always last
 };
 
 enum eTransitionFade
@@ -63,14 +63,14 @@ enum eTransitionFade
  */
 enum eBubbleStemStyle
 {
-	STEM_UNDEFINED = -1,
+    STEM_UNDEFINED = -1,
 
-	STEM_BOTTOM_RIGHT = 0,
-	STEM_BOTTOM_LEFT = 1,
-	STEM_TOP_RIGHT = 2,
-	STEM_TOP_LEFT = 3,
+    STEM_BOTTOM_RIGHT = 0,
+    STEM_BOTTOM_LEFT = 1,
+    STEM_TOP_RIGHT = 2,
+    STEM_TOP_LEFT = 3,
 
-	NUM_BUBBLE_STEMS // always last
+    NUM_BUBBLE_STEMS // always last
 };
 
 class KDraw
@@ -489,8 +489,7 @@ private:
      */
     const char* decode_utf8(const char* inputString, uint32_t* cp);
 
-    /**
-     * Replace all occurrences of 'searchForText' with 'replaceWithText' within 'originalString'.
+    /*! \brief Replace all occurrences of 'searchForText' with 'replaceWithText' within 'originalString'.
      * 
      * @param originalString A copy of the original text string.
      * @param searchForText Substring to replace.

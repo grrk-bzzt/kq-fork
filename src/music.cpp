@@ -29,18 +29,18 @@ static int current_music_player;
  */
 void KMusic::init_music()
 {
-	atexit(&dumb_exit);
-	dumb_register_stdfiles();
-	dumb_resampling_quality = 2;
+    atexit(&dumb_exit);
+    dumb_register_stdfiles();
+    dumb_resampling_quality = 2;
 
-	/* initialize all music players */
-	current_music_player = MAX_MUSIC_PLAYERS;
-	while (current_music_player--)
-	{
-		mod_song[current_music_player] = nullptr;
-		mod_player[current_music_player] = nullptr;
-	}
-	current_music_player = 0;
+    /* initialize all music players */
+    current_music_player = MAX_MUSIC_PLAYERS;
+    while (current_music_player--)
+    {
+        mod_song[current_music_player] = nullptr;
+        mod_player[current_music_player] = nullptr;
+    }
+    current_music_player = 0;
 }
 
 /*! \brief Clean up and shut down music (DUMB)
@@ -49,14 +49,14 @@ void KMusic::init_music()
  */
 void KMusic::shutdown_music()
 {
-	if (is_sound != 0)
-	{
-		do
-		{
-			stop_music();
-		}
-		while (current_music_player--);
-	}
+    if (is_sound != 0)
+    {
+        do
+        {
+            stop_music();
+        }
+        while (current_music_player--);
+    }
 }
 
 /*! \brief Set the music volume (DUMB)
@@ -67,10 +67,10 @@ void KMusic::shutdown_music()
  */
 void KMusic::set_music_volume(float volume)
 {
-	if (is_sound != 0 && mod_player[current_music_player])
-	{
-		al_duh_set_volume(mod_player[current_music_player], volume);
-	}
+    if (is_sound != 0 && mod_player[current_music_player])
+    {
+        al_duh_set_volume(mod_player[current_music_player], volume);
+    }
 }
 
 /*! \brief Poll the music (DUMB)
@@ -80,10 +80,10 @@ void KMusic::set_music_volume(float volume)
  */
 void KMusic::poll_music()
 {
-	if (is_sound != 0)
-	{
-		al_poll_duh(mod_player[current_music_player]);
-	}
+    if (is_sound != 0)
+    {
+        al_poll_duh(mod_player[current_music_player]);
+    }
 }
 
 /*! \brief Play a specific song (DUMB)
@@ -104,44 +104,44 @@ void KMusic::play_music(const std::string& music_name, long position)
 
     std::string fstr = kqres(MUSIC_DIR, music_name);
 
-	stop_music();
-	if (exists(fstr.c_str()))
-	{
-		if (strstr(fstr.c_str(), ".mod"))
-		{
-			mod_song[current_music_player] = dumb_load_mod(fstr.c_str());
-		}
+    stop_music();
+    if (exists(fstr.c_str()))
+    {
+        if (strstr(fstr.c_str(), ".mod"))
+        {
+            mod_song[current_music_player] = dumb_load_mod(fstr.c_str());
+        }
 
-		else if (strstr(fstr.c_str(), ".xm"))
-		{
-			mod_song[current_music_player] = dumb_load_xm(fstr.c_str());
-		}
+        else if (strstr(fstr.c_str(), ".xm"))
+        {
+            mod_song[current_music_player] = dumb_load_xm(fstr.c_str());
+        }
 
-		else if (strstr(fstr.c_str(), ".s3m"))
-		{
-			mod_song[current_music_player] = dumb_load_s3m(fstr.c_str());
-		}
+        else if (strstr(fstr.c_str(), ".s3m"))
+        {
+            mod_song[current_music_player] = dumb_load_s3m(fstr.c_str());
+        }
 
-		else
-		{
-			mod_song[current_music_player] = nullptr;
-		}
-		if (mod_song[current_music_player])
-		{
-			/* ML: we should (?) adjust the buffer size after everything is running
-				* smooth */
-			float vol = float(gmvol) / 250.0f;
-			mod_player[current_music_player] = al_start_duh(mod_song[current_music_player], 2, position, vol, 4096 * 4, 44100);
-		}
-		else
-		{
-			TRACE(_("Could not load %s!\n"), fstr.c_str());
-		}
-	}
-	else
-	{
-		mod_song[current_music_player] = nullptr;
-	}
+        else
+        {
+            mod_song[current_music_player] = nullptr;
+        }
+        if (mod_song[current_music_player])
+        {
+            /* ML: we should (?) adjust the buffer size after everything is running
+                * smooth */
+            float vol = float(gmvol) / 250.0f;
+            mod_player[current_music_player] = al_start_duh(mod_song[current_music_player], 2, position, vol, 4096 * 4, 44100);
+        }
+        else
+        {
+            TRACE(_("Could not load %s!\n"), fstr.c_str());
+        }
+    }
+    else
+    {
+        mod_song[current_music_player] = nullptr;
+    }
 }
 
 /*! \brief Stop the music (DUMB)
@@ -152,13 +152,13 @@ void KMusic::play_music(const std::string& music_name, long position)
  */
 void KMusic::stop_music()
 {
-	if (is_sound != 0 && mod_player[current_music_player])
-	{
-		al_stop_duh(mod_player[current_music_player]);
-		unload_duh(mod_song[current_music_player]);
-		mod_player[current_music_player] = nullptr;
-		mod_song[current_music_player] = nullptr;
-	}
+    if (is_sound != 0 && mod_player[current_music_player])
+    {
+        al_stop_duh(mod_player[current_music_player]);
+        unload_duh(mod_song[current_music_player]);
+        mod_player[current_music_player] = nullptr;
+        mod_song[current_music_player] = nullptr;
+    }
 }
 
 /*! \brief Pauses the current music file (DUMB)
@@ -169,18 +169,18 @@ void KMusic::stop_music()
  */
 void KMusic::pause_music()
 {
-	if (is_sound != 0)
-	{
-		if (current_music_player < MAX_MUSIC_PLAYERS - 1)
-		{
-			al_pause_duh(mod_player[current_music_player]);
-			current_music_player++;
-		}
-		else
-		{
-			TRACE(_("reached maximum levels of music pauses!\n"));
-		}
-	}
+    if (is_sound != 0)
+    {
+        if (current_music_player < MAX_MUSIC_PLAYERS - 1)
+        {
+            al_pause_duh(mod_player[current_music_player]);
+            current_music_player++;
+        }
+        else
+        {
+            TRACE(_("reached maximum levels of music pauses!\n"));
+        }
+    }
 }
 
 /*! \brief Resume paused music (DUMB)
@@ -190,12 +190,12 @@ void KMusic::pause_music()
  */
 void KMusic::resume_music()
 {
-	if (is_sound != 0 && current_music_player > 0)
-	{
-		stop_music();
-		current_music_player--;
-		al_resume_duh(mod_player[current_music_player]);
-	}
+    if (is_sound != 0 && current_music_player > 0)
+    {
+        stop_music();
+        current_music_player--;
+        al_resume_duh(mod_player[current_music_player]);
+    }
 }
 
 KMusic Music;
