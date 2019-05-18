@@ -157,7 +157,7 @@ public:
      * \param   icx x-coord to draw to
      * \param   icy y-coord to draw to
      */
-    void draw_stsicon(Raster* where, int cc, int who, int inum, int icx, int icy);
+    void draw_stsicon(Raster* where, int cc, int who, uint32_t inum, int icx, int icy);
 
     /*! \brief Check for forest square
      *

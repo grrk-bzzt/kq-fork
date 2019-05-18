@@ -953,24 +953,20 @@ void KDraw::draw_shadows()
 	}
 }
 
-void KDraw::draw_stsicon(Raster* where, int cc, int who, int inum, int icx, int icy)
+void KDraw::draw_stsicon(Raster* where, int cc, int who, uint32_t inum, int icx, int icy)
 {
-	int j, st = 0, s;
+	int st = 0;
 
-	for (j = 0; j < inum; j++)
+	for (size_t statIdx = 0; statIdx < inum; ++statIdx)
 	{
-		if (cc == 0)
+        const int s = (cc == 0) ?
+            party[who].sts[statIdx] :
+            fighter[who].fighterSpellEffectStats[statIdx];
+
+        if (s != 0)
 		{
-			s = party[who].sts[j];
-		}
-		else
-		{
-			s = fighter[who].fighterSpellEffectStats[j];
-		}
-		if (s != 0)
-		{
-			masked_blit(stspics, where, 0, j * 8 + 8, st * 8 + icx, icy, 8, 8);
-			st++;
+			masked_blit(stspics, where, 0, statIdx * 8 + 8, st * 8 + icx, icy, 8, 8);
+			++st;
 		}
 	}
 	if (st == 0)

@@ -109,6 +109,9 @@
     <ClCompile Include="src\kq.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\kqentity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\magic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -241,6 +244,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\kq.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\kqentity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\kqsnd.h">
