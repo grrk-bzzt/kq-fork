@@ -154,7 +154,6 @@
     <ClInclude Include="include\enums.h" />
     <ClInclude Include="include\eqpmenu.h" />
     <ClInclude Include="include\eskill.h" />
-    <ClInclude Include="include\fade.h" />
     <ClInclude Include="include\fighter.h" />
     <ClInclude Include="include\gettext.h" />
     <ClInclude Include="include\gfx.h" />

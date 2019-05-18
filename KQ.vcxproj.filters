@@ -207,9 +207,6 @@
     <ClInclude Include="include\eskill.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\fade.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\fighter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
