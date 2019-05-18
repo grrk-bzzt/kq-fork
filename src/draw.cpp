@@ -33,17 +33,65 @@
 using std::string;
 
 /* Globals */
-namespace {
+namespace drawGlobals
+{
 
 constexpr uint32_t ScreenHeightInTiles = 16;
 constexpr uint32_t ScreenWidthInTiles = 21;
+constexpr uint32_t magic_number_216 = 216;
+constexpr uint32_t magic_number_152 = 152;
 
 constexpr size_t MSG_ROWS{ 4 };
 constexpr size_t MSG_COLS{ 36 };
+
 char msgbuf[MSG_ROWS][MSG_COLS];
 string messageBuffer[MSG_ROWS];
 int gbx, gby, gbbx, gbby, gbbw, gbbh, gbbs;
 eBubbleStemStyle bubble_stem_style;
+
+} // namespace drawGlobals
+
+namespace
+{
+
+void setGbxy(const int gbx, const int gby)
+{
+	drawGlobals::gbx = gbx;
+	drawGlobals::gby = gby;
+}
+
+void setGbx(const int gbx) { drawGlobals::gbx = gbx; }
+int getGbx() { return drawGlobals::gbx; }
+void setGby(const int gby) { drawGlobals::gby = gby; }
+int getGby() { return drawGlobals::gby; }
+
+void setGbbxy(const int gbbx, const int gbby)
+{
+	drawGlobals::gbbx = gbbx;
+	drawGlobals::gbby = gbby;
+}
+
+void setGbbx(const int gbbx) { drawGlobals::gbbx = gbbx; }
+int getGbbx() { return drawGlobals::gbbx; }
+void setGbby(const int gbby) { drawGlobals::gbby = gbby; }
+int getGbby() { return drawGlobals::gbby; }
+
+void setGbbhw(const int gbbh, const int gbbw)
+{
+	drawGlobals::gbbh = gbbh;
+	drawGlobals::gbbw = gbbw;
+}
+
+void setGbbh(const int gbbh) { drawGlobals::gbbh = gbbh; }
+int getGbbh() { return drawGlobals::gbbh; }
+void setGbbw(const int gbbw) { drawGlobals::gbbw = gbbw; }
+int getGbbw() { return drawGlobals::gbbw; }
+
+void setGbbs(const int gbbs) { drawGlobals::gbbs = gbbs; }
+int getGbbs() { return drawGlobals::gbbs; }
+
+void setBubbleStemStyle(const eBubbleStemStyle bubbleStemStyle) { drawGlobals::bubble_stem_style = bubbleStemStyle; }
+eBubbleStemStyle getBubbleStemStyle() { return drawGlobals::bubble_stem_style; }
 
 } // anonymous namespace
 
@@ -399,12 +447,12 @@ void KDraw::draw_backlayer()
 	xofs = 16 - (dx & 15);
 	yofs = 16 - (dy & 15);
 
-	for (dy = 0; dy < ScreenHeightInTiles; dy++)
+	for (dy = 0; dy < drawGlobals::ScreenHeightInTiles; dy++)
 	{
 		/* TT Parallax problem here #1 */
 		if (ytc + dy >= box.top && ytc + dy <= box.bottom)
 		{
-			for (dx = 0; dx < ScreenWidthInTiles; dx++)
+			for (dx = 0; dx < drawGlobals::ScreenWidthInTiles; dx++)
 			{
 				/* TT Parallax problem here #2 */
 				if (xtc + dx >= box.left && xtc + dx <= box.right)
@@ -661,11 +709,11 @@ void KDraw::draw_forelayer()
 	xofs = 16 - (dx & 15);
 	yofs = 16 - (dy & 15);
 
-	for (dy = 0; dy < ScreenHeightInTiles; dy++)
+	for (dy = 0; dy < drawGlobals::ScreenHeightInTiles; dy++)
 	{
 		if (ytc + dy >= box.top && ytc + dy <= box.bottom)
 		{
-			for (dx = 0; dx < ScreenWidthInTiles; dx++)
+			for (dx = 0; dx < drawGlobals::ScreenWidthInTiles; dx++)
 			{
 				if (xtc + dx >= box.left && xtc + dx <= box.right)
 				{
@@ -836,11 +884,11 @@ void KDraw::draw_midlayer()
 	xofs = 16 - (dx & 15);
 	yofs = 16 - (dy & 15);
 
-	for (dy = 0; dy < ScreenHeightInTiles; dy++)
+	for (dy = 0; dy < drawGlobals::ScreenHeightInTiles; dy++)
 	{
 		if (ytc + dy >= box.top && ytc + dy <= box.bottom)
 		{
-			for (dx = 0; dx < ScreenWidthInTiles; dx++)
+			for (dx = 0; dx < drawGlobals::ScreenWidthInTiles; dx++)
 			{
 				if (xtc + dx >= box.left && xtc + dx <= box.right)
 				{
@@ -935,9 +983,9 @@ void KDraw::draw_shadows()
 	xofs = 16 - (camera_viewport_x & 15);
 	yofs = 16 - (camera_viewport_y & 15);
 
-	for (dy = 0; dy < ScreenHeightInTiles; dy++)
+	for (dy = 0; dy < drawGlobals::ScreenHeightInTiles; dy++)
 	{
-		for (dx = 0; dx < ScreenWidthInTiles; dx++)
+		for (dx = 0; dx < drawGlobals::ScreenWidthInTiles; dx++)
 		{
 			if (ytc + dy >= view_y1 && xtc + dx >= view_x1 &&
 				ytc + dy <= view_y2 && xtc + dx <= view_x2)
@@ -959,11 +1007,11 @@ void KDraw::draw_stsicon(Raster* where, int cc, int who, uint32_t inum, int icx,
 
 	for (size_t statIdx = 0; statIdx < inum; ++statIdx)
 	{
-        const int s = (cc == 0) ?
-            party[who].sts[statIdx] :
-            fighter[who].fighterSpellEffectStats[statIdx];
+		const int s = (cc == 0) ?
+			party[who].sts[statIdx] :
+			fighter[who].fighterSpellEffectStats[statIdx];
 
-        if (s != 0)
+		if (s != 0)
 		{
 			masked_blit(stspics, where, 0, statIdx * 8 + 8, st * 8 + icx, icy, 8, 8);
 			++st;
@@ -977,41 +1025,51 @@ void KDraw::draw_stsicon(Raster* where, int cc, int who, uint32_t inum, int icx,
 
 void KDraw::draw_textbox(eBubbleStyle bstyle)
 {
-	int wid, hgt, a;
-	Raster* stem = nullptr;
+	const int wid = getGbbw() * 8 + 16;
+	const int hgt = getGbbh() * 12 + 16;
+	const int gbbxOfs = getGbbx() + xofs;
+	const int gbbyOfs = getGbby() + yofs;
 
-	wid = gbbw * 8 + 16;
-	hgt = gbbh * 12 + 16;
-
-	draw_kq_box(double_buffer, gbbx + xofs, gbby + yofs, gbbx + xofs + wid, gbby + yofs + hgt, eMenuBoxColor::SEMI_TRANSPARENT_BLUE, bstyle);
-	if (bubble_stem_style != eBubbleStemStyle::STEM_UNDEFINED)
+	draw_kq_box(double_buffer, gbbxOfs, gbbyOfs, gbbxOfs + wid, gbbyOfs + hgt, eMenuBoxColor::SEMI_TRANSPARENT_BLUE, bstyle);
+	if (getBubbleStemStyle() != eBubbleStemStyle::STEM_UNDEFINED)
 	{
 		/* select the correct stem-thingy that comes out of the speech bubble */
-		stem = bub[bubble_stem_style + (bstyle == eBubbleStyle::BUBBLE_THOUGHT ? eBubbleStemStyle::NUM_BUBBLE_STEMS : 0)];
+		Raster* stem = bub[getBubbleStemStyle() + (bstyle == eBubbleStyle::BUBBLE_THOUGHT ? eBubbleStemStyle::NUM_BUBBLE_STEMS : 0)];
+
 		/* and draw it */
-		draw_sprite(double_buffer, stem, gbx + xofs, gby + yofs);
+		if (stem != nullptr)
+		{
+			draw_sprite(double_buffer, stem, getGbx() + xofs, getGby() + yofs);
+	}
 	}
 
-	for (a = 0; a < gbbh; a++)
+	for (int i = 0, iMax = getGbbh(); i < iMax; ++i)
 	{
-		print_font(double_buffer, gbbx + 8 + xofs, a * 12 + gbby + 8 + yofs, messageBuffer[a].c_str(), eFontColor::FONTCOLOR_BIG);
+		print_font(double_buffer,
+				   gbbxOfs + 8,
+				   i * 12 + gbbyOfs + 8,
+				   drawGlobals::messageBuffer[i].c_str(),
+				   eFontColor::FONTCOLOR_BIG);
 	}
 }
 
 void KDraw::draw_porttextbox(eBubbleStyle bstyle, int chr)
 {
+	const int gbbxOfs = getGbbx() + xofs;
+	const int gbbyOfs = getGbby() + yofs;
+
 	int wid, hgt, a;
 	int linexofs;
 
-	wid = gbbw * 8 + 16;
-	hgt = gbbh * 12 + 16;
+	wid = getGbbw() * 8 + 16;
+	hgt = getGbbh() * 12 + 16;
 	chr = chr - MAX_PARTY_SIZE;
 
-	draw_kq_box(double_buffer, gbbx + xofs, gbby + yofs, gbbx + xofs + wid, gbby + yofs + hgt, eMenuBoxColor::SEMI_TRANSPARENT_BLUE, bstyle);
+	draw_kq_box(double_buffer, gbbxOfs, gbbyOfs, gbbxOfs + wid, gbbyOfs + hgt, eMenuBoxColor::SEMI_TRANSPARENT_BLUE, bstyle);
 
-	for (a = 0; a < gbbh; a++)
+	for (a = 0; a < getGbbh(); a++)
 	{
-		print_font(double_buffer, gbbx + 8 + xofs, a * 12 + gbby + 8 + yofs, messageBuffer[a].c_str(), eFontColor::FONTCOLOR_BIG);
+		print_font(double_buffer, gbbxOfs + 8, a * 12 + gbbyOfs + 8, drawGlobals::messageBuffer[a].c_str(), eFontColor::FONTCOLOR_BIG);
 	}
 
 	a--;
@@ -1072,8 +1130,18 @@ void KDraw::drawmap()
 	}
 	if (display_desc == 1)
 	{
-		menubox(double_buffer, 152 - (g_map.map_desc.length() * 4) + xofs, 8 + yofs, g_map.map_desc.length(), 1, eMenuBoxColor::SEMI_TRANSPARENT_BLUE);
-		print_font(double_buffer, 160 - (g_map.map_desc.length() * 4) + xofs, 16 + yofs, g_map.map_desc.c_str(), eFontColor::FONTCOLOR_NORMAL);
+		const size_t textLen = g_map.map_desc.length();
+		menubox(double_buffer,
+				drawGlobals::magic_number_152 - (textLen * 4) + xofs,
+				8 + yofs,
+				textLen,
+				1,
+				eMenuBoxColor::SEMI_TRANSPARENT_BLUE);
+		print_font(double_buffer,
+				   160 - (textLen * 4) + xofs,
+				   16 + yofs,
+				   g_map.map_desc.c_str(),
+				   eFontColor::FONTCOLOR_NORMAL);
 	}
 }
 
@@ -1081,24 +1149,24 @@ void KDraw::generic_text(int who, eBubbleStyle box_style, int isPort)
 {
 	int a, stop = 0;
 
-	gbbw = 1;
-	gbbh = 0;
-	gbbs = 0;
+	setGbbhw(0, 1);
+	setGbbs(0);
 	for (a = 0; a < 4; a++)
 	{
-		size_t len = messageBuffer[a].length();
+		const size_t len = drawGlobals::messageBuffer[a].length();
 		/* FIXME: PH changed >1 to >0 */
 		if (len > 0)
 		{
-			gbbh = a + 1;
-			if ((signed int)len > gbbw)
+			setGbbh(a + 1);
+			if ((signed int)len > getGbbw())
 			{
-				gbbw = len;
+				setGbbw(len);
 			}
 		}
 	}
+
 	set_textpos((box_style == eBubbleStyle::BUBBLE_MESSAGE) ? -1 : (isPort == 0) ? who : 255);
-	if (gbbw == -1 || gbbh == -1)
+	if (getGbbw() == -1 || getGbbh() == -1)
 	{
 		return;
 	}
@@ -1176,9 +1244,9 @@ void KDraw::message(const char* m, int icn, int delay, int x_m, int y_m)
 		s = splitTextOverMultipleLines(s).c_str();
 		/* Calculate the box size */
 		num_lines = max_len = 0;
-		for (i = 0; i < MSG_ROWS; ++i)
+		for (i = 0; i < drawGlobals::MSG_ROWS; ++i)
 		{
-			size_t len = messageBuffer[i].length();
+			size_t len = drawGlobals::messageBuffer[i].length();
 			if (len > 0)
 			{
 				if (max_len < len)
@@ -1192,19 +1260,19 @@ void KDraw::message(const char* m, int icn, int delay, int x_m, int y_m)
 		if (icn == 255)
 		{
 			/* No icon */
-			menubox(double_buffer, 152 - (max_len * 4) + x_m, 108 + y_m, max_len, num_lines, eMenuBoxColor::DARKBLUE);
+			menubox(double_buffer, drawGlobals::magic_number_152 - (max_len * 4) + x_m, 108 + y_m, max_len, num_lines, eMenuBoxColor::DARKBLUE);
 		}
 		else
 		{
 			/* There is an icon; make the box a little bit bigger to the left */
 			menubox(double_buffer, 144 - (max_len * 4) + x_m, 108 + y_m, max_len + 1, num_lines, eMenuBoxColor::DARKBLUE);
-			draw_icon(double_buffer, icn, 152 - (max_len * 4) + x_m, 116 + y_m);
+			draw_icon(double_buffer, icn, drawGlobals::magic_number_152 - (max_len * 4) + x_m, 116 + y_m);
 		}
 
 		/* Draw the text */
 		for (i = 0; i < num_lines; ++i)
 		{
-			print_font(double_buffer, 160 - (max_len * 4) + x_m, 116 + 8 * i + y_m, messageBuffer[i].c_str(), eFontColor::FONTCOLOR_NORMAL);
+			print_font(double_buffer, 160 - (max_len * 4) + x_m, 116 + 8 * i + y_m, drawGlobals::messageBuffer[i].c_str(), eFontColor::FONTCOLOR_NORMAL);
 		}
 		/* Show it */
 		blit2screen(x_m, y_m);
@@ -1433,71 +1501,66 @@ void KDraw::print_num(Raster* where, int sx, int sy, const string& msg, eFont fo
 
 int KDraw::prompt(int who, int numopt, eBubbleStyle bstyle, const char* sp1, const char* sp2, const char* sp3, const char* sp4)
 {
-	int ly, stop = 0, ptr = 0;
-	size_t str_len;
+	int ptr = 0;
 
-	gbbw = 1;
-	gbbh = 0;
-	gbbs = 0;
-    messageBuffer[0] = substitutePlayerNameString(sp1);
-    messageBuffer[1] = substitutePlayerNameString(sp2);
-    messageBuffer[2] = substitutePlayerNameString(sp3);
-    messageBuffer[3] = substitutePlayerNameString(sp4);
+	setGbbhw(0, 1);
+	setGbbs(0);
+	drawGlobals::messageBuffer[0] = substitutePlayerNameString(sp1);
+	drawGlobals::messageBuffer[1] = substitutePlayerNameString(sp2);
+	drawGlobals::messageBuffer[2] = substitutePlayerNameString(sp3);
+	drawGlobals::messageBuffer[3] = substitutePlayerNameString(sp4);
 	Game.unpress();
 	for (size_t a = 0; a < 4; a++)
 	{
-		str_len = messageBuffer[a].length();
+		const size_t str_len = drawGlobals::messageBuffer[a].length();
 		if (str_len > 1)
 		{
-			gbbh = a + 1;
-			if ((signed int)str_len > gbbw)
+			setGbbh(a + 1);
+			if ((signed int)str_len > getGbbw())
 			{
-				gbbw = str_len;
+				setGbbw(str_len);
 			}
 		}
 	}
+
 	set_textpos(who);
-	if (gbbw == -1 || gbbh == -1)
+	if (getGbbw() == -1 || getGbbh() == -1)
 	{
 		return -1;
 	}
-	ly = (gbbh - numopt) * 12 + gbby + 10;
-	while (!stop)
+
+	const int ly = (getGbbh() - numopt) * 12 + getGbby() + 10;
+	while (true)
 	{
 		Game.do_check_animation();
 		drawmap();
 		draw_textbox(bstyle);
 
-		draw_sprite(double_buffer, menuptr, gbbx + xofs + 8, ptr * 12 + ly + yofs);
+		draw_sprite(double_buffer, menuptr, getGbbx() + xofs + 8, ptr * 12 + ly + yofs);
 		blit2screen(xofs, yofs);
 
 		PlayerInput.readcontrols();
 		if (PlayerInput.up)
 		{
 			Game.unpress();
-			ptr--;
-			if (ptr < 0)
-			{
-				ptr = 0;
-			}
+			ptr = std::max(0, ptr - 1);
 			play_effect(SND_CLICK, 128);
 		}
+
 		if (PlayerInput.down)
 		{
 			Game.unpress();
-			ptr++;
-			if (ptr > numopt - 1)
-			{
-				ptr = numopt - 1;
-			}
+			ptr = std::min(numopt - 1, ptr + 1);
 			play_effect(SND_CLICK, 128);
 		}
+
 		if (PlayerInput.balt)
 		{
 			Game.unpress();
-			stop = 1;
+			break;
 		}
 	}
+
 	return ptr;
 }
 
@@ -1514,8 +1577,8 @@ uint32_t KDraw::prompt_ex(uint32_t who, const char* ptext, const char* opt[], ui
 	ptext = substitutePlayerNameString(ptext).c_str();
 	while (1)
 	{
-		gbbw = 1;
-		gbbs = 0;
+		setGbbw(1);
+		setGbbs(0);
 		ptext = splitTextOverMultipleLines(ptext).c_str();
 		if (ptext)
 		{
@@ -1529,15 +1592,15 @@ uint32_t KDraw::prompt_ex(uint32_t who, const char* ptext, const char* opt[], ui
             /* calc the size of the prompt box */
 			for (size_t a = 0; a < 4; a++)
 			{
-				size_t len = messageBuffer[a].length();
+				size_t len = drawGlobals::messageBuffer[a].length();
 
 				/* FIXME: PH changed >1 to >0 */
 				if (len > 0)
 				{
-					gbbh = a + 1;
-					if ((signed int)len > gbbw)
+					setGbbh(a + 1);
+					if ((signed int)len > getGbbw())
 					{
-						gbbw = len;
+						setGbbw(len);
 					}
 				}
 			}
@@ -1564,6 +1627,7 @@ uint32_t KDraw::prompt_ex(uint32_t who, const char* ptext, const char* opt[], ui
 				drawmap();
 				/* Draw the prompt text */
 				set_textpos(who);
+
 				draw_textbox(eBubbleStyle::BUBBLE_TEXT);
 				/* Draw the  options text */
 				draw_kq_box(double_buffer, winx - 5, winy - 5, winx + winwidth * 8 + 13, winy + winheight * 12 + 5, eMenuBoxColor::SEMI_TRANSPARENT_BLUE, eBubbleStyle::BUBBLE_TEXT);
@@ -1683,16 +1747,16 @@ string word_wrap(string text, size_t per_line)
  */
 string KDraw::splitTextOverMultipleLines(const string& stringToSplit)
 {
-    string wordWrappedString = word_wrap(stringToSplit, MSG_COLS);
+	string wordWrappedString = word_wrap(stringToSplit, drawGlobals::MSG_COLS);
 
-    for (size_t currentRow = 0; currentRow < MSG_ROWS; ++currentRow)
+	for (size_t currentRow = 0; currentRow < drawGlobals::MSG_ROWS; ++currentRow)
     {
         auto singleRowNewlineAt = wordWrappedString.find_first_of('\n');
         string substring = wordWrappedString.substr(0, singleRowNewlineAt);
         if (singleRowNewlineAt == string::npos)
         {
             // No newlines, meaning nothing wrapped; everything fit on a single line
-            messageBuffer[currentRow++] = wordWrappedString;
+			drawGlobals::messageBuffer[currentRow++] = wordWrappedString;
             return "";
         }
     }
@@ -1701,9 +1765,9 @@ string KDraw::splitTextOverMultipleLines(const string& stringToSplit)
 	char tc;
 	KqFork::eTextFormat state;
 
-	for (i = 0; i < MSG_ROWS; ++i)
+	for (i = 0; i < drawGlobals::MSG_ROWS; ++i)
 	{
-        messageBuffer[i].clear();
+		drawGlobals::messageBuffer[i].clear();
 	}
 	i = 0;
 	cc = 0;
@@ -1727,13 +1791,13 @@ string KDraw::splitTextOverMultipleLines(const string& stringToSplit)
 
 			case '\0':
                 //strbuf
-				messageBuffer[cr][cc] = '\0';
+				drawGlobals::messageBuffer[cr][cc] = '\0';
 				state = KqFork::eTextFormat::M_END;
 				break;
 
 			case '\n':
                 //strbuf
-				messageBuffer[cr][cc] = '\0';
+				drawGlobals::messageBuffer[cr][cc] = '\0';
 				cc = 0;
 				++i;
 				if (++cr >= 4)
@@ -1752,15 +1816,15 @@ string KDraw::splitTextOverMultipleLines(const string& stringToSplit)
 			switch (tc)
 			{
 			case ' ':
-				if (cc < MSG_COLS - 1)
+				if (cc < drawGlobals::MSG_COLS - 1)
 				{
                     //strbuf
-					messageBuffer[cr][cc] = tc;
+					drawGlobals::messageBuffer[cr][cc] = tc;
                     ++cc;
 				}
 				else
 				{
-					msgbuf[cr][MSG_COLS - 1] = '\0';
+					drawGlobals::msgbuf[cr][drawGlobals::MSG_COLS - 1] = '\0';
 				}
 				++i;
 				break;
@@ -1781,16 +1845,16 @@ string KDraw::splitTextOverMultipleLines(const string& stringToSplit)
 				break;
 
 			default:
-				if (cc < MSG_COLS - 1)
+				if (cc < drawGlobals::MSG_COLS - 1)
 				{
-					msgbuf[cr][cc++] = tc;
+					drawGlobals::msgbuf[cr][cc++] = tc;
 				}
 				else
 				{
-					msgbuf[cr++][lastc] = '\0';
+					drawGlobals::msgbuf[cr++][lastc] = '\0';
 					cc = 0;
 					i = lasts;
-					if (cr >= MSG_ROWS)
+					if (cr >= drawGlobals::MSG_ROWS)
 					{
 						return &stringToSplit[1 + lasts];
 					}
@@ -1849,85 +1913,90 @@ void KDraw::set_textpos(uint32_t entity_index)
 {
 	if (entity_index < MAX_ENTITIES)
 	{
-		gbx = (g_ent[entity_index].tilex * TILE_W) - camera_viewport_x;
-		gby = (g_ent[entity_index].tiley * TILE_H) - camera_viewport_y;
-		gbbx = gbx - (gbbw * 4);
-		if (gbbx < 8)
+		setGbxy((g_ent[entity_index].tilex * TILE_W) - camera_viewport_x,
+				(g_ent[entity_index].tiley * TILE_H) - camera_viewport_y);
+		setGbbx(getGbx() - (getGbbw() * 4));
+		if (getGbbx() < 8)
 		{
-			gbbx = 8;
+			setGbbx(8);
 		}
-		if (gbbw * 8 + gbbx + 16 > 312)
+		if (getGbbw() * 8 + getGbbx() + 16 > 312)
 		{
-			gbbx = 296 - (gbbw * 8);
+			setGbbx(296 - (getGbbw() * 8));
 		}
-		if (gby > -16 && gby < KQ_SCREEN_H)
+		if (getGby() > -16 && getGby() < KQ_SCREEN_H)
 		{
+			const int gbbh = getGbbh() * 12;
 			if (g_ent[entity_index].facing == 1 || g_ent[entity_index].facing == 2)
 			{
-				if (gbbh * 12 + gby + 40 <= KQ_SCREEN_H - 8)
+				if (gbbh + getGby() + 40 <= KQ_SCREEN_H - 8)
 				{
-					gbby = gby + 24;
+					setGbby(getGby() + 24);
 				}
 				else
 				{
-					gbby = gby - (gbbh * 12) - 24;
+					setGbby(getGby() - gbbh - 24);
 				}
 			}
 			else
 			{
-				if (gby - (gbbh * 12) - 24 >= 8)
+				const int gby = getGby() - gbbh - 24;
+				if (gby >= 8)
 				{
-					gbby = gby - (gbbh * 12) - 24;
+					setGbby(gby);
 				}
 				else
 				{
-					gbby = gby + 24;
+					setGbby(getGby() + 24);
 				}
 			}
 		}
 		else
 		{
-			if (gby < 8)
+			if (getGby() < 8)
 			{
-				gbby = 8;
+				setGbby(8);
 			}
-			if (gbbh * 12 + gby + 16 > 232)
+
+			const int gbbh = getGbbh() * 12;
+			if (gbbh + getGby() + 16 > 232)
 			{
-				gbby = 216 - (gbbh * 12);
+				setGbby(drawGlobals::magic_number_216 - gbbh);
 			}
 		}
-		if (gbby > gby)
+
+		if (getGbby() > getGby())
 		{
-			gby += 20;
-			bubble_stem_style = (gbx < 152 ? eBubbleStemStyle::STEM_TOP_LEFT : eBubbleStemStyle::STEM_TOP_RIGHT);
+			setGby(getGby() + 20);
+			setBubbleStemStyle(getGbx() < drawGlobals::magic_number_152 ? eBubbleStemStyle::STEM_TOP_LEFT : eBubbleStemStyle::STEM_TOP_RIGHT);
 		}
 		else
 		{
-			gby -= 20;
-			bubble_stem_style = (gbx < 152 ? eBubbleStemStyle::STEM_BOTTOM_LEFT : eBubbleStemStyle::STEM_BOTTOM_RIGHT);
+			setGby(getGby() - 20);
+			setBubbleStemStyle(getGbx() < drawGlobals::magic_number_152 ? eBubbleStemStyle::STEM_BOTTOM_LEFT : eBubbleStemStyle::STEM_BOTTOM_RIGHT);
 		}
-		if (gbx < gbbx + 8)
+		if (getGbx() < getGbbx() + 8)
 		{
-			gbx = gbbx + 8;
+			setGbx(getGbbx() + 8);
 		}
-		if (gbx > gbbw * 8 + gbbx - 8)
+		if (getGbx() > getGbbw() * 8 + getGbbx() - 8)
 		{
-			gbx = gbbw * 8 + gbbx - 8;
+			setGbx(getGbbw() * 8 + getGbbx() - 8);
 		}
-		if (gby < gbby - 4)
+		if (getGby() < getGbby() - 4)
 		{
-			gby = gbby - 4;
+			setGby(getGbby() - 4);
 		}
-		if (gby > gbbh * 12 + gbby + 4)
+		if (getGby() > getGbbh() * 12 + getGbby() + 4)
 		{
-			gby = gbbh * 12 + gbby + 4;
+			setGby(getGbbh() * 12 + getGbby() + 4);
 		}
 	}
 	else
 	{
-		gbby = 216 - (gbbh * 12);
-		gbbx = 152 - (gbbw * 4);
-		bubble_stem_style = eBubbleStemStyle::STEM_UNDEFINED;
+		setGbbxy(drawGlobals::magic_number_152 - getGbbw() * 4,
+				 drawGlobals::magic_number_216 - getGbbh() * 12);
+		setBubbleStemStyle(eBubbleStemStyle::STEM_UNDEFINED);
 	}
 }
 
